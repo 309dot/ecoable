@@ -1,416 +1,247 @@
 import Link from 'next/link';
 
 export default function ClientCompanyPage() {
+  const clientLogos = [
+    { name: 'A전자', logo: 'A전자' },
+    { name: 'B화학', logo: 'B화학' },
+    { name: 'C자동차', logo: 'C자동차' },
+    { name: 'D건설', logo: 'D건설' },
+    { name: 'E시청', logo: 'E시청' },
+    { name: 'F그룹', logo: 'F그룹' },
+    { name: 'G산업', logo: 'G산업' },
+    { name: 'H기업', logo: 'H기업' },
+  ];
+
+  const successStories = [
+    {
+      title: "A전자 ESG 경영체계 구축",
+      category: "ESG 컨설팅",
+      description: "글로벌 전자기업의 ESG 경영체계 구축 및 지속가능경영 보고서 작성 지원으로 ESG 평가 등급 대폭 상승",
+      results: ["ESG 평가 등급 B+ → A-", "탄소배출량 20% 감축", "녹색제품 인증 5개 취득"],
+      period: "2023년 6월 - 12월",
+      color: "blue"
+    },
+    {
+      title: "B화학 순환경제 전환",
+      category: "자원순환",
+      description: "석유화학 제조업체의 순환경제 전환을 위한 폐기물 관리 시스템 구축 및 재활용 프로세스 최적화",
+      results: ["폐기물 재활용률 85% 달성", "운영비용 30% 절감", "친환경 제품라인 확대"],
+      period: "2022년 3월 - 2023년 2월",
+      color: "green"
+    },
+    {
+      title: "C자동차 탄소중립 로드맵",
+      category: "기후변화대응",
+      description: "자동차 제조업체의 2050 탄소중립 목표 달성을 위한 단계별 실행 계획 수립 및 실행 지원",
+      results: ["2030년 중간목표 수립", "RE100 가입 완료", "전동화 로드맵 구축"],
+      period: "2023년 1월 - 8월",
+      color: "red"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section */}
+      {/* Header Section with Navigation */}
       <section className="relative w-full h-[400px] overflow-hidden">
-        {/* Background with Gradient */}
-        <div className="absolute inset-0" 
-          style={{
-            background: 'linear-gradient(135deg, #1A3A6F 0%, #399084 100%)'
-          }}>
-        </div>
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A3A6F] to-[#399084]"></div>
 
         {/* Navigation */}
-        <nav className="relative z-10 px-20 py-4">
-          <div className="flex items-center backdrop-blur-md rounded-[999px] px-6 py-3">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="relative w-[142.27px] h-7">
-                <div className="absolute -left-[5px] -top-[2px] w-[152px] h-[33px] bg-white rounded-sm" />
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10"
-                  style={{
-                    backgroundImage: `url('/logo.png')`,
-                  }}
-                />
-              </div>
+        <nav className="relative z-10 px-20 py-6">
+          <div className="flex items-center justify-between bg-white/10 backdrop-blur-md rounded-[999px] px-8 py-4">
+            <div className="text-white text-xl font-semibold">
+              에코에이블컨설팅(주)
             </div>
-
-            {/* Menu Links */}
-            <div className="flex-1 flex justify-center items-center gap-4 ml-8">
-              <Link href="/" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
-                <span className="text-white font-inter font-medium text-base leading-6">Home</span>
+            <div className="flex items-center space-x-8">
+              <Link href="/" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
+                Home
               </Link>
-
-              <Link href="/ecoable" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
-                <span className="text-white font-inter font-medium text-base leading-6">Ecoable</span>
+              <Link href="/ecoable" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
+                Ecoable
               </Link>
-
-              <Link href="/what-we-do" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
-                <span className="text-white font-inter font-medium text-base leading-6">What we do</span>
+              <Link href="/what-we-do" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
+                What we do
               </Link>
-
-              <Link href="/portfolio" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
-                <span className="text-white font-inter font-medium text-base leading-6">Portfolio</span>
+              <Link href="/portfolio" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
+                Portfolio
               </Link>
-
-              <Link href="/client-company" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{
-                  background: 'linear-gradient(90deg, #1A3A6F 0%, #399084 100%)',
-                }}>
-                <span className="text-white font-inter font-semibold text-base leading-6">Client Company</span>
+              <Link href="/client-company" className="text-white text-base font-medium bg-gradient-to-r from-[#1A3A6F] to-[#399084] px-6 py-3 rounded-[999px]">
+                Client Company
               </Link>
-
-              <Link href="/contact" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
-                <span className="text-white font-inter font-medium text-base leading-6">Contact</span>
+              <Link href="/contact" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
+                Contact
               </Link>
-            </div>
-
-            {/* Right Buttons */}
-            <div className="flex items-center gap-2">
-              <button className="flex justify-center items-center gap-1 p-2.5 bg-white border border-[#DEE0E3] rounded-[999px]">
-                <div className="w-5 h-5">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M2.5 1.67H15L12.02 12.02L15 16.67H2.5V1.67Z" fill="rgba(15,19,36,0.6)"/>
-                  </svg>
-                </div>
-              </button>
-              <button className="flex justify-center items-center gap-1 p-2.5 bg-white border border-[#DEE0E3] rounded-[999px]">
-                <div className="w-5 h-5">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M1.67 2.5H16.67L15 15H1.67V2.5Z" fill="rgba(15,19,36,0.6)"/>
-                  </svg>
-                </div>
-              </button>
             </div>
           </div>
         </nav>
 
         {/* Page Title */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full pt-20">
-          <h1 className="text-white font-inter font-bold text-center leading-[72px]" 
-            style={{ 
-              fontSize: '64px',
-              letterSpacing: '-2.656%',
-              lineHeight: '1.125em'
-            }}>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full pt-8">
+          <h1 className="text-white font-inter font-bold text-6xl leading-tight tracking-tight mb-4">
             Client Company
           </h1>
-          <p className="text-white font-inter font-medium text-center mt-4 leading-[32px]" 
-            style={{ 
-              fontSize: '24px',
-              letterSpacing: '-1.5%',
-              lineHeight: '1.333em'
-            }}>
-            함께 성장하는 파트너십
+          <p className="text-white font-inter font-medium text-2xl tracking-wide">
+            신뢰받는 파트너, 함께 성장하는 기업들
           </p>
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Company Overview */}
       <section className="px-20 py-16">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Client Overview */}
-          <div className="text-center mb-16">
-            <h2 className="text-[#14151A] font-inter font-bold mb-6" 
-              style={{ 
-                fontSize: '48px',
-                letterSpacing: '-2.083%',
-                lineHeight: '1.167em'
-              }}>
-              주요 고객사
-            </h2>
-            <p className="font-inter font-normal leading-8 max-w-3xl mx-auto" 
-              style={{
-                fontSize: '18px',
-                letterSpacing: '-1.111%',
-                lineHeight: '1.556em',
-                color: 'rgba(15,19,36,0.7)'
-              }}>
-              대기업부터 중소기업까지, 다양한 업종의 고객사와 함께 
-              지속가능한 환경 솔루션을 만들어가고 있습니다.
-            </p>
-          </div>
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            다양한 산업 분야의 고객사와 함께합니다
+          </h2>
+          <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mb-16">
+            대기업부터 중견기업, 공공기관까지 다양한 고객사의 환경 과제를 성공적으로 해결하며 
+            지속가능한 미래를 함께 만들어가고 있습니다.
+          </p>
 
           {/* Client Logos Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
-            {/* 대기업 로고들 */}
-            {Array.from({ length: 12 }).map((_, index) => (
-              <div key={index} className="bg-white border border-[#DEE0E3] rounded-2xl p-6 flex items-center justify-center h-24 hover:shadow-lg transition-shadow">
-                <div className="w-full h-12 bg-gray-200 rounded flex items-center justify-center">
-                  <span className="font-inter font-medium text-sm text-gray-500">
-                    Client {index + 1}
-                  </span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+            {clientLogos.map((client, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-md transition-all">
+                <div className="w-full h-20 flex items-center justify-center">
+                  <div className="text-2xl font-bold text-gray-700">{client.logo}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Success Stories */}
-          <div className="mb-16">
-            <h2 className="text-[#14151A] font-inter font-bold mb-8 text-center" 
-              style={{ 
-                fontSize: '36px',
-                letterSpacing: '-2.083%',
-                lineHeight: '1.167em'
-              }}>
-              성공 사례
-            </h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Case Study 1 */}
-              <div className="bg-white border border-[#DEE0E3] rounded-3xl p-8">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#1A3A6F] to-[#399084] rounded-2xl flex items-center justify-center mb-4">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <path d="M16 4L20 8V12L16 16L12 12V8L16 4Z" fill="white"/>
-                    </svg>
-                  </div>
-                  <h3 className="text-[#14151A] font-inter font-bold mb-4" 
-                    style={{ 
-                      fontSize: '24px',
-                      letterSpacing: '-1.5%',
-                      lineHeight: '1.333em'
-                    }}>
-                    A전자 ESG 경영체계 구축
-                  </h3>
-                </div>
-                <p className="font-inter font-normal leading-7 mb-4" 
-                  style={{
-                    fontSize: '16px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.5em',
-                    color: 'rgba(15,19,36,0.7)'
-                  }}>
-                  글로벌 전자제품 제조업체의 ESG 경영체계 구축 및 
-                  지속가능경영 보고서 작성을 통한 투명성 강화
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-inter font-medium text-sm text-[#399084]">
-                    탄소배출량 30% 감축
-                  </span>
-                  <span className="font-inter font-medium text-sm" 
-                    style={{ color: 'rgba(15,19,36,0.7)' }}>
-                    2023년
-                  </span>
-                </div>
-              </div>
-
-              {/* Case Study 2 */}
-              <div className="bg-white border border-[#DEE0E3] rounded-3xl p-8">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#1A3A6F] to-[#399084] rounded-2xl flex items-center justify-center mb-4">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <path d="M4 8H28V24H4V8Z" fill="white"/>
-                    </svg>
-                  </div>
-                  <h3 className="text-[#14151A] font-inter font-bold mb-4" 
-                    style={{ 
-                      fontSize: '24px',
-                      letterSpacing: '-1.5%',
-                      lineHeight: '1.333em'
-                    }}>
-                    B화학 순환경제 전환
-                  </h3>
-                </div>
-                <p className="font-inter font-normal leading-7 mb-4" 
-                  style={{
-                    fontSize: '16px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.5em',
-                    color: 'rgba(15,19,36,0.7)'
-                  }}>
-                  화학 공정의 순환경제 모델 도입으로 
-                  폐기물 감량과 자원 재활용률 극대화 달성
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-inter font-medium text-sm text-[#399084]">
-                    폐기물 50% 감축
-                  </span>
-                  <span className="font-inter font-medium text-sm" 
-                    style={{ color: 'rgba(15,19,36,0.7)' }}>
-                    2023년
-                  </span>
-                </div>
-              </div>
-
-              {/* Case Study 3 */}
-              <div className="bg-white border border-[#DEE0E3] rounded-3xl p-8">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#1A3A6F] to-[#399084] rounded-2xl flex items-center justify-center mb-4">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <path d="M16 4C10 4 6 8 6 14C6 20 10 24 16 24C22 24 26 20 26 14C26 8 22 4 16 4Z" fill="white"/>
-                    </svg>
-                  </div>
-                  <h3 className="text-[#14151A] font-inter font-bold mb-4" 
-                    style={{ 
-                      fontSize: '24px',
-                      letterSpacing: '-1.5%',
-                      lineHeight: '1.333em'
-                    }}>
-                    C자동차 탄소중립 로드맵
-                  </h3>
-                </div>
-                <p className="font-inter font-normal leading-7 mb-4" 
-                  style={{
-                    fontSize: '16px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.5em',
-                    color: 'rgba(15,19,36,0.7)'
-                  }}>
-                  자동차 제조업체의 2050 탄소중립 목표 달성을 위한 
-                  단계별 감축 전략 수립 및 실행 계획 지원
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-inter font-medium text-sm text-[#399084]">
-                    2050 탄소중립 달성
-                  </span>
-                  <span className="font-inter font-medium text-sm" 
-                    style={{ color: 'rgba(15,19,36,0.7)' }}>
-                    진행 중
-                  </span>
-                </div>
-              </div>
+          {/* Partnership Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-5xl font-bold text-blue-600 mb-2">50+</div>
+              <div className="text-xl text-gray-600">협력 고객사</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-green-600 mb-2">95%</div>
+              <div className="text-xl text-gray-600">재계약률</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-purple-600 mb-2">10+</div>
+              <div className="text-xl text-gray-600">년간의 신뢰</div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Partnership Benefits */}
-          <div className="bg-gradient-to-br from-[#1A3A6F] to-[#399084] rounded-3xl p-12 text-white mb-16">
-            <div className="text-center mb-12">
-              <h2 className="font-inter font-bold mb-6" 
-                style={{ 
-                  fontSize: '36px',
-                  letterSpacing: '-2.083%',
-                  lineHeight: '1.167em'
-                }}>
-                파트너십의 가치
-              </h2>
-              <p className="font-inter font-normal leading-8 max-w-2xl mx-auto" 
-                style={{
-                  fontSize: '18px',
-                  letterSpacing: '-1.111%',
-                  lineHeight: '1.556em',
-                  opacity: 0.9
-                }}>
-                에코에이블컨설팅과 함께하는 고객사들이 얻는 실질적인 가치
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Benefit 1 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M20 5L25 15H35L27 23L30 35L20 28L10 35L13 23L5 15H15L20 5Z" fill="white"/>
-                  </svg>
-                </div>
-                <h3 className="font-inter font-bold mb-4" 
-                  style={{ 
-                    fontSize: '20px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.4em'
-                  }}>
-                  전문성 확보
-                </h3>
-                <p className="font-inter font-normal leading-6" 
-                  style={{
-                    fontSize: '14px',
-                    letterSpacing: '-0.714%',
-                    lineHeight: '1.429em',
-                    opacity: 0.8
-                  }}>
-                  4개 전문 파트의 
-                  통합 솔루션 제공
-                </p>
-              </div>
-
-              {/* Benefit 2 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M10 15L20 5L30 15L35 20L20 35L5 20L10 15Z" fill="white"/>
-                  </svg>
-                </div>
-                <h3 className="font-inter font-bold mb-4" 
-                  style={{ 
-                    fontSize: '20px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.4em'
-                  }}>
-                  비용 효율성
-                </h3>
-                <p className="font-inter font-normal leading-6" 
-                  style={{
-                    fontSize: '14px',
-                    letterSpacing: '-0.714%',
-                    lineHeight: '1.429em',
-                    opacity: 0.8
-                  }}>
-                  최적화된 솔루션으로 
-                  투자 대비 효과 극대화
-                </p>
-              </div>
-
-              {/* Benefit 3 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M20 10C25 10 30 15 30 20C30 25 25 30 20 30C15 30 10 25 10 20C10 15 15 10 20 10Z" fill="white"/>
-                  </svg>
-                </div>
-                <h3 className="font-inter font-bold mb-4" 
-                  style={{ 
-                    fontSize: '20px',
-                    letterSpacing: '-1.25%',
-                    lineHeight: '1.4em'
-                  }}>
-                  지속적 지원
-                </h3>
-                <p className="font-inter font-normal leading-6" 
-                  style={{
-                    fontSize: '14px',
-                    letterSpacing: '-0.714%',
-                    lineHeight: '1.429em',
-                    opacity: 0.8
-                  }}>
-                  프로젝트 완료 후에도 
-                  지속적인 관리 지원
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="text-center">
-            <h2 className="text-[#14151A] font-inter font-bold mb-6" 
-              style={{ 
-                fontSize: '36px',
-                letterSpacing: '-2.083%',
-                lineHeight: '1.167em'
-              }}>
-              새로운 파트너가 되어주세요
-            </h2>
-            <p className="font-inter font-normal leading-8 mb-8 max-w-2xl mx-auto" 
-              style={{
-                fontSize: '18px',
-                letterSpacing: '-1.111%',
-                lineHeight: '1.556em',
-                color: 'rgba(15,19,36,0.7)'
-              }}>
-              에코에이블컨설팅과 함께 지속가능한 미래를 만들어가는 
-              파트너가 되어주세요.
+      {/* Success Stories */}
+      <section className="bg-gray-50 px-20 py-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">고객 성공 사례</h2>
+            <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+              에코에이블컨설팅과 함께한 고객사들의 성공 스토리를 확인해보세요
             </p>
-            <div className="flex justify-center gap-4">
-              <button className="flex items-center gap-2 px-8 py-4 rounded-[999px]" 
-                style={{ 
-                  background: 'linear-gradient(90deg, #1A3A6F 0%, #399084 100%)'
-                }}>
-                <span className="text-white font-inter font-semibold text-lg">파트너십 문의</span>
-              </button>
-              <button className="flex items-center gap-2 px-8 py-4 rounded-[999px] border border-[#DEE0E3]">
-                <span className="text-[#14151A] font-inter font-medium text-lg">고객사 자료</span>
-              </button>
-            </div>
           </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {successStories.map((story, index) => (
+              <div key={index} className="bg-white rounded-3xl p-8 hover:shadow-lg transition-all">
+                <div className="mb-4">
+                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium bg-${story.color}-100 text-${story.color}-700`}>
+                    {story.category}
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{story.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">{story.description}</p>
+                
+                <div className="mb-6">
+                  <h4 className="font-bold text-gray-900 mb-3">주요 성과</h4>
+                  <ul className="space-y-2">
+                    {story.results.map((result, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-gray-600">
+                        <div className={`w-2 h-2 bg-${story.color}-500 rounded-full`}></div>
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="text-sm text-gray-500">
+                  <span className="font-medium">프로젝트 기간: </span>
+                  {story.period}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Benefits */}
+      <section className="px-20 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              에코에이블컨설팅과의 파트너십 혜택
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              전문성과 경험을 바탕으로 고객사의 성공을 지원합니다
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">검증된 전문성</h3>
+              <p className="text-gray-600">4개 전문 분야의 깊이 있는 지식과 풍부한 경험</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">맞춤형 솔루션</h3>
+              <p className="text-gray-600">고객사의 특성과 요구사항에 최적화된 솔루션 제공</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">지속적 지원</h3>
+              <p className="text-gray-600">프로젝트 완료 후에도 지속적인 관리 및 지원</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">빠른 대응</h3>
+              <p className="text-gray-600">신속한 의사결정과 효율적인 프로젝트 진행</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA Section */}
+      <section className="bg-gradient-to-r from-[#1A3A6F] to-[#399084] px-20 py-16">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h3 className="text-3xl font-bold mb-6">
+            지속가능한 성장을 위한 파트너가 되어드리겠습니다
+          </h3>
+          <p className="text-xl mb-8 opacity-90">
+            에코에이블컨설팅과 함께 환경 경영의 새로운 가능성을 발견하세요
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Link href="/contact" className="bg-white text-[#1A3A6F] px-8 py-4 rounded-3xl text-lg font-bold hover:bg-gray-100 transition-all">
+              파트너십 문의
+            </Link>
+            <button className="bg-white/10 backdrop-blur-md border-2 border-white text-white px-8 py-4 rounded-3xl text-lg font-bold hover:bg-white/20 transition-all">
+              성공 사례집 다운로드
+            </button>
+          </div>
         </div>
       </section>
     </div>
