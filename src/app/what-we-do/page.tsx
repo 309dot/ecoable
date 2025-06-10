@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function WhatWeDoPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -28,27 +30,42 @@ export default function WhatWeDoPage() {
 
             {/* Menu Links */}
             <div className="flex-1 flex justify-center items-center gap-4 ml-8">
-              <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+              <Link href="/" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                 <span className="text-white font-inter font-medium text-base leading-6">Home</span>
-              </button>
+              </Link>
 
-              <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+              <Link href="/ecoable" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                 <span className="text-white font-inter font-medium text-base leading-6">Ecoable</span>
-              </button>
+              </Link>
 
-              <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+              <Link href="/what-we-do" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                 style={{
                   background: 'linear-gradient(90deg, #1A3A6F 0%, #399084 100%)',
                 }}>
                 <span className="text-white font-inter font-semibold text-base leading-6">What we do</span>
-              </button>
+              </Link>
 
-              <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+              <Link href="/portfolio" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                 <span className="text-white font-inter font-medium text-base leading-6">Portfolio</span>
-              </button>
+              </Link>
+
+              <Link href="/client-company" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                <span className="text-white font-inter font-medium text-base leading-6">Client Company</span>
+              </Link>
+
+              <Link href="/team" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                <span className="text-white font-inter font-medium text-base leading-6">Team</span>
+              </Link>
+
+              <Link href="/contact" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                <span className="text-white font-inter font-medium text-base leading-6">Contact</span>
+              </Link>
             </div>
 
             {/* Right Buttons */}

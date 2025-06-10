@@ -52,6 +52,16 @@ export default function EcoablePage() {
                 <span className="text-white font-inter font-medium text-base leading-6">Portfolio</span>
               </Link>
 
+              <Link href="/client-company" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                <span className="text-white font-inter font-medium text-base leading-6">Client Company</span>
+              </Link>
+
+              <Link href="/team" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                <span className="text-white font-inter font-medium text-base leading-6">Team</span>
+              </Link>
+
               <Link href="/contact" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                 <span className="text-white font-inter font-medium text-base leading-6">Contact</span>
