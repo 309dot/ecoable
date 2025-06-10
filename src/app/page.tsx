@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
@@ -50,38 +52,38 @@ export default function Home() {
                 {/* Menu Links Container */}
                 <div className="flex-1 flex justify-center items-center gap-4">
                   {/* Home - Active with gradient background */}
-                  <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                  <Link href="/" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                     style={{
                       background: 'linear-gradient(90deg, #1A3A6F 0%, #399084 100%)',
                     }}>
                     <span className="text-white font-inter font-semibold text-base leading-6" style={{ letterSpacing: '-1.25%' }}>
                       Home
                     </span>
-                  </button>
+                  </Link>
 
                   {/* Ecoable */}
-                  <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                  <Link href="/ecoable" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                     style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                     <span className="text-white font-inter font-medium text-base leading-6" style={{ letterSpacing: '-1.25%' }}>
                       Ecoable
                     </span>
-                  </button>
+                  </Link>
 
                   {/* What we do */}
-                  <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                  <Link href="/what-we-do" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                     style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                     <span className="text-white font-inter font-medium text-base leading-6" style={{ letterSpacing: '-1.25%' }}>
                       What we do
                     </span>
-                  </button>
+                  </Link>
 
                   {/* Portfolio */}
-                  <button className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
+                  <Link href="/portfolio" className="flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-[999px]" 
                     style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
                     <span className="text-white font-inter font-medium text-base leading-6" style={{ letterSpacing: '-1.25%' }}>
                       Portfolio
                     </span>
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Right Buttons */}
