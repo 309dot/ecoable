@@ -67,8 +67,9 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @theme inline {
@@ -80,8 +81,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
@@ -92,9 +94,60 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Responsive scaling for Figma fixed layouts */
+@media (max-width: 1440px) {
+  /* Scale down proportionally for smaller screens */
+  main.figma-layout {
+    width: 100vw;
+    max-width: 1440px;
+    transform: scale(calc(100vw / 1440));
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile adjustments */
+  main.figma-layout {
+    transform: scale(calc(100vw / 1440));
+    transform-origin: top left;
+    min-height: calc(1024px * 100vw / 1440);
+  }
+  
+  /* Adjust absolute positioned elements for mobile */
+  .absolute.mobile-responsive {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-top: 2rem;
+  }
+  
+  /* Stack cards vertically on mobile */
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+    max-width: 320px;
+  }
 }
