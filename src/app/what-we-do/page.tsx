@@ -1,373 +1,450 @@
 'use client';
 
-import Link from 'next/link';
-import { useState } from 'react';
+import Navigation from '@/components/Navigation';
 
 export default function WhatWeDoPage() {
-  const [activeTab, setActiveTab] = useState('services');
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Section with Navigation */}
-      <section className="relative w-full h-[400px] overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A3A6F] to-[#399084]"></div>
+    <div className="bg-white font-pretendard" style={{ width: '1440px', height: '3276px' }}>
+      {/* Navigation - positioned at y:16 as per Figma */}
+      <div className="relative z-10 pt-4">
+        <Navigation />
+      </div>
 
-        {/* Navigation */}
-        <nav className="relative z-10 px-20 py-6">
-          <div className="flex items-center justify-between bg-white/10 backdrop-blur-md rounded-[999px] px-8 py-4">
-            <div className="text-white text-xl font-semibold">
-              에코에이블컨설팅(주)
-            </div>
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
-                Home
-              </Link>
-              <Link href="/ecoable" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
-                Ecoable
-              </Link>
-              <Link href="/what-we-do" className="text-white text-base font-medium bg-gradient-to-r from-[#1A3A6F] to-[#399084] px-6 py-3 rounded-[999px]">
-                What we do
-              </Link>
-              <Link href="/portfolio" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
-                Portfolio
-              </Link>
-              <Link href="/client-company" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
-                Client Company
-              </Link>
-              <Link href="/contact" className="text-white text-base font-medium hover:bg-white/10 px-6 py-3 rounded-[999px] transition-all">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </nav>
-
-        {/* Page Title */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full pt-8">
-          <h1 className="text-white font-inter font-bold text-6xl leading-tight tracking-tight mb-4">
-            What we do
-          </h1>
-          <p className="text-white font-inter font-medium text-2xl tracking-wide">
-            4개 전문 파트의 통합 솔루션
-          </p>
-        </div>
-      </section>
-
-      {/* Tab Navigation */}
-      <section className="px-20 py-8 border-b border-gray-200">
-        <div className="flex justify-center space-x-8">
-          <button
-            onClick={() => setActiveTab('services')}
-            className={`px-8 py-4 rounded-3xl text-lg font-bold transition-all ${
-              activeTab === 'services'
-                ? 'bg-gradient-to-r from-[#1A3A6F] to-[#399084] text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            서비스 소개
-          </button>
-          <button
-            onClick={() => setActiveTab('process')}
-            className={`px-8 py-4 rounded-3xl text-lg font-bold transition-all ${
-              activeTab === 'process'
-                ? 'bg-gradient-to-r from-[#1A3A6F] to-[#399084] text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            업무 프로세스
-          </button>
-        </div>
-      </section>
-
-      {/* Tab Content */}
-      {activeTab === 'services' && (
-        <section className="px-20 py-16">
-          <div className="max-w-7xl mx-auto">
-            {/* Services Overview */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                4개 전문 부문의 통합 환경 솔루션
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                제품환경, 환경정책, 자원순환, 기후변화대응 등 4개 전문 파트를 통해 
-                고객의 다양한 환경 과제를 체계적으로 해결합니다.
-              </p>
-            </div>
-
-            {/* Services Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      {/* Main Content Container - positioned exactly as in Figma */}
+      <main className="relative">
+        {/* Tab Menu Section - positioned at y:142 as per Figma */}
+        <div className="absolute" style={{ top: '142px', left: '80px', width: '1280px', height: '80px' }}>
+          <div className="flex items-center" style={{ top: '16px', position: 'relative' }}>
+            {/* Tab Menu Container - x:80, y:158, width:292px, height:48px */}
+            <div 
+              className="bg-black/8 rounded-xl flex"
+              style={{ width: '292px', height: '48px' }}
+            >
+              {/* 01 - 전과정정책본부 (Active) */}
+              <button 
+                className="bg-white border border-[#dee0e3] rounded-full flex items-center justify-center px-6"
+                style={{ width: '142px', height: '48px' }}
+              >
+                <span className="text-[#14151a] font-medium text-base leading-6 tracking-[-0.2px]">
+                  전과정정책본부
+                </span>
+              </button>
               
-              {/* 제품환경파트 */}
-              <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-lg transition-all">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">제품환경파트</h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      LCA 기반 진단부터 녹색제품 인증까지 전 과정을 지원
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        전과정평가(LCA) 및 탄소발자국 산정
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        녹색제품 인증 및 환경성적표지 취득
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        친환경 제품 개발 컨설팅
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* 환경정책파트 */}
-              <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-lg transition-all">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">환경정책파트</h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      컨설팅과 통합관리 솔루션을 통해 지속가능한 사회 구현을 지원
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        환경영향평가 및 사전환경성검토
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        환경관리시스템(ISO 14001) 구축
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        환경규제 대응 및 정책 컨설팅
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* 자원순환파트 */}
-              <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-lg transition-all">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">자원순환파트</h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      자원을 다시 보는 시선, 자원순환의 지속가능한 흐름을 설계
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        순환경제 전환 전략 수립
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        폐기물 관리 및 재활용 시스템 구축
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        자원효율성 향상 컨설팅
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* 기후변화대응파트 */}
-              <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-lg transition-all">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">기후변화대응파트</h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      제도 수립부터 온실가스 산정 컨설팅까지 전략적 대응을 지원
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        온실가스 인벤토리 구축 및 검증
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        탄소중립 로드맵 수립
-                      </li>
-                      <li className="flex items-center gap-2 text-gray-600">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        ESG 경영 지원 및 보고서 작성
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              {/* 02 - 전과정순환본부 */}
+              <button 
+                className="flex items-center justify-center px-6 rounded-xl"
+                style={{ width: '142px', height: '48px' }}
+              >
+                <span className="text-[#0f1324]/60 font-medium text-base leading-6 tracking-[-0.2px]">
+                  전과정순환본부
+                </span>
+              </button>
             </div>
+          </div>
+        </div>
 
-            {/* Integration Benefits */}
-            <div className="bg-gradient-to-r from-[#1A3A6F] to-[#399084] rounded-3xl p-12 text-white">
-              <h3 className="text-3xl font-bold text-center mb-8">통합 솔루션의 장점</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">통합 관리</h4>
-                  <p className="text-sm opacity-90">4개 부문의 전문성을 하나의 프로젝트로 통합 관리</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">전문성</h4>
-                  <p className="text-sm opacity-90">각 분야별 전문가의 깊이 있는 지식과 경험</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">효율성</h4>
-                  <p className="text-sm opacity-90">시너지 효과를 통한 최적의 솔루션 제공</p>
+        {/* Main Content Image Section - positioned at y:246 as per Figma */}
+        <div className="absolute" style={{ top: '246px', left: '80px', width: '1280px', height: '480px' }}>
+          <div 
+            className="relative w-full h-full rounded-3xl overflow-hidden"
+            style={{
+              backgroundImage: "url('/image_photo_02.jpg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/20"></div>
+            
+            {/* Content */}
+            <div className="relative p-8">
+              {/* Title - positioned at x:32, y:40 from container */}
+              <h1 
+                className="text-white font-bold leading-9 tracking-[-0.5px] mb-8"
+                style={{ fontSize: '30px', width: '360px' }}
+              >
+                전과정정책본부
+              </h1>
+              
+              {/* Description - positioned at x:392, y:40 from container */}
+              <div className="absolute top-8" style={{ left: '392px', width: '856px' }}>
+                <div className="text-[#0f1324]/60 font-medium text-sm leading-[20px] tracking-[-0.2px]">
+                  녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE&apos;을 지속적으로 개발 • 보급 중에 있습니다.
+                  <br /><br />
+                  환경영향평가는 개발사업의 계획단계에서 당해 사업의 시행이 환경에 미치는 영향을 미리 조사·예측·평가하여 해로운 환경영향을 피하거나 제거 또는 감소시킬 수 있는 방안을 마련하도록 하는 제도입니다.
+                  <br /><br />
+                  주요 업무 영역:<br />
+                  • 도시개발사업, 산업단지조성사업 등 각종 개발사업의 환경영향평가<br />
+                  • 환경영향평가서 작성 및 협의<br />
+                  • 사후환경영향조사<br />
+                  • 소규모환경영향평가<br />
+                  • 전략환경영향평가
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
 
-      {activeTab === 'process' && (
-        <section className="px-20 py-16">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">체계적인 업무 프로세스</h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                단계별 체계적 접근을 통해 최적의 결과를 도출합니다
-              </p>
-            </div>
+        {/* Task Areas Section - positioned at y:750 as per Figma */}
+        <div className="absolute" style={{ top: '750px', left: '80px', width: '1280px', height: '568px' }}>
+          {/* Title - positioned at y:24 from container */}
+          <div style={{ top: '24px', position: 'relative' }}>
+            <h2 
+              className="text-[#14151a] font-bold leading-9 tracking-[-0.5px] mb-11"
+              style={{ fontSize: '30px', width: '360px' }}
+            >
+              과제 수행 분야
+            </h2>
+            
+            {/* Description */}
+            <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px] mb-12" style={{ width: '628px' }}>
+              녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
+            </p>
+          </div>
 
-            {/* Process Steps */}
-            <div className="space-y-8">
-              {[
-                {
-                  step: "01",
-                  title: "프로젝트 분석",
-                  description: "고객의 요구사항과 현황을 정확히 파악하고 프로젝트 범위를 설정합니다.",
-                  details: ["현황 조사 및 분석", "목표 설정", "프로젝트 계획 수립"],
-                  color: "blue"
-                },
-                {
-                  step: "02", 
-                  title: "전문팀 구성",
-                  description: "프로젝트 특성에 맞는 4개 부문 전문가로 최적의 팀을 구성합니다.",
-                  details: ["전문가 선정", "역할 분담", "협업 체계 구축"],
-                  color: "green"
-                },
-                {
-                  step: "03",
-                  title: "솔루션 개발",
-                  description: "각 부문의 전문성을 바탕으로 통합적인 환경 솔루션을 개발합니다.",
-                  details: ["기술적 검토", "솔루션 설계", "타당성 검증"],
-                  color: "purple"
-                },
-                {
-                  step: "04",
-                  title: "실행 및 관리",
-                  description: "개발된 솔루션을 체계적으로 실행하고 지속적으로 관리합니다.",
-                  details: ["단계별 실행", "성과 모니터링", "지속적 개선"],
-                  color: "red"
-                }
-              ].map((process, index) => (
-                <div key={index} className="flex items-start gap-8">
-                  <div className={`w-20 h-20 bg-${process.color}-100 rounded-full flex items-center justify-center flex-shrink-0`}>
-                    <span className={`text-2xl font-bold text-${process.color}-600`}>{process.step}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{process.title}</h3>
-                    <p className="text-gray-600 text-lg mb-4 leading-relaxed">{process.description}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {process.details.map((detail, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-2xl p-4">
-                          <div className="flex items-center gap-2">
-                            <div className={`w-2 h-2 bg-${process.color}-500 rounded-full`}></div>
-                            <span className="text-gray-700 font-medium">{detail}</span>
-                          </div>
-                        </div>
-                      ))}
+          {/* Task List - positioned at x:384 from container start */}
+          <div className="absolute top-0" style={{ left: '384px', width: '896px' }}>
+            {/* Task Items - each 58px height with 8px gap */}
+            {[
+              '제품 환경전과정평가(LCA)를 통한 환경성 진단 컨설팅',
+              '제품 환경전과정평가를 위한 LCA TOOL LCABLE&apos; 개발 및 기업 보급', 
+              '국가 LCI 데이터베이스 구축',
+              '제품 탄소발자국(Carbon footprint), 물발자국(Water footprint) 평가',
+              '제품 환경경제효율성(Eco-efficiency) 평가',
+              '제품 에코디자인, 친환경설계 컨설팅',
+              '국내 제품 탄소성적표지, 환경성적표지 인증 컨설팅',
+              '국외 제품 환경성 인증 컨설팅 (영국 Carbon footprint 인증 및 북미 Carbon free, UL 인증, International EPD 5)'
+            ].map((task, index) => (
+              <div 
+                key={index}
+                className="border-b border-[#dee0e3] flex items-center"
+                style={{ height: '58px', width: '896px', top: `${index * 66}px`, position: 'absolute' }}
+              >
+                <span className="text-black font-normal text-lg leading-[26px] tracking-[-0.2px]">
+                  {task}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Team Members Section - positioned at y:1342 as per Figma */}
+        <div className="absolute" style={{ top: '1342px', left: '80px', width: '1280px', height: '1062px' }}>
+          {/* Title */}
+          <div style={{ top: '24px', position: 'relative' }}>
+            <h2 
+              className="text-[#14151a] font-bold leading-9 tracking-[-0.5px] mb-11"
+              style={{ fontSize: '30px', width: '360px' }}
+            >
+              파트 구성원
+            </h2>
+            
+            {/* Description */}
+            <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px] mb-12" style={{ width: '628px' }}>
+              녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
+            </p>
+          </div>
+
+          {/* Profile Cards - positioned at x:384 from container start */}
+          <div className="absolute top-0" style={{ left: '384px', width: '896px' }}>
+            {/* First Row - y:0 */}
+            <div className="absolute top-0 flex gap-8">
+              {[1, 2, 3].map((index) => (
+                <div 
+                  key={index}
+                  className="bg-white border border-[#dee0e3] rounded-3xl overflow-hidden"
+                  style={{ width: '288px', height: '499px' }}
+                >
+                  {/* Image */}
+                  <div className="p-6">
+                    <div 
+                      className="bg-gray-200 rounded-2xl mb-6"
+                      style={{ width: '240px', height: '221px' }}
+                    >
+                      {/* Profile image placeholder */}
+                    </div>
+                    
+                    {/* Text Content */}
+                    <div className="space-y-3">
+                      {/* Name */}
+                      <h3 className="text-[#14151a] font-bold text-lg leading-[26px] tracking-[-0.2px]">
+                        장 은 실
+                      </h3>
+                      
+                      {/* Position */}
+                      <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px]">
+                        책임연구원 / 환경성적표지인증 선임심사원
+                      </p>
+                      
+                      {/* Contact Info */}
+                      <div className="space-y-1 pt-3">
+                        <p className="text-[#0f1324]/60 font-normal text-sm leading-5 tracking-[-0.1px]">
+                          ejang1105@ecoable.co.kr
+                        </p>
+                        <p className="text-[#0f1324]/60 font-normal text-sm leading-5 tracking-[-0.1px]">
+                          02-6959-9775
+                        </p>
+                      </div>
+                      
+                      {/* Comment */}
+                      <div className="border-t border-[#dee0e3] pt-3">
+                        <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px]">
+                          "무엇이든 잡으려하면 달아나고 꽉 쥐고 있는다고 내 것은 아니다."
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+            
+            {/* Second Row - y:515 */}
+            <div className="absolute flex gap-8" style={{ top: '515px' }}>
+              {[4, 5, 6].map((index) => (
+                <div 
+                  key={index}
+                  className="bg-white border border-[#dee0e3] rounded-3xl overflow-hidden"
+                  style={{ width: '288px', height: '499px' }}
+                >
+                  {/* Same structure as above */}
+                  <div className="p-6">
+                    <div 
+                      className="bg-gray-200 rounded-2xl mb-6"
+                      style={{ width: '240px', height: '221px' }}
+                    >
+                      {/* Profile image placeholder */}
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h3 className="text-[#14151a] font-bold text-lg leading-[26px] tracking-[-0.2px]">
+                        장 은 실
+                      </h3>
+                      
+                      <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px]">
+                        책임연구원 / 환경성적표지인증 선임심사원
+                      </p>
+                      
+                      <div className="space-y-1 pt-3">
+                        <p className="text-[#0f1324]/60 font-normal text-sm leading-5 tracking-[-0.1px]">
+                          ejang1105@ecoable.co.kr
+                        </p>
+                        <p className="text-[#0f1324]/60 font-normal text-sm leading-5 tracking-[-0.1px]">
+                          02-6959-9775
+                        </p>
+                      </div>
+                      
+                      <div className="border-t border-[#dee0e3] pt-3">
+                        <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px]">
+                          "무엇이든 잡으려하면 달아나고 꽉 쥐고 있는다고 내 것은 아니다."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-            {/* Process Benefits */}
-            <div className="mt-16 bg-gray-50 rounded-3xl p-12">
-              <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">프로세스의 특장점</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-                  <div className="text-gray-600">맞춤형 솔루션</div>
+        {/* Contact Form Section - positioned at y:2428 as per Figma */}
+        <div className="absolute" style={{ top: '2428px', left: '80px', width: '1280px', height: '360px' }}>
+          {/* Title */}
+          <div style={{ top: '24px', position: 'relative' }}>
+            <h2 
+              className="text-[#14151a] font-bold leading-9 tracking-[-0.5px] mb-11"
+              style={{ fontSize: '30px', width: '360px' }}
+            >
+              문의하기
+            </h2>
+            
+            {/* Description */}
+            <p className="text-[#14151a] font-normal text-base leading-6 tracking-[-0.2px] mb-12" style={{ width: '628px' }}>
+              녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
+            </p>
+          </div>
+
+          {/* Contact Form - positioned at x:384 from container start */}
+          <div className="absolute top-0" style={{ left: '384px', width: '896px' }}>
+            <form className="space-y-6">
+              {/* First Row */}
+              <div className="flex gap-6">
+                <div className="flex-1">
+                  <label className="block text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px] mb-2">
+                    성함 <span className="text-[#e6483d]">*</span>
+                  </label>
+                  <input 
+                    type="text"
+                    placeholder="이름을 입력해주세요"
+                    className="w-full px-3 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                    style={{ height: '40px' }}
+                  />
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 mb-2">4개</div>
-                  <div className="text-gray-600">전문 부문 협업</div>
+                <div className="flex-1">
+                  <label className="block text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px] mb-2">
+                    소속 및 직책 <span className="text-[#e6483d]">*</span>
+                  </label>
+                  <input 
+                    type="text"
+                    placeholder="소속 및 직책을 입력해주세요"
+                    className="w-full px-3 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                    style={{ height: '40px' }}
+                  />
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-purple-600 mb-2">24/7</div>
-                  <div className="text-gray-600">지속적 관리</div>
+              </div>
+
+              {/* Second Row */}
+              <div className="flex gap-6">
+                <div className="flex-1">
+                  <label className="block text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px] mb-2">
+                    연락처 <span className="text-[#e6483d]">*</span>
+                  </label>
+                  <input 
+                    type="tel"
+                    placeholder="연락처를 입력해주세요"
+                    className="w-full px-3 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                    style={{ height: '40px' }}
+                  />
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-red-600 mb-2">∞</div>
-                  <div className="text-gray-600">장기적 파트너십</div>
+                <div className="flex-1">
+                  <label className="block text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px] mb-2">
+                    이메일 <span className="text-[#e6483d]">*</span>
+                  </label>
+                  <input 
+                    type="email"
+                    placeholder="이메일을 입력해주세요"
+                    className="w-full px-3 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                    style={{ height: '40px' }}
+                  />
                 </div>
+              </div>
+
+              {/* Message Field */}
+              <div>
+                <label className="block text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px] mb-2">
+                  문의 사항 <span className="text-[#e6483d]">*</span>
+                </label>
+                <input 
+                  type="text"
+                  placeholder="문의 내용을 작성해주세요"
+                  className="w-full px-3 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                  style={{ height: '40px' }}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button 
+                type="submit"
+                className="bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-white font-medium text-base leading-6 tracking-[-0.2px] rounded-xl"
+                style={{ width: '99px', height: '48px' }}
+              >
+                문의하기
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer - positioned at y:2888 as per Figma */}
+      <footer className="absolute" style={{ top: '2888px', left: '0px', width: '1440px', height: '388px' }}>
+        {/* Newsletter Section */}
+        <div className="bg-[#f7f7f8]" style={{ height: '168px' }}>
+          <div className="flex items-center justify-between px-20 py-10">
+            <div>
+              <h3 className="text-[#14151a] font-medium text-xl leading-7 tracking-[-0.2px] mb-2">
+                Subscribe to our newsletter
+              </h3>
+              <p className="text-[#0f1324]/60 font-normal text-base leading-6 tracking-[-0.2px]">
+                Get a summary of what we've shipped during the last month, behind the scenes updates, and team picks.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <input 
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-2 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40"
+                style={{ width: '240px', height: '40px' }}
+              />
+              <button className="bg-[#14151a] text-white px-6 py-2 rounded-xl text-sm font-medium" style={{ height: '40px' }}>
+                Get early access
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Footer */}
+        <div className="bg-white" style={{ height: '220px' }}>
+          <div className="flex justify-between px-20 py-10">
+            {/* Logo */}
+            <div className="flex items-center">
+              <div style={{ width: '160px', height: '40px' }}>
+                <img src="/logo.png" alt="Ecoable" className="h-full" />
+              </div>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex gap-24">
+              <div>
+                <h4 className="text-[#0f1324]/60 font-medium text-sm leading-5 tracking-[-0.1px] mb-4">Ecoable</h4>
+                <ul className="space-y-2">
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">ecoable 소개</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">ecoable스러움</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">찾아오시는 길</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-[#0f1324]/60 font-medium text-sm leading-5 tracking-[-0.1px] mb-4">What we do</h4>
+                <ul className="space-y-2">
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">제품환경파트</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">환경정책파트</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">자원순환파트</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">기후변화대응파트</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-[#0f1324]/60 font-medium text-sm leading-5 tracking-[-0.1px] mb-4">Portfolio</h4>
+                <ul className="space-y-2">
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">LCA(전과정평가)</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">EPD 인증대응</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">기후변화대응</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">환경정책 및 보건환경</a></li>
+                  <li><a href="#" className="text-[#14151a] font-medium text-sm leading-5 tracking-[-0.1px]">고객사</a></li>
+                </ul>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
 
-      {/* Contact CTA Section */}
-      <section className="bg-gradient-to-r from-[#1A3A6F] to-[#399084] px-20 py-16">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h3 className="text-3xl font-bold mb-6">
-            환경 과제 해결의 파트너가 되겠습니다
-          </h3>
-          <p className="text-xl mb-8 opacity-90">
-            4개 전문 부문의 통합 솔루션으로 고객의 성공을 지원합니다
-          </p>
-          <div className="flex justify-center space-x-4">
-            <Link href="/contact" className="bg-white text-[#1A3A6F] px-8 py-4 rounded-3xl text-lg font-bold hover:bg-gray-100 transition-all">
-              프로젝트 문의
-            </Link>
-            <button className="bg-white/10 backdrop-blur-md border-2 border-white text-white px-8 py-4 rounded-3xl text-lg font-bold hover:bg-white/20 transition-all">
-              서비스 소개서 다운로드
-            </button>
+        {/* Bottom Footer */}
+        <div className="bg-white border-t border-gray-200" style={{ height: '148px' }}>
+          <div className="flex justify-between items-end px-20 py-8">
+            <div className="space-y-1">
+              <p className="text-[#0d1126]/40 font-medium text-sm leading-5 tracking-[-0.1px]">
+                04976 서울특별시 광진구 자양로 216 파인캐슬, 201호
+              </p>
+              <p className="text-[#0d1126]/40 font-medium text-sm leading-5 tracking-[-0.1px]">
+                대표전화 | 02-6959-8885
+              </p>
+              <p className="text-[#0d1126]/40 font-medium text-sm leading-5 tracking-[-0.1px]">
+                팩스 | 070-4327-7279
+              </p>
+              <p className="text-[#0d1126]/40 font-medium text-sm leading-5 tracking-[-0.1px]">
+                이메일 | info@ppm.co.kr
+              </p>
+              <p className="text-[#0d1126]/40 font-medium text-sm leading-5 tracking-[-0.1px]">
+                © ecoable CO. 2016
+              </p>
+            </div>
+            
+            <div className="flex gap-2">
+              <div className="w-6 h-6 bg-gray-300 rounded"></div>
+              <div className="w-6 h-6 bg-gray-300 rounded"></div>
+              <div className="w-6 h-6 bg-gray-300 rounded"></div>
+            </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 } 
