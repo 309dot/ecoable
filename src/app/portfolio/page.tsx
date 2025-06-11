@@ -172,7 +172,7 @@ export default function PortfolioPage() {
     }}>
       {/* Navigation Section */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
           <Navigation variant="pill" />
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function PortfolioPage() {
       <div className="pt-16">
         {/* Tab Menu Section - 왼쪽 정렬 */}
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="flex justify-start">
               <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
                 {portfolioTabs.map((tab) => (
@@ -203,7 +203,7 @@ export default function PortfolioPage() {
 
         {/* Content Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div className="flex flex-col xl:flex-row gap-6 mb-6 py-6">
               
               {/* Title Section */}

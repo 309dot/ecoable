@@ -362,7 +362,7 @@ function WhatWeDoContent() {
     }}>
       {/* Navigation Section */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+                  <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
           <Navigation variant="pill" />
         </div>
       </div>
@@ -370,7 +370,7 @@ function WhatWeDoContent() {
       <div className="pt-16">
         {/* Tab Menu Section - 왼쪽 정렬 */}
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="flex justify-start">
               <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
                 {whatWeDoTabs.map((tab) => (
@@ -393,7 +393,7 @@ function WhatWeDoContent() {
 
         {/* Hero Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div className="relative w-full h-96 rounded-[24px] overflow-hidden mb-6">
               <Image
                 src={activeData.heroImage}
@@ -445,7 +445,7 @@ function WhatWeDoContent() {
                 </h2>
               </div>
               <div className="flex-1">
-                <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-[1.3rem]">
+                <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-3 gap-[1.3rem]">
                   {activeData.profiles.map((profile, index) => (
                     <div
                       key={index}

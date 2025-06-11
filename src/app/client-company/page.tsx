@@ -65,13 +65,13 @@ export default function ClientCompanyPage() {
     }}>
       {/* Navigation */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
           <Navigation variant="pill" />
         </div>
       </div>
 
       {/* Client List with 180px top padding */}
-      <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-[180px]">
+      <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-[180px]">
         {/* Title Section */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">

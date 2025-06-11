@@ -23,18 +23,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 메뉴 열릴 때 스크롤 방지
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen]);
+
 
   const navigationItems = [
     { name: 'Home', path: '/' },
@@ -113,66 +102,39 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
                 </div>
               </div>
 
-              {/* Mobile Hamburger Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
-              >
-                <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
-                  <div className="w-4 h-0.5 bg-white rounded"></div>
-                  <div className="w-4 h-0.5 bg-white rounded"></div>
-                  <div className="w-4 h-0.5 bg-white rounded"></div>
-                </div>
-              </button>
+                          {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
+            >
+              <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
+                <div className="w-4 h-0.5 bg-white rounded"></div>
+                <div className="w-4 h-0.5 bg-white rounded"></div>
+                <div className="w-4 h-0.5 bg-white rounded"></div>
+              </div>
+            </button>
             </div>
           </div>
         </nav>
 
-        {/* Mobile Slide Menu */}
-        <div className={`xl:hidden fixed inset-0 z-[60] transition-opacity duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        {/* Mobile Dropdown Menu */}
+        <div className={`xl:hidden w-full max-w-[1440px] mx-auto transition-all duration-300 ${
+          isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          
-          {/* Slide Menu */}
-          <div className={`absolute top-0 right-0 h-full w-80 bg-white shadow-2xl transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}>
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <Image
-                src="/logo_bk.png"
-                alt="Ecoable Logo"
-                width={120}
-                height={24}
-                className="object-contain"
-              />
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <div className="w-5 h-5 relative">
-                  <div className="absolute top-1/2 left-1/2 w-4 h-0.5 bg-gray-600 rounded transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
-                  <div className="absolute top-1/2 left-1/2 w-4 h-0.5 bg-gray-600 rounded transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></div>
-                </div>
-              </button>
-            </div>
-            
+          <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-2">
             {/* Menu Items */}
-            <div className="py-6">
-              {navigationItems.map((item) => (
+            <div className="py-4">
+              {navigationItems.map((item, index) => (
                 <Link
                   key={item.path}
                   href={item.path}
                   onClick={handleMenuItemClick}
-                  className={`block px-6 py-4 text-lg font-medium transition-colors border-l-4 ${
+                  className={`block px-6 py-3 text-base font-medium transition-colors ${
+                    index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
+                  } ${
                     isActive(item.path)
-                      ? 'text-[#1A3A6F] bg-blue-50 border-l-[#1A3A6F]'
-                      : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50 border-l-transparent'
+                      ? 'text-[#1A3A6F] bg-blue-50'
+                      : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50'
                   }`}
                 >
                   {item.name}
@@ -244,7 +206,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
 
             {/* Mobile Hamburger Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(true)}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] hover:bg-gray-100 rounded-[999px] flex items-center justify-center transition-all duration-200"
             >
               <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
@@ -257,51 +219,24 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
         </div>
       </nav>
 
-      {/* Mobile Slide Menu */}
-      <div className={`xl:hidden fixed inset-0 z-[60] transition-opacity duration-300 ${
-        isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      {/* Mobile Dropdown Menu */}
+      <div className={`xl:hidden w-full max-w-[1440px] mx-auto transition-all duration-300 ${
+        isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
       }`}>
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        
-        {/* Slide Menu */}
-        <div className={`absolute top-0 right-0 h-full w-80 bg-white shadow-2xl transition-transform duration-300 ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <Image
-              src="/logo_bk.png"
-              alt="Ecoable Logo"
-              width={120}
-              height={24}
-              className="object-contain"
-            />
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <div className="w-5 h-5 relative">
-                <div className="absolute top-1/2 left-1/2 w-4 h-0.5 bg-gray-600 rounded transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
-                <div className="absolute top-1/2 left-1/2 w-4 h-0.5 bg-gray-600 rounded transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></div>
-              </div>
-            </button>
-          </div>
-          
+        <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-2">
           {/* Menu Items */}
-          <div className="py-6">
-            {navigationItems.map((item) => (
+          <div className="py-4">
+            {navigationItems.map((item, index) => (
               <Link
                 key={item.path}
                 href={item.path}
                 onClick={handleMenuItemClick}
-                className={`block px-6 py-4 text-lg font-medium transition-colors border-l-4 ${
+                className={`block px-6 py-3 text-base font-medium transition-colors ${
+                  index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
+                } ${
                   isActive(item.path)
-                    ? 'text-[#1A3A6F] bg-blue-50 border-l-[#1A3A6F]'
-                    : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50 border-l-transparent'
+                    ? 'text-[#1A3A6F] bg-blue-50'
+                    : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50'
                 }`}
               >
                 {item.name}

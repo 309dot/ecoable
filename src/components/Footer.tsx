@@ -77,10 +77,10 @@ export default function Footer() {
 
       {/* Bottom Section - Always Visible */}
       <div className="flex flex-col justify-center items-center w-full gap-6 xl:gap-16 py-6">
-        <div className="flex flex-col xl:flex-row justify-between xl:items-end items-center w-full max-w-[1440px] gap-6 xl:gap-10 px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex flex-col xl:flex-row justify-between xl:items-end items-start w-full max-w-[1440px] gap-6 xl:gap-10 px-3 sm:px-4 md:px-6 lg:px-8">
           
           {/* Mobile/Tablet Logo - Only visible on small screens */}
-          <div className="xl:hidden flex justify-center items-center w-40 h-10">
+          <div className="xl:hidden flex justify-start items-center w-40 h-10">
             <div className="relative w-[142.27px] h-7">
               <Image
                 src="/images/logo.png"
@@ -93,8 +93,8 @@ export default function Footer() {
           </div>
 
           {/* Company Info */}
-          <div className="flex justify-center xl:justify-start items-center gap-6">
-            <div className="flex flex-col justify-center items-center xl:items-start text-center xl:text-left">
+          <div className="flex justify-start items-center gap-6">
+            <div className="flex flex-col justify-start items-start text-left">
               <div className="text-[rgba(13,17,38,0.4)] text-sm font-medium leading-[1.43] tracking-[-0.71%] mb-1">
                 04976 서울특별시 광진구 자양로 216 파인캐슬, 1층-2층
               </div>

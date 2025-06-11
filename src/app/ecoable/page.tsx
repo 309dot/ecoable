@@ -24,7 +24,7 @@ export default function EcoablePage() {
     }}>
       {/* Navigation */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
           <Navigation variant="pill" />
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function EcoablePage() {
       <div className="pt-16">
         {/* Tab Menu Section */}
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="flex justify-start">
               <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
                 {ecoableTabs.map((tab) => (
@@ -55,7 +55,7 @@ export default function EcoablePage() {
 
         {/* Sections */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             {activeTab === 'introduction' && <EcoableIntroduction />}
             {activeTab === 'ecoableness' && <EcoableEcoableness />}
           </div>

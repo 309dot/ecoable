@@ -134,7 +134,7 @@ export default function ContactPage() {
     }}>
       {/* Navigation */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
           <Navigation variant="pill" />
         </div>
       </div>
@@ -142,7 +142,7 @@ export default function ContactPage() {
       <div className="pt-16">
         {/* Hero Section */}  
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="flex flex-col xl:flex-row justify-stretch items-start gap-6 w-full">
               {/* Left - Title */}
               <div className="flex flex-col gap-6 w-full xl:w-full">
@@ -164,7 +164,7 @@ export default function ContactPage() {
 
         {/* Office Introduction Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div className="flex flex-col xl:flex-row gap-6 pb-6">
               <div className="flex flex-col gap-2 w-full xl:w-[360px]">
                 <h2 className="text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">
@@ -341,7 +341,7 @@ export default function ContactPage() {
 
         {/* Directions Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div id="directions" className="flex flex-col xl:flex-row gap-6 py-6">
               <div className="w-full xl:w-[360px]">
                 <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
@@ -359,7 +359,7 @@ export default function ContactPage() {
 
         {/* Contact Form Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div className="flex flex-col xl:flex-row gap-6 py-6">
               <div className="w-full xl:w-[360px]">
                 <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
