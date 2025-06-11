@@ -5,7 +5,7 @@ export default function EcoableCulturePage() {
   return (
     <div className="min-h-screen bg-white font-pretendard">
       {/* Navigation */}
-      <Navigation />
+      <Navigation variant="pill" />
 
       {/* Main Content */}
       <main className="mx-4 md:mx-20 mt-8 md:mt-10 pb-20">

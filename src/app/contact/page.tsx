@@ -1,20 +1,44 @@
 'use client';
 
-import React from 'react';
-import { useState } from 'react';
-import Navigation from "@/components/Navigation";
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import { useState } from 'react';
+import Toast from '@/components/Toast';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     organization: '',
-    phone: '',
+    contact: '',
     email: '',
     inquiry: ''
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState({
+    message: '',
+    type: 'success' as 'success' | 'error',
+    isVisible: false
+  });
+
+  // 이미지 갤러리 데이터
+  const galleryImages = [
+    { src: '/contact/office_photo_22.jpg', alt: '사무실 전경 1' },
+    { src: '/contact/office_photo_21.jpg', alt: '사무실 전경 2' },
+    { src: '/contact/office_photo_20.jpg', alt: '사무실 전경 3' },
+    { src: '/contact/office_photo_19.jpg', alt: '사무실 전경 4' },
+    { src: '/contact/office_photo_18.jpg', alt: '사무실 전경 5' },
+    { src: '/contact/office_photo_17.jpg', alt: '사무실 전경 6' },
+    { src: '/contact/office_photo_16.jpg', alt: '사무실 전경 7' },
+    { src: '/contact/office_photo_15.jpg', alt: '사무실 전경 8' },
+    { src: '/contact/office_photo_14.jpg', alt: '사무실 전경 9' },
+    { src: '/contact/office_photo_13.jpg', alt: '사무실 전경 10' },
+    { src: '/contact/office_photo_12.jpg', alt: '사무실 전경 11' },
+    { src: '/contact/office_photo_11.jpg', alt: '사무실 전경 12' }
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,259 +48,499 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        if (result.useMailto && result.mailtoLink) {
+          // mailto 링크를 사용하는 경우
+          window.location.href = result.mailtoLink;
+          setToast({
+            message: '이메일 클라이언트가 열립니다. 문의를 전송해주세요.',
+            type: 'success',
+            isVisible: true
+          });
+        } else {
+          // 정상적으로 서버에서 전송된 경우
+          setToast({
+            message: '문의내용이 성공적으로 전송되었습니다.',
+            type: 'success',
+            isVisible: true
+          });
+        }
+        
+        // 폼 리셋
+        setFormData({
+          name: '',
+          organization: '',
+          contact: '',
+          email: '',
+          inquiry: ''
+        });
+      } else {
+        setToast({
+          message: result.error || '전송 중 오류가 발생했습니다.',
+          type: 'error',
+          isVisible: true
+        });
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      setToast({
+        message: '전송 중 네트워크 오류가 발생했습니다.',
+        type: 'error',
+        isVisible: true
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const contactImages = Array.from({ length: 12 }, (_, i) => `image_photo_${i + 11}.jpg`);
+  const openModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage('');
+  };
+
+  const closeToast = () => {
+    setToast(prev => ({ ...prev, isVisible: false }));
+  };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      
-      {/* Main Content - 1440x2506px as per Figma */}
-      <main className="w-[1440px] mx-auto relative figma-layout">
-        {/* Container - x:80, y:110, w:1280, h:2364 */}
-        <div className="px-[80px] pt-[110px] pb-[32px]">
-          <div className="w-[1280px]">
-            
-            {/* Title Section - 첫 번째 제목 영역 */}
-            <div className="mb-[32px]">
-              <h1 className="text-[64px] font-bold leading-[72px] tracking-[-1.7px] text-[#14151a] w-[896px]">
-                ecoable스러운 사람들이 직접{'\n'}
-                만들어가는 ecoable스러운공간
-              </h1>
+    <div className="min-h-screen" style={{
+      maxWidth: '1440px',
+      margin: '0 auto', 
+      wordBreak: 'keep-all',
+      overflowWrap: 'break-word'
+    }}>
+      {/* Navigation */}
+      <div className="w-full">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+          <Navigation variant="pill" />
+        </div>
+      </div>
+
+      <div className="pt-16">
+        {/* Hero Section */}  
+        <div className="w-full py-8">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+            <div className="flex flex-col xl:flex-row justify-stretch items-start gap-6 w-full">
+              {/* Left - Title */}
+              <div className="flex flex-col gap-6 w-full xl:w-full">
+                <h1 className="text-[#14151A] text-[48px] font-semibold leading-[1.17] tracking-[-2.08%] w-full">
+                  ecoable스러운 사람들이 직접 <br />
+                  만들어가는 ecoable스러운공간
+                </h1>
+              </div>
               
-              {/* Description Section - positioned to the right */}
-              <div className="absolute right-[80px] top-[142px] w-[360px]">
-                <p className="text-xl font-bold leading-7 tracking-[-0.2px] text-[#0f1324]/60 mb-6">
-                  안녕하세요. ecoable입니다!
-                </p>
-                <p className="text-base font-medium leading-6 tracking-[-0.2px] text-[#0f1324]/60">
+              {/* Right - Description */}
+              <div className="flex flex-col justify-center gap-4 w-full xl:w-full">
+                <p className="text-[rgba(15,19,36,0.6)] text-base font-medium leading-[1.5] tracking-[-1.25%] w-full">
                   Ecoable스러운 사람들이 함께 모여, 스스로 만들어가는 Ecoable스러운 공간. 서로의 다름을 존중하고, 새로움을 두려워하지 않으며, 오늘보다 더 나은 내일을 위해 함께 성장하는 우리의 특별한 터전입니다.
                 </p>
               </div>
             </div>
-
-            {/* Main Contact Image Section */}
-            <div className="mb-[32px]">
-              <div className="w-[1280px] h-[480px] relative rounded-[24px] overflow-hidden">
-                <Image
-                  src="/image_photo_11.jpg"
-                  alt="Contact"
-                  fill
-                  className="object-cover"
-                />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black/20"></div>
-                
-                {/* Text overlay */}
-                <div className="absolute inset-0 px-8 py-10 flex">
-                  <div className="w-[604px]">
-                    <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-white mb-6">
-                      LCA(전과정평가)
-                    </h2>
-                  </div>
-                  <div className="w-[604px] ml-auto">
-                    <p className="text-base font-medium leading-6 tracking-[-0.2px] text-white">
-                      녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Office Introduction Section */}
-            <div className="mb-[24px]">
-              <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-[#14151a]">
-                ecoable 사무실 소개
-              </h2>
-            </div>
-
-            {/* Image Gallery - 4x3 grid layout as per Figma */}
-            <div className="mb-[24px]">
-              {/* First Row - 4 images */}
-              <div className="flex gap-[24px] mb-[24px]">
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_22.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_21.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_20.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_19.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-              </div>
-
-              {/* Second Row - 2 large images */}
-              <div className="flex gap-[24px] mb-[24px]">
-                <div className="w-[628px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_18.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[628px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_17.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-              </div>
-
-              {/* Third Row - 2 large images */}
-              <div className="flex gap-[24px] mb-[24px]">
-                <div className="w-[628px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_16.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[628px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_15.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-              </div>
-
-              {/* Fourth Row - 4 images */}
-              <div className="flex gap-[24px]">
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_14.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_13.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_12.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-                <div className="w-[302px] h-[278px] relative rounded-[24px] overflow-hidden">
-                  <Image src="/image_photo_11.jpg" alt="Office Image" fill className="object-cover" />
-                </div>
-              </div>
-            </div>
-
-            {/* Location Section */}
-            <div className="bg-white mb-[24px]">
-              <div className="flex">
-                <div className="w-[360px] pr-8">
-                  <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-[#14151a] mb-8">
-                    찾아오시는 길
-                  </h2>
-                  <p className="text-base font-normal leading-6 tracking-[-0.2px] text-[#14151a]">
-                    녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
-                  </p>
-                </div>
-                <div className="w-[896px] h-[360px] bg-[#e9eaec] rounded-[24px]">
-                  {/* Map container - placeholder as per Figma */}
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form Section */}
-            <div className="bg-white">
-              <div className="flex">
-                <div className="w-[360px] pr-8">
-                  <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-[#14151a] mb-8">
-                    문의하기
-                  </h2>
-                  <p className="text-base font-normal leading-6 tracking-[-0.2px] text-[#14151a]">
-                    녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
-                  </p>
-                </div>
-                
-                {/* Contact Form */}
-                <div className="w-[896px]">
-                  {/* First Row */}
-                  <div className="flex gap-4 mb-4">
-                    <div className="w-[440px]">
-                      <label className="block text-sm font-medium text-[#14151a] mb-2">
-                        성함 <span className="text-[#e6483d]">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="이름을 입력해주세요"
-                        className="w-full h-[40px] px-4 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40 focus:outline-none focus:ring-2 focus:ring-[#1a3a6f]"
-                        required
-                      />
-                    </div>
-                    <div className="w-[440px]">
-                      <label className="block text-sm font-medium text-[#14151a] mb-2">
-                        소속 및 직책 <span className="text-[#e6483d]">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="organization"
-                        value={formData.organization}
-                        onChange={handleInputChange}
-                        placeholder="소속 및 직책을 입력해주세요"
-                        className="w-full h-[40px] px-4 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40 focus:outline-none focus:ring-2 focus:ring-[#1a3a6f]"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  {/* Second Row */}
-                  <div className="flex gap-4 mb-4">
-                    <div className="w-[440px]">
-                      <label className="block text-sm font-medium text-[#14151a] mb-2">
-                        연락처 <span className="text-[#e6483d]">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="연락처를 입력해주세요"
-                        className="w-full h-[40px] px-4 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40 focus:outline-none focus:ring-2 focus:ring-[#1a3a6f]"
-                        required
-                      />
-                    </div>
-                    <div className="w-[440px]">
-                      <label className="block text-sm font-medium text-[#14151a] mb-2">
-                        이메일 <span className="text-[#e6483d]">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="이메일을 입력해주세요"
-                        className="w-full h-[40px] px-4 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40 focus:outline-none focus:ring-2 focus:ring-[#1a3a6f]"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  {/* Message Field */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-[#14151a] mb-2">
-                      문의 사항 <span className="text-[#e6483d]">*</span>
-                    </label>
-                    <textarea
-                      name="inquiry"
-                      value={formData.inquiry}
-                      onChange={handleInputChange}
-                      rows={3}
-                      placeholder="문의 내용을 작성해주세요"
-                      className="w-full px-4 py-3 border border-[#dee0e3] rounded-xl text-sm placeholder:text-[#0d1126]/40 focus:outline-none focus:ring-2 focus:ring-[#1a3a6f] resize-none"
-                      required
-                    ></textarea>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    onSubmit={handleSubmit}
-                    className="h-[48px] px-6 bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-white font-medium text-base rounded-xl hover:opacity-90 transition-opacity"
-                  >
-                    문의하기
-                  </button>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
-      </main>
+
+        {/* Office Introduction Section */}
+        <div className="w-full">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+            <div className="flex flex-col xl:flex-row gap-6 pb-6">
+              <div className="flex flex-col gap-2 w-full xl:w-[360px]">
+                <h2 className="text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">
+                  ecoable 사무실 소개
+                </h2>
+              </div>
+              <div className="flex-1">
+                {/* Image Gallery - 반응형 그리드로 변경 */}
+                <div className="flex flex-col gap-6">
+                  {/* Row 1 */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[0].src)}
+                    >
+                      <Image
+                        src={galleryImages[0].src}
+                        alt={galleryImages[0].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[1].src)}
+                    >
+                      <Image
+                        src={galleryImages[1].src}
+                        alt={galleryImages[1].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[2].src)}
+                    >
+                      <Image
+                        src={galleryImages[2].src}
+                        alt={galleryImages[2].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[3].src)}
+                    >
+                      <Image
+                        src={galleryImages[3].src}
+                        alt={galleryImages[3].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 2 */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[4].src)}
+                    >
+                      <Image
+                        src={galleryImages[4].src}
+                        alt={galleryImages[4].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[5].src)}
+                    >
+                      <Image
+                        src={galleryImages[5].src}
+                        alt={galleryImages[5].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 3 */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[6].src)}
+                    >
+                      <Image
+                        src={galleryImages[6].src}
+                        alt={galleryImages[6].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[7].src)}
+                    >
+                      <Image
+                        src={galleryImages[7].src}
+                        alt={galleryImages[7].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 4 */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[8].src)}
+                    >
+                      <Image
+                        src={galleryImages[8].src}
+                        alt={galleryImages[8].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[9].src)}
+                    >
+                      <Image
+                        src={galleryImages[9].src}
+                        alt={galleryImages[9].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[10].src)}
+                    >
+                      <Image
+                        src={galleryImages[10].src}
+                        alt={galleryImages[10].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div 
+                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      onClick={() => openModal(galleryImages[11].src)}
+                    >
+                      <Image
+                        src={galleryImages[11].src}
+                        alt={galleryImages[11].alt}
+                        width={500}
+                        height={278}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Directions Section */}
+        <div className="w-full">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+            <div id="directions" className="flex flex-col xl:flex-row gap-6 py-6">
+              <div className="w-full xl:w-[360px]">
+                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+                  찾아오시는 길
+                </h2>
+              </div>
+              <div className="flex-1">
+                <div className="w-full h-[400px] bg-[#E9EAEC] rounded-[24px] flex items-center justify-center">
+                  <p className="text-gray-600">지도가 여기에 표시됩니다</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form Section */}
+        <div className="w-full">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+            <div className="flex flex-col xl:flex-row gap-6 py-6">
+              <div className="w-full xl:w-[360px]">
+                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+                  문의하기
+                </h2>
+              </div>
+              <div className="flex-1">
+                <div className="rounded-[24px]">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex-1">
+                        <label className="block text-[#14151A] font-medium text-sm mb-2">
+                          성함
+                        </label>
+                        <div className="relative">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                            <Image
+                              src="/icons/lead-icon-6.svg"
+                              alt="Person Icon"
+                              width={20}
+                              height={20}
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="이름을 입력해주세요"
+                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <label className="block text-[#14151A] font-medium text-sm mb-2">
+                          소속 및 직책
+                        </label>
+                        <div className="relative">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                            <Image
+                              src="/icons/lead-icon-7.svg"
+                              alt="Organization Icon"
+                              width={20}
+                              height={20}
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="organization"
+                            value={formData.organization}
+                            onChange={handleInputChange}
+                            placeholder="소속 및 직책을 입력해주세요"
+                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex-1">
+                        <label className="block text-[#14151A] font-medium text-sm mb-2">
+                          연락처
+                        </label>
+                        <div className="relative">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                            <Image
+                              src="/icons/lead-icon-8.svg"
+                              alt="Phone Icon"
+                              width={20}
+                              height={20}
+                            />
+                          </div>
+                          <input
+                            type="tel"
+                            name="contact"
+                            value={formData.contact}
+                            onChange={handleInputChange}
+                            placeholder="연락처를 입력해주세요"
+                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <label className="block text-[#14151A] font-medium text-sm mb-2">
+                          이메일
+                        </label>
+                        <div className="relative">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                            <Image
+                              src="/icons/lead-icon-9.svg"
+                              alt="Email Icon"
+                              width={20}
+                              height={20}
+                            />
+                          </div>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="이메일을 입력해주세요"
+                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-[#14151A] font-medium text-sm mb-2">
+                        문의사항
+                      </label>
+                      <div className="relative">
+                        <div className="absolute left-3 top-3 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                          <Image
+                            src="/icons/lead-icon-10.svg"
+                            alt="Message Icon"
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                        <textarea
+                          name="inquiry"
+                          value={formData.inquiry}
+                          onChange={handleInputChange}
+                          placeholder="문의사항을 입력해주세요"
+                          rows={6}
+                          className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)] resize-none"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-[#1B376F] to-[#3A9284] text-white font-medium py-3 rounded-[12px] hover:opacity-90 transition-opacity"
+                    >
+                      문의 보내기
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Toast */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={closeToast}
+      />
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div className="relative max-w-[720px] max-h-[90vh] p-4">
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-white hover:text-gray-300 text-3xl font-bold z-10"
+            >
+              ×
+            </button>
+            <Image
+              src={selectedImage}
+              alt="사무실 사진"
+              width={720}
+              height={540}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
       
+      {/* Footer */}
       <Footer />
     </div>
   );
-} 
+}

@@ -1,168 +1,265 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+
+
+interface PortfolioProject {
+  year: string;
+  title: string;
+  client: string;
+}
+
+// CSV 데이터를 기반으로 한 탭별 프로젝트 데이터
+const portfolioData = {
+  lca: {
+    title: 'LCA(전과정평가)',
+    projects: [
+      { year: '2025', title: '탄소나노소재의 전주기 평가를 위한 자료 수집 및 환경성 분석', client: '광주과학기술원' },
+      { year: '2025', title: 'S-OIL 전제품에 대한 LCA 수행 및 LCA 시스템 개발', client: 'S-OIL㈜' },
+      { year: '2025', title: 'KT&G 스틱, 각초, 디바이스, 잎담배에 대한 전과정평가 수행', client: '㈜케이티앤지' },
+      { year: '2025', title: 'OCI 제품 전과정평가 수행 및 Tool 개발', client: 'OCI 주식회사' },
+      { year: '2025', title: '현대OCI 카본블랙 제품 전과정평가 및 Tool 개발', client: 'HD현대오씨아이㈜' },
+      { year: '2025', title: '삼양이노켐 ISB 제품에 대한 LCA 수행', client: '삼양이노켐㈜' },
+      { year: '2025', title: '켐코 황산니켈 제품에 대한 전과정평가 수행', client: '켐코㈜' },
+      { year: '2025', title: 'SK케미칼 Recycle PET 제품에 대한 LCA 수행 및 소통 방법론 개발', client: 'SK케미칼㈜' },
+      { year: '2025', title: '(4차)전과정목록 전면개편 및 국제 플랫폼 등록_총괄주관사', client: '한국환경산업기술원' },
+      { year: '2025', title: '대동 제품 전과정평가 컨설팅 및 내부 담당자 교육', client: '(주)대동' },
+      { year: '2025', title: 'HD현대케미칼 LCA Tool 업데이트 컨설팅', client: '현대케미칼㈜' },
+      { year: '2024', title: 'HD현대케미칼 HDPE, LDPE, EVA, PP에 대한 ISCC인증 및 제3자 검증', client: '현대케미칼㈜' },
+      { year: '2024', title: '국도화학 제품에 대한 간이 LCA 수행', client: '국도화학㈜' },
+      { year: '2024', title: '조선내화 내화물 제품에 대한 전과정평가 수행', client: '조선내화(주)' },
+      { year: '2024', title: '삼성병원 유방암 수술에 대한 LCA 수행', client: '삼성서울병원' },
+      { year: '2024', title: '국가 LCI DB 전면개편 및 국제 플랫폼 등록', client: '한국환경산업기술원' },
+      { year: '2024', title: '콜마비앤에이치 헤모힘에 대한 전과정평가 수행', client: '콜마비앤에이치 주식회사' },
+      { year: '2024', title: 'LS일렉트릭 제품 에코디자인 체계 구축', client: '엘에스일렉트릭㈜' },
+      { year: '2024', title: '국도화학 10개 제품에 대한 전과정평가 수행 및 LCA 내재화 방안 마련', client: '국도화학㈜' },
+      { year: '2024', title: 'SK케미칼 제품 LCA Tool 개발', client: 'SK케미칼㈜' },
+      { year: '2024', title: '현대엔지니어링 P2E 수소 LCA 수행 및 청정수소인증제 대응방안 마련', client: '현대엔지니어링㈜' },
+      { year: '2023', title: 'DL케미칼 PE제품에 대한 Carbon footprint 산정', client: 'DL케미칼㈜' },
+      { year: '2023', title: 'SK온 Battery 제품의 환경전과정평가 수행 및 교육', client: 'SK온㈜' },
+      { year: '2023', title: 'NB-Latex에 대한 환경성평가', client: '금호석유화학㈜' },
+      { year: '2023', title: '나이스LMS 폐어망 활용 PA6 생산에 대한 환경성 평가', client: '(주)나이스엘엠에스' },
+      { year: '2023', title: '삼성엔지니어링 CO2 포집 기술에 대한 환경성평가', client: '삼성엔지니어링㈜' },
+      { year: '2023', title: '현대쉘베이스오일 윤활기유에 대한 전과정평가 수행', client: 'HD현대쉘베이스오일㈜' },
+      { year: '2023', title: 'KT&G NGP 플랫폼에 대한 전과정평가 수행 및 에코디자인 가이드라인 개발', client: '㈜케이티앤지' },
+      { year: '2023', title: 'LG CNS 탄소발자국 산정 시스템(LG에너지솔루션 대상) 개발 지원', client: '㈜LG CNS' },
+      { year: '2023', title: 'LG화학 Scope 3 Upstream 협력회사 탄소발자국 (Product Carbon Footprint, PCF) 관리', client: '㈜LG화학' },
+      { year: '2023', title: 'OCI 제품 LCA 수행 및 내재화 방안 마련', client: 'OCI 주식회사' },
+      { year: '2022', title: 'LG화학 폐배터리 재활용 및 전구체에 대한 전과정평가 산정 Tool 개발', client: '㈜LG화학' },
+      { year: '2022', title: '삼성SDI 배터리 제품 대한 전과정평가 수행 및 카본트러스트 인증', client: '삼성SDI㈜' },
+      { year: '2021', title: '유한킴벌리 제품 환경성 평가', client: '유한킴벌리㈜' },
+      { year: '2020', title: 'LG화학 제품 전과정평가 수행_TPEE, PC', client: '㈜LG화학' },
+      { year: '2019', title: '송원산업 제품 전과정평가 체계 구축', client: '송원산업' }
+    ]
+  },
+  epd: {
+    title: 'EPD 인증대응',
+    projects: [
+      { year: '2025', title: '유니스포텍 인조잔디 제품 환경성적표지인증', client: '(주)유니스포텍' },
+      { year: '2025', title: '덕신 EPC 제품에 대한 환경성적표지인증', client: '(주)덕신이피씨' },
+      { year: '2025', title: 'TCC 도금 공정에 대한 노르웨이 EPD 인증 컨설팅', client: '(주)TCC스틸' },
+      { year: '2025', title: '신원하이테크 단열재 제품에 대한 환경성적표지인증', client: '신원하이테크㈜' },
+      { year: '2025', title: '현대쉘베이스오일 윤활기유 및 Gasoil에 대한 ISCC 인증 대응', client: 'HD현대쉘베이스오일㈜' },
+      { year: '2025', title: '삼성물산 협력사 환경성적표지인증', client: '삼성물산㈜' },
+      { year: '2025', title: '롯데마트 협력사 환경성적표지인증', client: '롯데쇼핑㈜ 롯데마트사업부' },
+      { year: '2025', title: 'LS ELECTRIC 몰드변압기 제품에 대한 노르웨이 EPD 인증', client: '엘에스일렉트릭㈜' },
+      { year: '2024', title: '삼양식품 3개 제품 환경성적표지인증 컨설팅', client: '삼양식품㈜' },
+      { year: '2024', title: '빙그레 4개 제품 환경성적표지인증 컨설팅', client: '㈜빙그레' },
+      { year: '2024', title: '한국신에츠실리콘 제품 환경성적표지인증 컨설팅', client: '한국신에츠실리콘㈜' },
+      { year: '2023', title: '아모레퍼시픽 제품 카본트러스트 인증', client: '㈜아모레퍼시픽' },
+      { year: '2023', title: 'D&K켐텍 PF보드 제품 환경성적표지 인증', client: '(주)디앤케이켐텍' },
+      { year: '2022', title: '삼성전자 모니터 제품 UL EPD 인증 컨설팅', client: '삼성전자㈜' },
+      { year: '2022', title: '삼성SDI 배터리 제품 대한 전과정평가 수행 및 카본트러스트 인증', client: '삼성SDI㈜' },
+      { year: '2021', title: 'SK picglobal PO, PG제품의 카본트러스트 인증 컨설팅', client: 'SK picglobal' },
+      { year: '2020', title: '무릉도원 제품 환경성적표지인증 컨설팅', client: '무릉도원㈜' }
+    ]
+  },
+  circulation: {
+    title: '자원순환',
+    projects: [
+      { year: '2025', title: '환경성보장제도 전품목 확대에 따른 회수재활용 의무이행 방안 마련', client: '이순환거버넌스' },
+      { year: '2023', title: '미래폐자원 자원순환체계 구축 기반 마련 연구', client: '이순환거버넌스' },
+      { year: '2023', title: '폐전기·전자제품 물질흐름분석 및 실질 재활용률 분석 사업', client: '이순환거버넌스' },
+      { year: '2022', title: '전기전자제품 자원순환 정책 및 법령 정비 방안마련 연구', client: '이순환거버넌스' },
+      { year: '2022', title: '한국농수산재활용공제조합 재활용 분담금 단가 산정 연구', client: '한국농수산재활용사업공제조합' },
+      { year: '2022', title: '알루미늄 캔 닫힌 고리 재활용 활성화를 위한 방안 연구', client: '노벨리스코리아(주)' },
+      { year: '2021', title: '지속가능 회수재활용체계 마련 환경성보장제 발전 방안', client: '이순환거버넌스' },
+      { year: '2021', title: '제로웨이스트 매장 인증기준 개발 연구', client: '서울특별시' },
+      { year: '2020', title: '필름류 제품ᆞ포장재 재생원료ᆞ재활용제품 사용현황 분석 및 판로확대 제도화 방안 연구', client: '환경부' },
+      { year: '2020', title: '전기전자제품 장기재활용 목표량 적정성 분석', client: '이순환거버넌스' },
+      { year: '2019', title: '건설용 발포플라스틱 회수 및 재활용활성화 방안 연구', client: '한국발포플라스틱공업협동조합' },
+      { year: '2018', title: '전기차 폐배터리 재활용 방법 및 기준마련 연구', client: '환경부' },
+      { year: '2017', title: '폐기물부담금 플라스틱 자발적 협약 품목 발생량 추정 및 재활용 비용산정 연구', client: '자발적협약 재활용협회' }
+    ]
+  },
+  climate: {
+    title: '기후변화대응',
+    projects: [
+      { year: '2025', title: 'LS ELECTRIC㈜ ESG 및 지속가능성 평가 대응 전략수립 연구', client: '엘에스일렉트릭㈜' },
+      { year: '2025', title: 'DL케미칼 SCOPE3 배출량 산정', client: 'DL케미칼㈜' },
+      { year: '2024', title: 'SK쉴더스 SCOPE3 배출량 산정', client: 'SK쉴더스㈜' },
+      { year: '2024', title: '삼성전자 GLEC Framework 검증 컨설팅', client: '삼성전자㈜' },
+      { year: '2024', title: 'DL케미칼 SCOPE3 배출량 산정', client: 'DL케미칼㈜' },
+      { year: '2024', title: '조선내화 SCOPE3 배출량 산정', client: '조선내화(주)' },
+      { year: '2023', title: '유한킴벌리 Scope 3 배출량 산정 및 관리방안 마련', client: '유한킴벌리㈜' },
+      { year: '2023', title: '서연이화 Scope3 배출량 산정 및 산정 체계 구축', client: '서연이화' },
+      { year: '2023', title: 'DL케미칼 Scope3 배출량 산정 및 검증', client: 'DL케미칼㈜' },
+      { year: '2023', title: '아모레퍼시픽 SCOPE3 배출량 산정체계 구축 및 SBTi 검증', client: '㈜아모레퍼시픽' },
+      { year: '2023', title: '서연이화 사업장인벤토리 구축', client: '서연이화' },
+      { year: '2021', title: '아태 환경장관포럼 탄소배출량 산정', client: '한국환경산업기술원' },
+      { year: '2020', title: '섬유패션 소재 제조기업 기후변화 대응 기반구축 지원', client: 'FITI시험연구원' },
+      { year: '2019', title: '코스맥스 CDP 대응 컨설팅', client: '코스맥스' },
+      { year: '2017', title: '전과정평가 기법을 활용한 온실가스 저감기술에 대한 환경성평가', client: '한국화학연구원' }
+    ]
+  },
+  policy: {
+    title: '환경정책 및 보건환경',
+    projects: [
+      { year: '2025', title: '2025년 유통 생활화학제품 및 어린이용품 온오프라인 시장모니터링', client: '한국환경산업기술원' },
+      { year: '2025', title: '2025년 취약계층 실내환경 컨설팅 사업', client: '한국환경산업기술원' },
+      { year: '2025', title: '녹색분류체계 인정기준 고도화 및 기준안 연구', client: '한국환경산업기술원' },
+      { year: '2024', title: '2024년 취약계층 실내환경 컨설팅 사업', client: '한국환경산업기술원' },
+      { year: '2024', title: '2024년 생활화학제품 시장감시단 운영', client: '한국환경산업기술원' },
+      { year: '2024', title: '2024년 어린이용품 모니터링 및 환경유해인자 관리 컨설팅', client: '한국환경산업기술원' },
+      { year: '2024', title: '환경책임투자 동향 DB 구축 사업', client: '한국환경산업기술원' },
+      { year: '2024', title: '한국형 녹색분류체계 협의체 운영', client: '한국환경산업기술원' },
+      { year: '2023', title: '2023년 취약계층 실내환경 컨설팅 사업', client: '한국환경산업기술원' },
+      { year: '2023', title: '한국형 녹색분류체계의 전과정평가 기반 인정기준 적용방안 연구', client: '한국환경산업기술원' },
+      { year: '2023', title: '생활화학제품 정보제공 체계 선진화 방안 마련', client: '환경부' },
+      { year: '2022', title: '생활화학제품 안전관리제도 효율적 운영 및 개선방안 연구', client: '환경부' },
+      { year: '2021', title: '기업 ESG평가를 위한 전략수립 컨설팅', client: '트레스웍스' },
+      { year: '2020', title: '환경성적표지 인증 심사 매뉴얼 개발', client: '한국환경산업기술원' },
+      { year: '2019', title: '환경산업연구단지 입주기업 실태조사', client: '한국환경산업기술원' },
+      { year: '2018', title: '어린이 사용제품의 안정성 향상을 위한 위험성 평가', client: '에코플러스' }
+    ]
+  }
+};
 
 export default function PortfolioPage() {
-  const [activeTab, setActiveTab] = useState('LCA(전과정평가)');
+  const [activeTab, setActiveTab] = useState<keyof typeof portfolioData>('lca');
+
+  const portfolioTabs = [
+    { key: 'lca', label: 'LCA(전과정평가)' },
+    { key: 'epd', label: 'EPD 인증대응' },
+    { key: 'circulation', label: '자원순환' },
+    { key: 'climate', label: '기후변화대응' },
+    { key: 'policy', label: '환경정책 및 보건환경' }
+  ];
+
+  const activeData = portfolioData[activeTab];
+
+  // 연도별로 프로젝트 그룹화
+  const groupedProjects = activeData.projects.reduce((groups: { [key: string]: PortfolioProject[] }, project) => {
+    const year = project.year;
+    if (!groups[year]) {
+      groups[year] = [];
+    }
+    groups[year].push(project);
+    return groups;
+  }, {});
+
+  // 연도를 내림차순으로 정렬
+  const sortedYears = Object.keys(groupedProjects).sort((a, b) => parseInt(b) - parseInt(a));
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      
-      {/* Main Content - 1440x2506px as per Figma */}
-      <main className="w-[1440px] mx-auto relative figma-layout">
-        {/* Container - x:80, y:110, w:1280, h:2364 */}
-        <div className="px-[80px] pt-[110px] pb-[32px]">
-          <div className="w-[1280px]">
-            
-            {/* Title Section */}
-            <div className="mb-[32px]">
-              <h1 className="text-[64px] font-bold leading-[72px] tracking-[-1.7px] text-[#14151a] w-[896px]">
-                지속가능한 가치 창출,{'\n'}
-                우리의 성과를 소개합니다.
-              </h1>
-              
-              {/* Description Section - positioned to the right */}
-              <div className="absolute right-[80px] top-[142px] w-[360px]">
-                <p className="text-xl font-bold leading-7 tracking-[-0.2px] text-[#0f1324]/60 mb-6">
-                  검증된 전문성과 경험
-                </p>
-                <p className="text-base font-medium leading-6 tracking-[-0.2px] text-[#0f1324]/60">
-                  에코에이블컨설팅(주)의 다양한 프로젝트 경험과 성과를 통해 고객의 지속가능경영을 위한 최적의 솔루션을 제공해드립니다. 각 분야별 전문성을 바탕으로 한 실질적인 성과를 확인해보세요.
-                </p>
+    <div className="min-h-screen" style={{
+      maxWidth: '1440px',
+      margin: '0 auto',
+      wordBreak: 'keep-all',
+      overflowWrap: 'break-word'
+    }}>
+      {/* Navigation Section */}
+      <div className="w-full">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-4">
+          <Navigation variant="pill" />
+        </div>
+      </div>
+
+      <div className="pt-16">
+        {/* Tab Menu Section - 왼쪽 정렬 */}
+        <div className="w-full py-8">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20">
+            <div className="flex justify-start">
+              <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
+                {portfolioTabs.map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key as keyof typeof portfolioData)}
+                    className={`px-3 py-2.5 rounded-full font-medium text-base ${
+                      activeTab === tab.key
+                        ? 'bg-white border border-[#DEE0E3] text-[#14151A]'
+                        : 'text-[rgba(15,19,36,0.6)]'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
             </div>
-
-            {/* Main Portfolio Image Section */}
-            <div className="mb-[32px]">
-              <div className="w-[1280px] h-[480px] relative rounded-[24px] overflow-hidden">
-                {/* Placeholder for main image - will use actual image later */}
-                <div className="w-full h-full bg-gray-200"></div>
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black/20"></div>
-                
-                {/* Text overlay */}
-                <div className="absolute inset-0 px-8 py-10 flex">
-                  <div className="w-[604px]">
-                    <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-white mb-6">
-                      LCA(전과정평가)
-                    </h2>
-                  </div>
-                  <div className="w-[604px] ml-auto">
-                    <p className="text-base font-medium leading-6 tracking-[-0.2px] text-white">
-                      녹색제품, 친환경제품 생산은 우리 사회의 가치를 한 단계 높이는 기업과 소비자 간의 보이지 않는 약속입니다. 지속가능한 생산과 소비의 연결을 통해 제품을 통한 사회의 지속가능발전이 현실화 될 수 있습니다. 에코에이블컨설팅(주)는 전과정평가, 탄소발자국, 물발자국, Eco-efficiency 등의 평가 기법을 통해 제품의 지속가능성에 대한 진단을 하고 에코디자인을 통한 녹색제품 및 친환경인증 획득을 지원하고 있습니다. 또한 기업의 자발적인 전과정평가 수행을 지원하고 각 기업별로 특화된 결과물 활용을 돕기 위해 LCA TOOL LCABLE'을 지속적으로 개발 • 보급 중에 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Portfolio Categories Section */}
-            <div className="mb-[24px]">
-              <h2 className="text-[30px] font-bold leading-9 tracking-[-0.5px] text-[#14151a]">
-                Portfolio Categories
-              </h2>
-            </div>
-
-            {/* Portfolio Cards Grid - 2x2 layout */}
-            <div className="grid grid-cols-2 gap-8 mb-[32px]">
-              {/* LCA(전과정평가) */}
-              <div className="bg-white border border-[#dee0e3] rounded-[24px] p-8">
-                <div className="mb-6">
-                  {/* Icon placeholder */}
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg mb-4"></div>
-                  <h3 className="text-2xl font-bold text-[#14151a] mb-4">LCA(전과정평가)</h3>
-                  <p className="text-base text-[#0f1324]/60 leading-6">
-                    제품의 전 생애주기에 걸친 환경영향 평가 및 개선방안 제시
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-sm text-[#0f1324]">• 건축자재 LCA 평가</div>
-                  <div className="text-sm text-[#0f1324]">• 전자제품 LCA 평가</div>
-                  <div className="text-sm text-[#0f1324]">• 포장재 LCA 평가</div>
-                  <div className="text-sm text-[#0f1324]">• 화학제품 LCA 평가</div>
-                </div>
-              </div>
-
-              {/* EPD 인증대응 */}
-              <div className="bg-white border border-[#dee0e3] rounded-[24px] p-8">
-                <div className="mb-6">
-                  {/* Icon placeholder */}
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg mb-4"></div>
-                  <h3 className="text-2xl font-bold text-[#14151a] mb-4">EPD 인증대응</h3>
-                  <p className="text-base text-[#0f1324]/60 leading-6">
-                    환경성과선언 인증 획득을 위한 전문 컨설팅 서비스
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-sm text-[#0f1324]">• 건축자재 EPD 인증</div>
-                  <div className="text-sm text-[#0f1324]">• 가전제품 EPD 인증</div>
-                  <div className="text-sm text-[#0f1324]">• PCR 개발 지원</div>
-                  <div className="text-sm text-[#0f1324]">• 검증 및 인증 지원</div>
-                </div>
-              </div>
-
-              {/* 기후변화대응 */}
-              <div className="bg-white border border-[#dee0e3] rounded-[24px] p-8">
-                <div className="mb-6">
-                  {/* Icon placeholder */}
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg mb-4"></div>
-                  <h3 className="text-2xl font-bold text-[#14151a] mb-4">기후변화대응</h3>
-                  <p className="text-base text-[#0f1324]/60 leading-6">
-                    온실가스 관리 및 탄소중립 전략 수립 지원
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-sm text-[#0f1324]">• 온실가스 인벤토리 구축</div>
-                  <div className="text-sm text-[#0f1324]">• 탄소중립 로드맵 수립</div>
-                  <div className="text-sm text-[#0f1324]">• RE100 이행 지원</div>
-                  <div className="text-sm text-[#0f1324]">• 기후리스크 평가</div>
-                </div>
-              </div>
-
-              {/* 환경정책 및 보건환경 */}
-              <div className="bg-white border border-[#dee0e3] rounded-[24px] p-8">
-                <div className="mb-6">
-                  {/* Icon placeholder */}
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg mb-4"></div>
-                  <h3 className="text-2xl font-bold text-[#14151a] mb-4">환경정책 및 보건환경</h3>
-                  <p className="text-base text-[#0f1324]/60 leading-6">
-                    환경정책 수립 및 보건환경 관리 시스템 구축
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-sm text-[#0f1324]">• 환경경영시스템 구축</div>
-                  <div className="text-sm text-[#0f1324]">• 환경법규 대응</div>
-                  <div className="text-sm text-[#0f1324]">• 환경영향평가</div>
-                  <div className="text-sm text-[#0f1324]">• 보건환경 관리</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Client Company Link Section */}
-            <div className="bg-white border border-[#dee0e3] rounded-[24px] p-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-[#14151a] mb-4">고객사</h3>
-                  <p className="text-base text-[#0f1324]/60 leading-6">
-                    에코에이블컨설팅과 함께하는 다양한 기업들을 만나보세요
-                  </p>
-                </div>
-                <button className="px-6 py-3 bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-white font-medium rounded-xl hover:opacity-90 transition-opacity">
-                  고객사 보기
-                </button>
-              </div>
-            </div>
-
           </div>
         </div>
-      </main>
-      
+
+        {/* Content Section */}
+        <div className="w-full">
+          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-20 py-6">
+            <div className="flex flex-col xl:flex-row gap-6 mb-6 py-6">
+              
+              {/* Title Section */}
+              <div className="w-full xl:w-[360px]">
+                <h1 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+                  수행 실적 소개
+                </h1>
+              </div>
+
+              {/* Projects List */}
+              <div className="flex-1">
+                {sortedYears.length > 0 ? (
+                  sortedYears.map((year) => (
+                    <div key={year} className="mb-8">
+                      {/* Year Header */}
+                      <div className="flex items-stretch mb-4">
+                        <div className="flex items-stretch flex-1 gap-2.5 p-4">
+                          <h2 className="text-xl font-bold leading-[1.4] text-black flex-1">
+                            {year}
+                          </h2>
+                        </div>
+                      </div>
+
+                      {/* Projects for this year */}
+                      <div className="flex flex-col">
+                        {groupedProjects[year].map((project, index) => (
+                          <div key={index} className="flex flex-col sm:flex-row items-stretch border-t border-gray-200">
+                            <div className="flex items-stretch flex-1 gap-2.5 p-4">
+                              <div className="flex-1 text-lg leading-[1.44] text-black">
+                                {project.title}
+                              </div>
+                            </div>
+                            <div className="flex items-stretch">
+                              <div className="flex items-stretch flex-1 gap-2.5 p-4">
+                                <div className="flex-1 text-lg leading-[1.44] text-black">
+                                  {project.client}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="flex items-center justify-center py-16 text-gray-500">
+                    해당 분야의 프로젝트가 준비 중입니다.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
