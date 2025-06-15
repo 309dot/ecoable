@@ -3,8 +3,26 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Toast from '@/components/Toast';
+
+function KakaoMapEmbed() {
+  useEffect(() => {
+    if (!document.getElementById('daum-roughmap-script')) {
+      const script = document.createElement('script');
+      script.id = 'daum-roughmap-script';
+      script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
+      script.charset = 'UTF-8';
+      document.body.appendChild(script);
+      script.onload = () => {
+        const runScript = document.createElement('script');
+        runScript.innerHTML = `new daum.roughmap.Lander({"timestamp":"1749715413709","key":"3f9yu4xsqg2","mapWidth":"640","mapHeight":"360"}).render();`;
+        document.body.appendChild(runScript);
+      };
+    }
+  }, []);
+  return <div id="daumRoughmapContainer1749715413709" className="root_daum_roughmap root_daum_roughmap_landing w-full h-full" />;
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,8 +33,6 @@ export default function ContactPage() {
     inquiry: ''
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState({
     message: '',
@@ -111,16 +127,6 @@ export default function ContactPage() {
     }
   };
 
-  const openModal = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage('');
-  };
-
   const closeToast = () => {
     setToast(prev => ({ ...prev, isVisible: false }));
   };
@@ -134,19 +140,19 @@ export default function ContactPage() {
     }}>
       {/* Navigation */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
+        <div className="w-full container-1440 mx-auto py-4">
           <Navigation variant="pill" />
         </div>
       </div>
 
-      <div className="pt-16">
+      <div className="nav-spacing">
         {/* Hero Section */}  
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="w-full container-1440 mx-auto">
             <div className="flex flex-col xl:flex-row justify-stretch items-start gap-6 w-full">
               {/* Left - Title */}
               <div className="flex flex-col gap-6 w-full xl:w-full">
-                <h1 className="text-[#14151A] text-[48px] font-semibold leading-[1.17] tracking-[-2.08%] w-full">
+                <h1 className="text-[#14151A] text-[30px] md:text-[36px] lg:text-[42px] font-semibold leading-[1.17] tracking-[-2.08%] w-full">
                   ecoable스러운 사람들이 직접 <br />
                   만들어가는 ecoable스러운공간
                 </h1>
@@ -164,21 +170,20 @@ export default function ContactPage() {
 
         {/* Office Introduction Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
-            <div className="flex flex-col xl:flex-row gap-6 pb-6">
-              <div className="flex flex-col gap-2 w-full xl:w-[360px]">
-                <h2 className="text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">
+          <div className="w-full container-1440 mx-auto py-6">
+            <div className="flex flex-col gap-6 pb-6">
+              <div className="flex flex-col gap-2 w-full">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">
                   ecoable 사무실 소개
                 </h2>
               </div>
-              <div className="flex-1">
+              <div className="w-full">
                 {/* Image Gallery - 반응형 그리드로 변경 */}
                 <div className="flex flex-col gap-6">
                   {/* Row 1 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[0].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[0].src}
@@ -189,8 +194,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[1].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[1].src}
@@ -201,8 +205,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[2].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[2].src}
@@ -213,8 +216,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[3].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[3].src}
@@ -227,10 +229,9 @@ export default function ContactPage() {
                   </div>
 
                   {/* Row 2 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[4].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[4].src}
@@ -241,8 +242,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[5].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[5].src}
@@ -255,10 +255,9 @@ export default function ContactPage() {
                   </div>
 
                   {/* Row 3 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[6].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[6].src}
@@ -269,8 +268,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[7].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[7].src}
@@ -283,10 +281,9 @@ export default function ContactPage() {
                   </div>
 
                   {/* Row 4 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[8].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[8].src}
@@ -297,8 +294,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[9].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[9].src}
@@ -309,8 +305,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[10].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[10].src}
@@ -321,8 +316,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div 
-                      className="h-[278px] bg-gray-100 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      onClick={() => openModal(galleryImages[11].src)}
+                      className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
                         src={galleryImages[11].src}
@@ -341,16 +335,24 @@ export default function ContactPage() {
 
         {/* Directions Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
+          <div className="w-full container-1440 mx-auto py-6">
             <div id="directions" className="flex flex-col xl:flex-row gap-6 py-6">
               <div className="w-full xl:w-[360px]">
-                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+                <h2 className="text-[#14151A] font-bold text-xl md:text-2xl lg:text-[30px] leading-[1.2] mb-2">
                   찾아오시는 길
                 </h2>
               </div>
               <div className="flex-1">
-                <div className="w-full h-[400px] bg-[#E9EAEC] rounded-[24px] flex items-center justify-center">
-                  <p className="text-gray-600">지도가 여기에 표시됩니다</p>
+                <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] bg-[#E9EAEC] rounded-2xl md:rounded-[24px] flex items-center justify-center p-0 overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d790.8434821921609!2d127.0863286302409!3d37.54625306778347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca4e6bbc065b7%3A0x81939160157f2033!2z7JeQ7L2U7JeQ7J2067iU7Luo7ISk7YyFKOyjvCk!5e0!3m2!1sko!2skr!4v1749716780971!5m2!1sko!2skr"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -359,7 +361,7 @@ export default function ContactPage() {
 
         {/* Contact Form Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
+          <div className="w-full container-1440 mx-auto py-6">
             <div className="flex flex-col xl:flex-row gap-6 py-6">
               <div className="w-full xl:w-[360px]">
                 <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
@@ -514,30 +516,6 @@ export default function ContactPage() {
         isVisible={toast.isVisible}
         onClose={closeToast}
       />
-
-      {/* Image Modal */}
-      {isModalOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-          onClick={closeModal}
-        >
-          <div className="relative max-w-[720px] max-h-[90vh] p-4">
-            <button
-              onClick={closeModal}
-              className="absolute top-2 right-2 text-white hover:text-gray-300 text-3xl font-bold z-10"
-            >
-              ×
-            </button>
-            <Image
-              src={selectedImage}
-              alt="사무실 사진"
-              width={720}
-              height={540}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-          </div>
-        </div>
-      )}
       
       {/* Footer */}
       <Footer />

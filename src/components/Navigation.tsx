@@ -23,8 +23,6 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-
   const navigationItems = [
     { name: 'Home', path: '/' },
     { name: 'Ecoable', path: '/ecoable' },
@@ -48,9 +46,9 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
   if (variant === 'default') {
     return (
       <>
-        <nav className="fixed top-0 left-0 right-0 z-50 my-4">
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className={`relative h-[72px] bg-white/10 backdrop-blur-[16px] rounded-[999px] border border-white/20 transition-shadow duration-300 mx-3 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-0 ${
+              <nav className="fixed top-0 left-0 right-0 z-50 mt-4 mx-4 sm:mx-6 md:mx-6 xl:mx-20">
+        <div className="w-full max-w-[1440px] mx-auto">
+            <div className={`relative h-[72px] bg-white/10 backdrop-blur-[16px] rounded-[999px] border border-white/20 transition-shadow duration-300 ${
               isScrolled ? 'shadow-lg' : ''
             }`}>
               {/* Logo - 클릭시 메인 화면으로 링크 */}
@@ -102,44 +100,46 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
                 </div>
               </div>
 
-                          {/* Mobile Hamburger Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
-            >
-              <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
-                <div className="w-4 h-0.5 bg-white rounded"></div>
-                <div className="w-4 h-0.5 bg-white rounded"></div>
-                <div className="w-4 h-0.5 bg-white rounded"></div>
-              </div>
-            </button>
+              {/* Mobile Hamburger Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
+              >
+                <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
+                  <div className="w-4 h-0.5 bg-white rounded"></div>
+                  <div className="w-4 h-0.5 bg-white rounded"></div>
+                  <div className="w-4 h-0.5 bg-white rounded"></div>
+                </div>
+              </button>
             </div>
           </div>
         </nav>
 
         {/* Mobile Dropdown Menu */}
-        <div className={`xl:hidden w-full max-w-[1440px] mx-auto transition-all duration-300 ${
+        <div className={`xl:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 md:left-6 md:right-6 xl:left-20 xl:right-20 z-[60] transition-all duration-300 ${
           isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-2">
-            {/* Menu Items */}
-            <div className="py-4">
-              {navigationItems.map((item, index) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={handleMenuItemClick}
-                  className={`block px-6 py-3 text-base font-medium transition-colors ${
-                    index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
-                  } ${
-                    isActive(item.path)
-                      ? 'text-[#1A3A6F] bg-blue-50'
-                      : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+          <div className="w-full max-w-[1440px] mx-auto">
+            <div className="bg-white/10 backdrop-blur-[16px] rounded-[24px] border border-white/20 shadow-lg">
+              {/* Menu Items */}
+              <div className="py-4">
+                {navigationItems.map((item, index) => (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={handleMenuItemClick}
+                    className={`block px-6 py-3 text-base font-medium transition-colors ${
+                      index !== navigationItems.length - 1 ? 'border-b border-white/20' : ''
+                    } ${
+                      isActive(item.path)
+                        ? 'text-white bg-white/20 rounded-lg mx-2'
+                        : 'text-white hover:text-white hover:bg-white/10 rounded-lg mx-2'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -150,9 +150,9 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
   // Pill variant for white backgrounds
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 my-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 mt-4 mx-4 sm:mx-6 md:mx-6 xl:mx-20">
         <div className="w-full max-w-[1440px] mx-auto">
-          <div className={`relative h-[72px] bg-white rounded-[999px] border border-[#DEE0E3] transition-shadow duration-300 mx-3 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-0 ${
+          <div className={`relative h-[72px] bg-white rounded-[999px] border border-[#DEE0E3] transition-shadow duration-300 ${
             isScrolled ? 'shadow-lg' : ''
           }`}>
             {/* Logo - 클릭시 메인 화면으로 링크 */}
@@ -220,28 +220,30 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
       </nav>
 
       {/* Mobile Dropdown Menu */}
-      <div className={`xl:hidden w-full max-w-[1440px] mx-auto transition-all duration-300 ${
+      <div className={`xl:hidden fixed top-24 left-0 right-0 z-[60] transition-all duration-300 ${
         isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
       }`}>
-        <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-2">
-          {/* Menu Items */}
-          <div className="py-4">
-            {navigationItems.map((item, index) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                onClick={handleMenuItemClick}
-                className={`block px-6 py-3 text-base font-medium transition-colors ${
-                  index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
-                } ${
-                  isActive(item.path)
-                    ? 'text-[#1A3A6F] bg-blue-50'
-                    : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+        <div className="w-full max-w-[1440px] mx-auto">
+          <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg">
+            {/* Menu Items */}
+            <div className="py-4">
+              {navigationItems.map((item, index) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  onClick={handleMenuItemClick}
+                  className={`block px-6 py-3 text-base font-medium transition-colors ${
+                    index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
+                  } ${
+                    isActive(item.path)
+                      ? 'text-[#1A3A6F] bg-blue-50'
+                      : 'text-gray-700 hover:text-[#1A3A6F] hover:bg-gray-50'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

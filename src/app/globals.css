@@ -101,6 +101,152 @@ body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-left: 1.5rem !important; /* 24px */
+  margin-right: 1.5rem !important; /* 24px */
+}
+
+/* 모바일에서는 body 마진 조정 */
+@media (max-width: 40rem) { /* 640px */
+  body {
+    margin-left: 1rem !important; /* 16px */
+    margin-right: 1rem !important; /* 16px */
+  }
+}
+
+@media (min-width: 40rem) and (max-width: 48rem) { /* 640px - 768px */
+  body {
+    margin-left: 1.5rem !important; /* 24px */
+    margin-right: 1.5rem !important; /* 24px */
+  }
+}
+
+@media (min-width: 80rem) { /* 1280px */
+  body {
+    margin-left: 5rem !important; /* 80px */
+    margin-right: 5rem !important; /* 80px */
+  }
+}
+
+/* 공통 컨테이너 스타일 */
+.container-1440 {
+  max-width: 90rem; /* 1440px */
+  margin: 0 auto;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+
+
+/* 네비게이션 아래 시작점 통일 */
+.nav-spacing {
+  padding-top: 6rem; /* 96px - 네비게이션 높이 + 여백 */
+}
+
+/* 공통 간격 시스템 (rem 기반) */
+.spacing-nav-bottom {
+  padding-bottom: 2rem; /* 32px */
+}
+
+.spacing-tab-bottom {
+  padding-top: 2rem; /* 32px */
+  padding-bottom: 2rem; /* 32px */
+}
+
+.spacing-section {
+  padding: 2.5rem 0; /* 40px */
+}
+
+.spacing-section-large {
+  padding: 2rem 0; /* 32px */
+}
+
+/* 모바일 간격 조정 */
+@media (max-width: 48rem) { /* 768px */
+  .spacing-nav-bottom {
+    padding-bottom: 1rem; /* 16px */
+  }
+  
+  .spacing-tab-bottom {
+    padding-top: 1rem; /* 16px */
+    padding-bottom: 1rem; /* 16px */
+  }
+  
+  .spacing-section {
+    padding: 1.25rem 0; /* 20px */
+  }
+  
+  .spacing-section-large {
+    padding: 1.5rem 0; /* 24px */
+  }
+}
+
+/* 반응형 폰트 시스템 */
+.text-hero {
+  font-size: clamp(1.5rem, 4vw, 3rem); /* 24px ~ 48px */
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-title {
+  font-size: clamp(1.25rem, 3vw, 1.875rem); /* 20px ~ 30px */
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* 16px ~ 24px */
+  line-height: 1.33;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: clamp(0.875rem, 2vw, 1.125rem); /* 14px ~ 18px */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem); /* 12px ~ 14px */
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* 모바일 전용 폰트 크기 제한 */
+@media (max-width: 48rem) { /* 768px */
+  .text-hero {
+    font-size: clamp(1.5rem, 6vw, 1.5rem); /* 24px 고정 */
+  }
+  
+  .text-title {
+    font-size: clamp(1.125rem, 4vw, 1.25rem); /* 18px ~ 20px */
+  }
+  
+  .text-subtitle {
+    font-size: clamp(1rem, 3vw, 1.125rem); /* 16px ~ 18px */
+  }
+  
+  .text-body {
+    font-size: clamp(0.875rem, 2.5vw, 1rem); /* 14px ~ 16px */
+  }
+  
+  .text-small {
+    font-size: clamp(0.75rem, 2vw, 0.875rem); /* 12px ~ 14px */
+  }
+}
+
+/* 리스트 컨텐츠 모바일 최적화 */
+@media (max-width: 48rem) { /* 768px */
+  .mobile-list-compact .text-body {
+    font-size: 0.875rem; /* 14px */
+  }
+  
+  .mobile-list-compact .text-small {
+    font-size: 0.75rem; /* 12px */
+  }
+  
+  .mobile-list-compact {
+    gap: 0.5rem; /* 8px */
+  }
 }
 
 @layer utilities {

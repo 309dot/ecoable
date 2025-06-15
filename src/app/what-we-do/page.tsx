@@ -354,30 +354,25 @@ function WhatWeDoContent() {
   const activeData = activeTab === 'policy' ? policyData : circulationData;
 
   return (
-    <div className="min-h-screen" style={{
-      maxWidth: '1440px',
-      margin: '0 auto',
-      wordBreak: 'keep-all',
-      overflowWrap: 'break-word'
-    }}>
+    <div className="min-h-screen container-1440">
       {/* Navigation Section */}
       <div className="w-full">
-                  <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
+        <div className="w-full container-1440 mx-auto spacing-nav-bottom">
           <Navigation variant="pill" />
         </div>
       </div>
 
-      <div className="pt-16">
+      <div className="nav-spacing">
         {/* Tab Menu Section - 왼쪽 정렬 */}
-        <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className="flex justify-start">
-              <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
+        <div className="w-full spacing-tab-bottom">
+          <div className="w-full container-1440 mx-auto">
+            <div className="flex justify-start overflow-x-auto scrollbar-none">
+              <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex flex-shrink-0 gap-1">
                 {whatWeDoTabs.map((tab) => (
                   <button
                     key={tab.key}
                     onClick={() => setActiveTab(tab.key as 'policy' | 'circulation')}
-                    className={`px-3 py-2.5 rounded-full font-medium text-base ${
+                    className={`px-4 md:px-5 lg:px-6 py-2 md:py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap min-w-[80px] text-center transition-all duration-200 ${
                       activeTab === tab.key
                         ? 'bg-white border border-[#DEE0E3] text-[#14151A]'
                         : 'text-[rgba(15,19,36,0.6)]'
@@ -392,8 +387,8 @@ function WhatWeDoContent() {
         </div>
 
         {/* Hero Section */}
-        <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
+        <div className="w-full hidden sm:block">
+          <div className="w-full container-1440 mx-auto spacing-section">
             <div className="relative w-full h-96 rounded-[24px] overflow-hidden mb-6">
               <Image
                 src={activeData.heroImage}
@@ -405,238 +400,238 @@ function WhatWeDoContent() {
               <div className="absolute inset-0 bg-black/50"></div>
               <div className="absolute inset-0 flex flex-col xl:flex-row px-8">
                 <div className="w-full xl:w-[360px] xl:mr-8 flex flex-col justify-start pt-8">
-                  <h1 className="text-white font-bold text-[30px] leading-[1.2] mb-2">
+                  <h1 className="text-white text-title mb-2">
                     {activeData.title}
                   </h1>
                 </div>
                 <div className="flex-1 flex flex-col justify-end pb-8">
-                  <p className="text-white font-medium text-base leading-[1.5]">
+                  <p className="text-white font-medium text-sm leading-[1.5]">
                     {activeData.description}
                   </p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Task Areas Section */}
-            <div className="flex flex-col xl:flex-row gap-6 mb-6 py-6">
-              <div className="w-full xl:w-[360px]">
-                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
-                  과제 수행 분야
-                </h2>
-              </div>
-              <div className="flex-1">
-                <div className="space-y-0">
-                  {activeData.taskAreas.map((task, index) => (
-                    <div key={index} className="border-t border-[#DEE0E3] first:border-t-0 py-4">
-                      <p className="text-[#000000] text-lg leading-[1.444]">
-                        {task}
+        {/* Task Areas Section - Hero Section 바깥에 위치! */}
+        <div className="flex flex-col xl:flex-row gap-6 mb-6 spacing-section">
+          <div className="w-full xl:w-[360px]">
+            <h2 className="text-[#14151A] text-title mb-2">
+              과제 수행 분야
+            </h2>
+          </div>
+          <div className="flex-1">
+            <div className="space-y-0">
+              {activeData.taskAreas.map((task, index) => (
+                <div key={index} className="border-t border-[#DEE0E3] first:border-t-0 py-4">
+                  <p className="text-[#000000] text-base md:text-sm">
+                    {task}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Profiles Section */}
+        <div className="flex flex-col xl:flex-row gap-6 mb-6 spacing-section">
+          <div className="w-full xl:w-[360px]">
+            <h2 className="text-[#14151A] text-title mb-2">
+              구성원
+            </h2>
+          </div>
+          <div className="flex-1">
+            <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-3 gap-3">
+              {activeData.profiles.map((profile, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-[#DEE0E3] rounded-[24px] p-6 transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1"
+                >
+                  <div 
+                    className="w-full mb-4 rounded-[12px] overflow-hidden"
+                    style={{ aspectRatio: '1 / 1' }}
+                  >
+                    <Image
+                      src={profile.image}
+                      alt={profile.name}
+                      width={240}
+                      height={240}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <h3 className="text-[#14151A] font-bold text-lg leading-[1.4] mb-1">
+                        {profile.name}
+                      </h3>
+                      <p className="text-[#14151A] text-base leading-[1.5] mb-1">
+                        {profile.position}
+                      </p>
+                      <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4] overflow-hidden" style={{ height: '96px' }}>
+                        {profile.qualifications}
                       </p>
                     </div>
-                  ))}
+                    <div className="space-y-1">
+                      <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4]">
+                        {profile.email}
+                      </p>
+                      <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4]">
+                        {profile.phone}
+                      </p>
+                    </div>
+                    <div className="border-t border-[#DEE0E3] pt-3">
+                      <p className="text-[#14151A] text-base leading-[1.5] h-12 overflow-hidden">
+                        {profile.motto}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
+          </div>
+        </div>
 
-            {/* Profiles Section */}
-            <div className="flex flex-col xl:flex-row gap-6 mb-6 py-6">
-              <div className="w-full xl:w-[360px]">
-                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
-                  구성원
-                </h2>
-              </div>
-              <div className="flex-1">
-                <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-3 gap-[1.3rem]">
-                  {activeData.profiles.map((profile, index) => (
-                    <div
-                      key={index}
-                      className="bg-white border border-[#DEE0E3] rounded-[24px] p-6 transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1"
-                    >
-                      <div 
-                        className="w-full mb-4 rounded-[12px] overflow-hidden"
-                        style={{ aspectRatio: '1 / 1' }}
-                      >
+        {/* Contact Form Section */}
+        <div className="flex flex-col xl:flex-row gap-6 spacing-section">
+          <div className="w-full xl:w-[360px]">
+            <h2 className="text-[#14151A] text-title mb-2">
+              문의하기
+            </h2>
+          </div>
+          <div className="flex-1">
+            <div className="rounded-[24px]">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1">
+                    <label className="block text-[#14151A] font-medium text-sm mb-2">
+                      성함
+                    </label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
                         <Image
-                          src={profile.image}
-                          alt={profile.name}
-                          width={240}
-                          height={240}
-                          className="w-full h-full object-cover"
+                          src="/icons/lead-icon-6.svg"
+                          alt="Person Icon"
+                          width={20}
+                          height={20}
                         />
                       </div>
-                      <div className="space-y-3">
-                        <div>
-                          <h3 className="text-[#14151A] font-bold text-lg leading-[1.4] mb-1">
-                            {profile.name}
-                          </h3>
-                          <p className="text-[#14151A] text-base leading-[1.5] mb-1">
-                            {profile.position}
-                          </p>
-                          <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4] overflow-hidden" style={{ height: '96px' }}>
-                            {profile.qualifications}
-                          </p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4]">
-                            {profile.email}
-                          </p>
-                          <p className="text-[rgba(15,19,36,0.6)] text-sm leading-[1.4]">
-                            {profile.phone}
-                          </p>
-                        </div>
-                        <div className="border-t border-[#DEE0E3] pt-3">
-                          <p className="text-[#14151A] text-base leading-[1.5] h-12 overflow-hidden">
-                            {profile.motto}
-                          </p>
-                        </div>
-                      </div>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="이름을 입력해주세요"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        required
+                      />
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form Section */}
-            <div className="flex flex-col xl:flex-row gap-6 py-6">
-              <div className="w-full xl:w-[360px]">
-                <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
-                  문의하기
-                </h2>
-              </div>
-              <div className="flex-1">
-                <div className="rounded-[24px]">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1">
-                        <label className="block text-[#14151A] font-medium text-sm mb-2">
-                          성함
-                        </label>
-                        <div className="relative">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
-                            <Image
-                              src="/icons/lead-icon-6.svg"
-                              alt="Person Icon"
-                              width={20}
-                              height={20}
-                            />
-                          </div>
-                          <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            placeholder="이름을 입력해주세요"
-                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <label className="block text-[#14151A] font-medium text-sm mb-2">
-                          소속 및 직책
-                        </label>
-                        <div className="relative">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
-                            <Image
-                              src="/icons/lead-icon-7.svg"
-                              alt="Organization Icon"
-                              width={20}
-                              height={20}
-                            />
-                          </div>
-                          <input
-                            type="text"
-                            name="position"
-                            value={formData.position}
-                            onChange={handleInputChange}
-                            placeholder="소속 및 직책을 입력해주세요"
-                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1">
-                        <label className="block text-[#14151A] font-medium text-sm mb-2">
-                          연락처
-                        </label>
-                        <div className="relative">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
-                            <Image
-                              src="/icons/lead-icon-8.svg"
-                              alt="Phone Icon"
-                              width={20}
-                              height={20}
-                            />
-                          </div>
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            placeholder="연락처를 입력해주세요"
-                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <label className="block text-[#14151A] font-medium text-sm mb-2">
-                          이메일
-                        </label>
-                        <div className="relative">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
-                            <Image
-                              src="/icons/lead-icon-9.svg"
-                              alt="Email Icon"
-                              width={20}
-                              height={20}
-                            />
-                          </div>
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="이메일을 입력해주세요"
-                            className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-[#14151A] font-medium text-sm mb-2">
-                        문의사항
-                      </label>
-                      <div className="relative">
-                        <div className="absolute left-3 top-3 w-5 h-5 text-[rgba(13,17,38,0.4)]">
-                          <Image
-                            src="/icons/lead-icon-10.svg"
-                            alt="Message Icon"
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                        <textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          placeholder="문의사항을 입력해주세요"
-                          rows={6}
-                          className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)] resize-none"
-                          required
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-[#14151A] font-medium text-sm mb-2">
+                      소속 및 직책
+                    </label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                        <Image
+                          src="/icons/lead-icon-7.svg"
+                          alt="Organization Icon"
+                          width={20}
+                          height={20}
                         />
                       </div>
+                      <input
+                        type="text"
+                        name="position"
+                        value={formData.position}
+                        onChange={handleInputChange}
+                        placeholder="소속 및 직책을 입력해주세요"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                      />
                     </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-[#1B376F] to-[#3A9284] text-white font-medium py-3 rounded-[12px] hover:opacity-90 transition-opacity"
-                    >
-                      문의 보내기
-                    </button>
-                  </form>
+                  </div>
                 </div>
-              </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1">
+                    <label className="block text-[#14151A] font-medium text-sm mb-2">
+                      연락처
+                    </label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                        <Image
+                          src="/icons/lead-icon-8.svg"
+                          alt="Phone Icon"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="연락처를 입력해주세요"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-[#14151A] font-medium text-sm mb-2">
+                      이메일
+                    </label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                        <Image
+                          src="/icons/lead-icon-9.svg"
+                          alt="Email Icon"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="이메일을 입력해주세요"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[#14151A] font-medium text-sm mb-2">
+                    문의사항
+                  </label>
+                  <div className="relative">
+                    <div className="absolute left-3 top-3 w-5 h-5 text-[rgba(13,17,38,0.4)]">
+                      <Image
+                        src="/icons/lead-icon-10.svg"
+                        alt="Message Icon"
+                        width={20}
+                        height={20}
+                      />
+                    </div>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="문의사항을 입력해주세요"
+                      rows={6}
+                      className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)] resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-[#1B376F] to-[#3A9284] text-white font-medium py-3 rounded-[12px] hover:opacity-90 transition-opacity"
+                >
+                  문의 보내기
+                </button>
+              </form>
             </div>
           </div>
         </div>

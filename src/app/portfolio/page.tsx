@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import TabMenu from '@/components/TabMenu';
 
 
 interface PortfolioProject {
@@ -172,38 +173,26 @@ export default function PortfolioPage() {
     }}>
       {/* Navigation Section */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
+        <div className="w-full container-1440 mx-auto py-4">
           <Navigation variant="pill" />
         </div>
       </div>
 
-      <div className="pt-16">
+      <div className="nav-spacing">
         {/* Tab Menu Section - 왼쪽 정렬 */}
         <div className="w-full py-8">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className="flex justify-start">
-              <div className="bg-[rgba(10,15,41,0.08)] rounded-full p-0.5 flex">
-                {portfolioTabs.map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key as keyof typeof portfolioData)}
-                    className={`px-3 py-2.5 rounded-full font-medium text-base ${
-                      activeTab === tab.key
-                        ? 'bg-white border border-[#DEE0E3] text-[#14151A]'
-                        : 'text-[rgba(15,19,36,0.6)]'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="w-full container-1440 mx-auto">
+            <TabMenu
+              tabs={portfolioTabs}
+              activeTab={activeTab}
+              onChange={(key) => setActiveTab(key as keyof typeof portfolioData)}
+            />
           </div>
         </div>
 
         {/* Content Section */}
         <div className="w-full">
-          <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6">
+          <div className="w-full container-1440 mx-auto py-6">
             <div className="flex flex-col xl:flex-row gap-6 mb-6 py-6">
               
               {/* Title Section */}
@@ -230,15 +219,15 @@ export default function PortfolioPage() {
                       {/* Projects for this year */}
                       <div className="flex flex-col">
                         {groupedProjects[year].map((project, index) => (
-                          <div key={index} className="flex flex-col sm:flex-row items-stretch border-t border-gray-200">
+                          <div key={index} className="flex items-stretch border-t border-gray-200">
                             <div className="flex items-stretch flex-1 gap-2.5 p-4">
-                              <div className="flex-1 text-lg leading-[1.44] text-black">
+                              <div className="flex-1 text-base md:text-sm leading-[1.44] text-black">
                                 {project.title}
                               </div>
                             </div>
                             <div className="flex items-stretch">
                               <div className="flex items-stretch flex-1 gap-2.5 p-4">
-                                <div className="flex-1 text-lg leading-[1.44] text-black">
+                                <div className="flex-1 text-base md:text-sm leading-[1.44] text-black">
                                   {project.client}
                                 </div>
                               </div>

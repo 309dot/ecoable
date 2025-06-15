@@ -31,9 +31,9 @@ export default function EcoableIntroduction() {
       </div>
 
       {/* Second Section - Main Image */}
-      <div className="w-full h-[452px] rounded-[24px] overflow-hidden relative">
+      <div className="w-full h-[280px] md:h-[360px] lg:h-[452px] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] overflow-hidden relative">
         <Image
-          src="/images/main-image-new.jpg"
+          src="/jpg/image_photo_26.jpg"
           alt="Ecoable Team"
           width={1400}
           height={452}
@@ -78,7 +78,7 @@ export default function EcoableIntroduction() {
           </h3>
           
           {/* Three Value Cards in Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3 w-full">
             {/* Value 1 */}
             <div className="flex flex-col justify-center items-center gap-6 p-6 border border-[#DEE0E3] rounded-[24px] w-full">
               <div className="w-[180px] h-[180px] rounded overflow-hidden">

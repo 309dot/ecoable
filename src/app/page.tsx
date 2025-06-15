@@ -17,11 +17,11 @@ export default function Home() {
   };
 
   return (
-    <div className="relative w-screen min-h-screen bg-white overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 w-full min-h-screen">
+    <>
+      {/* Background Image with Overlay - 마진에 영향받지 않음 */}
+      <div className="fixed inset-0 w-screen h-screen z-0">
         <Image
-          src="/jpg/image_photo_01.jpg"
+          src="/jpg/Desktop_main_01.jpg"
           alt="Background"
           fill
           className="object-cover"
@@ -29,16 +29,18 @@ export default function Home() {
             filter: 'exposure(0.16) contrast(-0.09) saturate(1.49) brightness(1.27)',
           }}
         />
-        {/* Dark overlay - 검정 25% */}
-        <div className="absolute inset-0 bg-black/25"></div>
+        {/* Dark overlay - 검정 50% */}
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
+      
+      <div className="relative min-h-screen bg-transparent overflow-hidden">
 
       {/* Navigation */}
       <Navigation variant="default" />
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto">
-        <div className="flex flex-col justify-between min-h-screen pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 2xl:pt-32 pb-8 px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="relative z-10 w-full container-1440 mx-auto">
+        <div className="flex flex-col justify-between min-h-screen nav-spacing pb-8">
           
           {/* Title Section */}
           <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-20">
@@ -139,6 +141,7 @@ export default function Home() {
 
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

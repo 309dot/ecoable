@@ -65,15 +65,15 @@ export default function ClientCompanyPage() {
     }}>
       {/* Navigation */}
       <div className="w-full">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4">
+        <div className="w-full container-1440 mx-auto py-4">
           <Navigation variant="pill" />
         </div>
       </div>
 
       {/* Client List with 180px top padding */}
-      <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-[180px]">
+      <div className="w-full container-1440 mx-auto py-24">
         {/* Title Section */}
-        <div className="mb-6">
+        <div className="mb-6 py-8">
           <h1 className="text-3xl font-bold text-[#14151A] leading-[1.2em] tracking-[-1.67%]">
             고객사 리스트
           </h1>
@@ -83,7 +83,7 @@ export default function ClientCompanyPage() {
         <div className="mb-4">
           <div className="flex justify-center">
             <div className="w-full">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-[1.3rem]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
                 {clients.map((client, index) => (
                   <div 
                     key={index}

@@ -77,7 +77,7 @@ export default function Footer() {
 
       {/* Bottom Section - Always Visible */}
       <div className="flex flex-col justify-center items-center w-full gap-6 xl:gap-16 py-6">
-        <div className="flex flex-col xl:flex-row justify-between xl:items-end items-start w-full max-w-[1440px] gap-6 xl:gap-10 px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex flex-col xl:flex-row justify-between xl:items-end items-start w-full container-1440 gap-6 xl:gap-10">
           
           {/* Mobile/Tablet Logo - Only visible on small screens */}
           <div className="xl:hidden flex justify-start items-center w-40 h-10">

@@ -274,46 +274,7 @@ const BucketCard = ({ title, status, image }: { title: string; status: 'default'
   );
 };
 
-// 이미지 모달 컴포넌트
-const ImageModal = ({ 
-  src, 
-  alt, 
-  isOpen, 
-  onClose 
-}: { 
-  src: string; 
-  alt: string; 
-  isOpen: boolean; 
-  onClose: () => void; 
-}) => {
-  if (!isOpen) return null;
-
-  return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-      onClick={onClose}
-    >
-      <div className="relative">
-        <button
-          onClick={onClose}
-          className="absolute -top-2 -right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center text-black font-bold hover:bg-gray-200 transition-colors shadow-lg"
-        >
-          ×
-        </button>
-        <img
-          src={src}
-          alt={alt}
-          className="max-w-[720px] max-h-[90vh] w-auto h-auto rounded-lg shadow-2xl"
-          onClick={(e) => e.stopPropagation()}
-        />
-      </div>
-    </div>
-  );
-};
-
 export default function EcoableEcoableness() {
-  const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null);
-
   // 이미지와 연도 매핑
   const imageYears = {
     'team-photo-10': '2025',
@@ -362,33 +323,29 @@ export default function EcoableEcoableness() {
   ];
 
   return (
-    <div className="bg-white" style={{ maxWidth: '1440px', margin: '0 auto', wordBreak: 'keep-all', wordWrap: 'break-word' }}>
-      {/* ecoable스러운 ecoable人 섹션 */}
-      <section className="py-8">
-        <div className="flex flex-col xl:flex-row gap-6">
-          <div className="flex-1 flex flex-col gap-8 py-4">
-            <div className="flex flex-col xl:flex-row justify-between items-stretch gap-6 pb-6">
-              <h2 className="text-[#14151A] font-semibold text-5xl leading-[1.167] tracking-[-2.083%] flex-1">
-                ecoable스러운 <br />
-                ecoable人
-              </h2>
-              <div className="flex flex-col justify-center xl:items-end gap-1 flex-1">
-                <p className="text-[#14151A] text-lg leading-[1.4] xl:text-right">
-                  에코에이블스러움이라는 고유의 문화가 있습니다.<br />
-                  우리는 모두 다르지만, 같은 방향을 바라보고 있어요.<br />
-                  서로의 개성을 인정하고 존중하며, 함께 성장해나가는 것이<br />
-                  에코에이블스러움의 핵심입니다.
-                </p>
-              </div>
-            </div>
+    <div className="bg-white container-1440">
+              {/* ecoable스러운 ecoable人 섹션 */}
+        <section className="spacing-section-large">
+        <div className="flex flex-col xl:flex-row justify-stretch items-start gap-6 w-full">
+          <div className="flex flex-col gap-6 w-full xl:w-full">
+            <h2 className="text-[#14151A] text-[30px] md:text-[36px] lg:text-[42px] font-semibold leading-[1.17] tracking-[-2.08%] w-full">
+              ecoable스러운 <br />
+              ecoable人
+            </h2>
+          </div>
+          <div className="flex flex-col justify-center gap-4 w-full xl:w-full">
+            <p className="text-[rgba(15,19,36,0.6)] text-sm md:text-base font-medium leading-[1.5] tracking-[-1.25%] w-full">
+              '에코에이블스러움'이라는 고유의 문화를 통해 고객에게는 신뢰성 있는 결과물과 서비스를, 구성원들에게는 새로운 조직문화와 행복한 일터를 제공하고자 합니다.
+            </p>
           </div>
         </div>
         
-        <div className="w-full flex flex-col gap-[1.3rem]">
+        <div className="pb-10"></div>
+        
+        <div className="w-full flex flex-col gap-3">
           {/* 위쪽 2x2 그리드 - 반응형 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-[1.3rem]">
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-10.png", alt: "팀 사진 10" })}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-3">
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-10.png"
                 alt="팀 사진 10"
@@ -400,8 +357,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-10']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-09.png", alt: "팀 사진 9" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-09.png"
                 alt="팀 사진 9"
@@ -413,8 +369,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-09']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-08.png", alt: "팀 사진 8" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-08.png"
                 alt="팀 사진 8"
@@ -426,8 +381,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-08']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-07.png", alt: "팀 사진 7" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-07.png"
                 alt="팀 사진 7"
@@ -442,9 +396,8 @@ export default function EcoableEcoableness() {
           </div>
           
           {/* 아래쪽 1x4 그리드 - 반응형 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[1.3rem]">
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-06.png", alt: "팀 사진 6" })}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-06.png"
                 alt="팀 사진 6"
@@ -456,8 +409,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-06']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-05.png", alt: "팀 사진 5" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-05.png"
                 alt="팀 사진 5"
@@ -469,8 +421,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-05']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-04.png", alt: "팀 사진 4" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-04.png"
                 alt="팀 사진 4"
@@ -482,8 +433,7 @@ export default function EcoableEcoableness() {
                 <span className="text-white text-2xl font-bold">{imageYears['team-photo-04']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group cursor-pointer"
-                 onClick={() => setModalImage({ src: "/images/team-photo-03.png", alt: "팀 사진 3" })}>
+            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
                 src="/images/team-photo-03.png"
                 alt="팀 사진 3"
@@ -500,8 +450,8 @@ export default function EcoableEcoableness() {
       </section>
 
       {/* Something to Do / Nothing to Do 섹션 - 반응형 */}
-      <section className="py-10">
-        <div className="flex flex-col xl:flex-row gap-6">
+      <section className="spacing-section-large">
+        <div className="flex flex-col gap-6">
           {/* Something to Do */}
           <div className="bg-[#F7F7F8] rounded-[24px] p-6 pb-10 flex-1">
             <div className="flex items-center gap-4 pb-4">
@@ -514,15 +464,15 @@ export default function EcoableEcoableness() {
                   className="object-cover"
                 />
               </div>
-              <h3 className="text-[#14151A] font-bold text-2xl leading-[1.33] tracking-[-1.25%]">
+              <h3 className="text-[#14151A] text-subtitle">
                 Something to Do
               </h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 mobile-list-compact">
               {todoItems.map((item, index) => (
-                <div key={index} className="flex items-start gap-2.5 w-full">
-                  <span className="text-[#14151A] text-lg leading-[1.44] tracking-[-1.11%] flex-shrink-0">✔️ </span>
-                  <span className="text-[#14151A] text-lg leading-[1.44] tracking-[-1.11%]">{item}</span>
+                <div key={index} className="flex items-start gap-2.5">
+                  <span className="text-[#14151A] text-body flex-shrink-0">✔️ </span>
+                  <span className="text-[#14151A] text-body">{item}</span>
                 </div>
               ))}
             </div>
@@ -541,16 +491,16 @@ export default function EcoableEcoableness() {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="text-[#14151A] font-bold text-2xl leading-[1.33] tracking-[-1.25%]">
+                <h3 className="text-[#14151A] text-subtitle">
                   Nothing to Do
                 </h3>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 mobile-list-compact">
               {notTodoItems.map((item, index) => (
-                <div key={index} className="flex items-start gap-2.5 w-full">
-                  <span className="text-[#14151A] text-lg leading-[1.44] tracking-[-1.11%] flex-shrink-0">✖️ </span>
-                  <span className="text-[#14151A] text-lg leading-[1.44] tracking-[-1.11%]">{item}</span>
+                <div key={index} className="flex items-start gap-2.5">
+                  <span className="text-[#14151A] text-body flex-shrink-0">✖️ </span>
+                  <span className="text-[#14151A] text-body">{item}</span>
                 </div>
               ))}
             </div>
@@ -559,15 +509,15 @@ export default function EcoableEcoableness() {
       </section>
 
       {/* 복리후생 섹션 */}
-      <section className="py-10">
+      <section className="spacing-section-large">
         <div className="flex flex-col gap-6 mb-6 py-6">
           <div className="w-full">
-            <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+            <h2 className="text-[#14151A] text-title mb-2">
               복리후생
             </h2>
           </div>
           <div className="w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1.3rem]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {welfareListData.map((welfare) => (
                 <WelfareCard 
                   key={welfare.id}
@@ -582,15 +532,15 @@ export default function EcoableEcoableness() {
       </section>
 
       {/* 위시리스트 섹션 */}
-      <section className="py-10">
+      <section className="spacing-section-large">
         <div className="flex flex-col gap-6 mb-6 py-6">
           <div className="w-full">
-            <h2 className="text-[#14151A] font-bold text-[30px] leading-[1.2] mb-2">
+            <h2 className="text-[#14151A] text-title mb-2">
               위시리스트
             </h2>
           </div>
           <div className="w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1.3rem]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {bucketListData.map((bucket) => (
                 <BucketCard 
                   key={bucket.id}
@@ -603,16 +553,6 @@ export default function EcoableEcoableness() {
           </div>
         </div>
       </section>
-
-      {/* Modal */}
-      {modalImage && (
-        <ImageModal
-          src={modalImage.src}
-          alt={modalImage.alt}
-          isOpen={!!modalImage}
-          onClose={() => setModalImage(null)}
-        />
-      )}
     </div>
   );
 } 

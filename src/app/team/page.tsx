@@ -54,7 +54,7 @@ export default function TeamPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1A3A6F] to-[#399084]"></div>
 
         {/* Navigation */}
-        <nav className="relative z-10 px-20 py-6">
+        <nav className="relative z-10 py-6">
           <div className="flex items-center justify-between bg-white/10 backdrop-blur-md rounded-[999px] px-8 py-4">
             <div className="text-white text-xl font-semibold">
               에코에이블컨설팅(주)
@@ -97,7 +97,7 @@ export default function TeamPage() {
       </section>
 
       {/* Team Introduction */}
-      <section className="px-20 py-16">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
             우리 팀을 소개합니다
@@ -110,7 +110,7 @@ export default function TeamPage() {
       </section>
 
       {/* Department Teams */}
-      <section className="px-20 py-8">
+      <section className="py-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {departments.map((dept, index) => (
@@ -174,7 +174,7 @@ export default function TeamPage() {
       </section>
 
       {/* Team Statistics */}
-      <section className="px-20 py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">팀 현황</h3>
