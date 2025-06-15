@@ -326,7 +326,7 @@ function WhatWeDoContent() {
   // 각 탭별 데이터
   const policyData = {
     title: '전과정정책본부',
-    heroImage: '/images/img_bg_whatwedo1.jpg',
+    heroImage: '/images/img_bg_whatwedo1.webp',
     description: (
       <>
         환경은 우리 세대의 과오로 인해 후대가 누릴 수 있는 권리를 빼앗을 수 있는 매우 중요한 문제입니다. 우리와 우리의 후대가 함께 누릴 수 있는 깨끗한  환경을 만들기 위해 전세계는 지속가능한발전을 위한 다양한 정책을 펼치고 있습니다. 우리나라 역시 기후변화, 자원순환, 제품환경, 대기/수계 오염, 환경보건 등 다양한 분야에 대한 정책 및 제도를 만들어 운영하고 있고, 이를 통해 국민들이 보다 나은 환경에서 살아 갈 수 있도록 하고 있습니다.<br/><br/>
@@ -339,7 +339,7 @@ function WhatWeDoContent() {
 
   const circulationData = {
     title: '전과정순환본부',
-    heroImage: '/images/img_bg_whatwedo2.jpg',
+    heroImage: '/images/img_bg_whatwedo2.webp',
     description: (
       <>
         수명이 있는 모든 것은 폐기 단계의 환경문제를 내포하고 있습니다. 이는 폐기물의 발생에 그치는 것이 아니라 자원의 재활용, 인간과 생태계에 미치는 영향, 나아가 전 지구적인 환경 이슈인 자원고갈, 지구온난화 등과도 밀접하게 연계되어 있습니다. 폐기물을 단순한 쓰레기가 아니라 또 다른 자원으로 인식하여 이를 순환활용 하는 것이 바로 자원순환의 첫걸음입니다. 또한 환경적, 경제적으로 적절한 자원순환이 이루어져야 합니다.<br/><br/>

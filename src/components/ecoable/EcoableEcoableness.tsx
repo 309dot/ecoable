@@ -7,97 +7,97 @@ const welfareListData = [
     id: 1,
     title: "연간 휴가일수 20일",
     description: "쉬면서 일하자",
-    image: "/images/welfare-20.png"
+    image: "/images/welfare-20.webp"
   },
   {
     id: 2,
     title: "매 3년마다 2주 여행 지원",
     description: "여행 좀 길게가자\n*별도 10일 휴가 + 100만원",
-    image: "/images/welfare-airplane.png"
+    image: "/images/welfare-airplane.webp"
   },
   {
     id: 3,
     title: "12월 24일 종무식",
     description: "크리스마스에는 같이 있지 말자",
-    image: "/images/welfare-christmas.png"
+    image: "/images/welfare-christmas.webp"
   },
   {
     id: 4,
     title: "10시 출근",
     description: "Avoided Traffic JAM",
-    image: "/images/welfare-clock.png"
+    image: "/images/welfare-clock.webp"
   },
   {
     id: 5,
     title: "월요일 11시 출근",
     description: "월요병 탈출",
-    image: "/images/welfare-monday.png"
+    image: "/images/welfare-monday.webp"
   },
   {
     id: 6,
     title: "매월 마지막 금요일 조기퇴근",
     description: "불금불금 제도",
-    image: "/images/welfare-friday.png"
+    image: "/images/welfare-friday.webp"
   },
   {
     id: 7,
     title: "순이익 30% 성과급 지급",
     description: "열심히 일한 자 돈쭐나라",
-    image: "/images/welfare-bonus.png"
+    image: "/images/welfare-bonus.webp"
   },
   {
     id: 8,
     title: "비밀 용돈 지원",
     description: "묻지마 비상금",
-    image: "/images/welfare-money.png"
+    image: "/images/welfare-money.webp"
   },
   {
     id: 9,
     title: "주거안정자금 2000만원 무이자 대출",
     description: "쥐꼬리지만 괜찮아 대출",
-    image: "/images/welfare-loan.png"
+    image: "/images/welfare-loan.webp"
   },
   {
     id: 10,
     title: "승진 시 선물 증정",
     description: "쓸데있는 승진선물",
-    image: "/images/welfare-promotion.png"
+    image: "/images/welfare-promotion.webp"
   },
   {
     id: 11,
     title: "매 5년 근속 시 순금열쇠 증정",
     description: "황금열쇠",
-    image: "/images/welfare-gold-key.png"
+    image: "/images/welfare-gold-key.webp"
   },
   {
     id: 12,
     title: "대학원 교육비 및 직무교육비 지원",
     description: "알고 일합시다",
-    image: "/images/welfare-education.png"
+    image: "/images/welfare-education.webp"
   },
   {
     id: 13,
     title: "가정의 달 외식비 지원",
     description: "키워주셔서 대신 감사합니다",
-    image: "/images/welfare-family.png"
+    image: "/images/welfare-family.webp"
   },
   {
     id: 14,
     title: "건강검진 지원",
     description: "인재를 다른 회사에 보낼 수는 있어도 하늘나라엔 보낼 수 없어요",
-    image: "/images/welfare-health.png"
+    image: "/images/welfare-health.webp"
   },
   {
     id: 15,
     title: "텀블러 사용 시 리워드 제공",
     description: "텀블러 사용하면 공짜커피 드려요",
-    image: "/images/welfare-tumbler.png"
+    image: "/images/welfare-tumbler.webp"
   },
   {
     id: 16,
     title: "3주년 근속 시 펜 선물",
     description: "에코에이블러는 같은 펜을 씁니다",
-    image: "/images/welfare-pen.png"
+    image: "/images/welfare-pen.webp"
   }
 ];
 
@@ -108,110 +108,110 @@ const bucketListData = [
     id: 1,
     title: "주 4일 근무제",
     status: "default" as const,
-    image: "/images/bucket-4day.png"
+    image: "/images/bucket-4day.webp"
   },
   {
     id: 2,
     title: "돈 많이 버는 회사",
     status: "default" as const,
-    image: "/images/bucket-money.png"
+    image: "/images/bucket-money.webp"
   },
   {
     id: 3,
     title: "운동비/학원비 지원제도",
     status: "default" as const,
-    image: "/images/bucket-exercise.png"
+    image: "/images/bucket-exercise.webp"
   },
   {
     id: 4,
     title: "모든 직원이 주주가 되는 회사",
     status: "default" as const,
-    image: "/images/bucket-shareholders.png"
+    image: "/images/bucket-shareholders.webp"
   },
   {
     id: 5,
     title: "생일선물 주는 회사 (단, 내 돈 주고 사기 아까운)",
     status: "default" as const,
-    image: "/images/bucket-birthday.png"
+    image: "/images/bucket-birthday.webp"
   },
   {
     id: 6,
     title: "일년에 한달씩 장기휴가 주는 회사",
     status: "default" as const,
-    image: "/images/bucket-vacation.png"
+    image: "/images/bucket-vacation.webp"
   },
   {
     id: 7,
     title: "묻지마 비상금\n지원제도",
     status: "default" as const,
-    image: "/images/bucket-emergency-fund.png"
+    image: "/images/bucket-emergency-fund.webp"
   },
   {
     id: 8,
     title: "자가사옥",
     status: "default" as const,
-    image: "/images/bucket-building.png"
+    image: "/images/bucket-building.webp"
   },
   {
     id: 9,
     title: "한달에 두 번 재택근무",
     status: "default" as const,
-    image: "/images/bucket-remote.png"
+    image: "/images/bucket-remote.webp"
   },
   {
     id: 10,
     title: "도서비 지원",
     status: "default" as const,
-    image: "/images/bucket-books.png"
+    image: "/images/bucket-books.webp"
   },
   {
     id: 11,
     title: "심리상담 지원",
     status: "default" as const,
-    image: "/images/bucket-counseling.png"
+    image: "/images/bucket-counseling.webp"
   },
   // Done 상태
   {
     id: 12,
     title: "가족이 편하게 놀러올 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 13,
     title: "커피 한잔의 여유가 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 14,
     title: "자가사무실",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 15,
     title: "묻지마 비상금\n지원제도",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 16,
     title: "장기근속시 휴가 보내주는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 17,
     title: "근무시간에 누워서 편하게 잘 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   },
   {
     id: 18,
     title: "필요 시 아기와 반려동물과 함께 출근할 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.png"
+    image: "/images/bucket-success.webp"
   }
 ];
 
@@ -347,7 +347,7 @@ export default function EcoableEcoableness() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-3">
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-10.png"
+                src="/images/team-photo-10.webp"
                 alt="팀 사진 10"
                 width={300}
                 height={192}
@@ -359,7 +359,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-09.png"
+                src="/images/team-photo-09.webp"
                 alt="팀 사진 9"
                 width={300}
                 height={192}
@@ -371,7 +371,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-08.png"
+                src="/images/team-photo-08.webp"
                 alt="팀 사진 8"
                 width={300}
                 height={192}
@@ -383,7 +383,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-07.png"
+                src="/images/team-photo-07.webp"
                 alt="팀 사진 7"
                 width={300}
                 height={192}
@@ -399,7 +399,7 @@ export default function EcoableEcoableness() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-06.png"
+                src="/images/team-photo-06.webp"
                 alt="팀 사진 6"
                 width={300}
                 height={192}
@@ -411,7 +411,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-05.png"
+                src="/images/team-photo-05.webp"
                 alt="팀 사진 5"
                 width={300}
                 height={192}
@@ -423,7 +423,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-04.png"
+                src="/images/team-photo-04.webp"
                 alt="팀 사진 4"
                 width={300}
                 height={192}
@@ -435,7 +435,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-03.png"
+                src="/images/team-photo-03.webp"
                 alt="팀 사진 3"
                 width={300}
                 height={192}
@@ -457,7 +457,7 @@ export default function EcoableEcoableness() {
             <div className="flex items-center gap-4 pb-4">
               <div className="w-12 h-12 flex justify-center items-center">
                 <Image 
-                  src="/images/something-to-do.png"
+                  src="/images/something-to-do.webp"
                   alt="Something to Do"
                   width={33}
                   height={48}
@@ -484,7 +484,7 @@ export default function EcoableEcoableness() {
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 flex justify-center items-center">
                   <Image 
-                    src="/images/nothing-to-do.png"
+                    src="/images/nothing-to-do.webp"
                     alt="Nothing to Do"
                     width={33}
                     height={48}

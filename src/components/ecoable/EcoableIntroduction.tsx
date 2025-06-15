@@ -83,7 +83,7 @@ export default function EcoableIntroduction() {
             <div className="flex flex-col justify-center items-center gap-6 p-6 border border-[#DEE0E3] rounded-[24px] w-full">
               <div className="w-[180px] h-[180px] rounded overflow-hidden">
                 <Image
-                  src="/images/value1.png"
+                  src="/images/value1.webp"
                   alt="가치있는 컨설팅"
                   width={180}
                   height={180}
@@ -104,7 +104,7 @@ export default function EcoableIntroduction() {
             <div className="flex flex-col justify-center items-center gap-6 p-6 border border-[#DEE0E3] rounded-[24px] w-full">
               <div className="w-[180px] h-[180px] rounded overflow-hidden">
                 <Image
-                  src="/images/value2.png"
+                  src="/images/value2.webp"
                   alt="지속가능성"
                   width={180}
                   height={180}
@@ -125,7 +125,7 @@ export default function EcoableIntroduction() {
             <div className="flex flex-col justify-center items-center gap-6 p-6 border border-[#DEE0E3] rounded-[24px] w-full">
               <div className="w-[180px] h-[180px] rounded overflow-hidden">
                 <Image
-                  src="/images/value3.png"
+                  src="/images/value3.webp"
                   alt="모두의 조직"
                   width={180}
                   height={180}

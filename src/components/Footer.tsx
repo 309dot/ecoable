@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="flex justify-center items-center w-40 h-10 px-3">
               <div className="relative w-[142.27px] h-7">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Ecoable Logo"
                   width={142}
                   height={28}
@@ -83,7 +83,7 @@ export default function Footer() {
           <div className="xl:hidden flex justify-start items-center w-40 h-10">
             <div className="relative w-[142.27px] h-7">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Ecoable Logo"
                 width={142}
                 height={28}
