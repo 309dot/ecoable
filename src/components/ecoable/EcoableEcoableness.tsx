@@ -7,97 +7,91 @@ const welfareListData = [
     id: 1,
     title: "연간 휴가일수 20일",
     description: "쉬면서 일하자",
-    image: "/images/welfare-20.webp"
+    image: "/images/image_01.png"
   },
   {
     id: 2,
     title: "매 3년마다 2주 여행 지원",
     description: "여행 좀 길게가자\n*별도 10일 휴가 + 100만원",
-    image: "/images/welfare-airplane.webp"
+    image: "/images/image_02.png"
   },
   {
     id: 3,
     title: "12월 24일 종무식",
     description: "크리스마스에는 같이 있지 말자",
-    image: "/images/welfare-christmas.webp"
+    image: "/images/image_03.png"
   },
   {
     id: 4,
     title: "10시 출근",
     description: "Avoided Traffic JAM",
-    image: "/images/welfare-clock.webp"
+    image: "/images/image_04.png"
   },
   {
     id: 5,
     title: "월요일 11시 출근",
     description: "월요병 탈출",
-    image: "/images/welfare-monday.webp"
+    image: "/images/image_05.png"
   },
   {
     id: 6,
     title: "매월 마지막 금요일 조기퇴근",
     description: "불금불금 제도",
-    image: "/images/welfare-friday.webp"
+    image: "/images/image_06.png"
   },
   {
     id: 7,
     title: "순이익 30% 성과급 지급",
     description: "열심히 일한 자 돈쭐나라",
-    image: "/images/welfare-bonus.webp"
+    image: "/images/image_07.png"
   },
   {
     id: 8,
     title: "비밀 용돈 지원",
     description: "묻지마 비상금",
-    image: "/images/welfare-money.webp"
+    image: "/images/image_08.png"
   },
   {
     id: 9,
     title: "주거안정자금 2000만원 무이자 대출",
     description: "쥐꼬리지만 괜찮아 대출",
-    image: "/images/welfare-loan.webp"
+    image: "/images/image_09.png"
   },
   {
     id: 10,
     title: "승진 시 선물 증정",
     description: "쓸데있는 승진선물",
-    image: "/images/welfare-promotion.webp"
+    image: "/images/image_10.png"
   },
   {
     id: 11,
     title: "매 5년 근속 시 순금열쇠 증정",
     description: "황금열쇠",
-    image: "/images/welfare-gold-key.webp"
+    image: "/images/image_11.png"
   },
   {
     id: 12,
     title: "대학원 교육비 및 직무교육비 지원",
     description: "알고 일합시다",
-    image: "/images/welfare-education.webp"
+    image: "/images/image_12.png"
   },
   {
     id: 13,
     title: "가정의 달 외식비 지원",
     description: "키워주셔서 대신 감사합니다",
-    image: "/images/welfare-family.webp"
+    image: "/images/image_13.png"
   },
   {
     id: 14,
     title: "건강검진 지원",
     description: "인재를 다른 회사에 보낼 수는 있어도 하늘나라엔 보낼 수 없어요",
-    image: "/images/welfare-health.webp"
+    image: "/images/image_14.png"
   },
   {
     id: 15,
     title: "텀블러 사용 시 리워드 제공",
     description: "텀블러 사용하면 공짜커피 드려요",
-    image: "/images/welfare-tumbler.webp"
-  },
-  {
-    id: 16,
-    title: "3주년 근속 시 펜 선물",
-    description: "에코에이블러는 같은 펜을 씁니다",
-    image: "/images/welfare-pen.webp"
+    image: "/images/image_15.png"
   }
 ];
 
@@ -108,37 +102,37 @@ const bucketListData = [
     id: 1,
     title: "주 4일 근무제",
     status: "default" as const,
-    image: "/images/bucket-4day.webp"
+    image: "/images/image2_01.png"
   },
   {
     id: 2,
     title: "돈 많이 버는 회사",
     status: "default" as const,
-    image: "/images/bucket-money.webp"
+    image: "/images/image2_02.png"
   },
   {
     id: 3,
     title: "운동비/학원비 지원제도",
     status: "default" as const,
-    image: "/images/bucket-exercise.webp"
+    image: "/images/image2_03.png"
   },
   {
     id: 4,
     title: "모든 직원이 주주가 되는 회사",
     status: "default" as const,
-    image: "/images/bucket-shareholders.webp"
+    image: "/images/image2_04.png"
   },
   {
     id: 5,
     title: "생일선물 주는 회사 (단, 내 돈 주고 사기 아까운)",
     status: "default" as const,
-    image: "/images/bucket-birthday.webp"
+    image: "/images/image2_05.png"
   },
   {
     id: 6,
     title: "일년에 한달씩 장기휴가 주는 회사",
     status: "default" as const,
-    image: "/images/bucket-vacation.webp"
+    image: "/images/image2_06.png"
   },
   {
     id: 7,
