@@ -67,7 +67,7 @@ export default function ClientCompanyPage() {
       {/* Navigation */}
       <div className="w-full">
         <div className="w-full container-1440 mx-auto py-4">
-          <Navigation variant="pill" />
+          <Navigation variant="pill" logo="/images/logo_wh.png" />
         </div>
       </div>
 
