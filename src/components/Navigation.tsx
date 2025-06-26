@@ -7,9 +7,10 @@ import { usePathname } from 'next/navigation';
 
 interface NavigationProps {
   variant: 'default' | 'pill';
+  logo?: string;
 }
 
-export default function Navigation({ variant = 'default' }: NavigationProps) {
+export default function Navigation({ variant = 'default', logo = '/images/logo.png' }: NavigationProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,7 +55,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
               {/* Logo - 클릭시 메인 화면으로 링크 */}
               <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-4 w-[160px] h-[40px] flex items-center justify-center pl-4">
                 <Image
-                  src="/images/logo.png"
+                  src={logo}
                   alt="Ecoable Logo"
                   width={142.27}
                   height={28}
@@ -158,7 +159,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
             {/* Logo - 클릭시 메인 화면으로 링크 */}
             <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-4 w-[160px] h-[40px] flex items-center justify-center pl-4">
               <Image
-                src="/images/logo.png"
+                src={logo}
                 alt="Ecoable Logo"
                 width={142.27}
                 height={28}
