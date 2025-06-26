@@ -41,19 +41,19 @@ export default function ContactPage() {
   });
 
   // 이미지 갤러리 데이터
-  const galleryImages = [
-    { src: '/contact/office_photo_22.jpg', alt: '사무실 전경 1' },
-    { src: '/contact/office_photo_21.jpg', alt: '사무실 전경 2' },
-    { src: '/contact/office_photo_20.jpg', alt: '사무실 전경 3' },
-    { src: '/contact/office_photo_19.jpg', alt: '사무실 전경 4' },
-    { src: '/contact/office_photo_18.jpg', alt: '사무실 전경 5' },
-    { src: '/contact/office_photo_17.jpg', alt: '사무실 전경 6' },
-    { src: '/contact/office_photo_16.jpg', alt: '사무실 전경 7' },
-    { src: '/contact/office_photo_15.jpg', alt: '사무실 전경 8' },
-    { src: '/contact/office_photo_14.jpg', alt: '사무실 전경 9' },
-    { src: '/contact/office_photo_13.jpg', alt: '사무실 전경 10' },
-    { src: '/contact/office_photo_12.jpg', alt: '사무실 전경 11' },
-    { src: '/contact/office_photo_11.jpg', alt: '사무실 전경 12' }
+  const images = [
+    '/images/contact/image_photo_22.jpg',
+    '/images/contact/image_photo_21.jpg',
+    '/images/contact/image_photo_20.jpg',
+    '/images/contact/image_photo_19.jpg',
+    '/images/contact/image_photo_18.jpg',
+    '/images/contact/image_photo_17.jpg',
+    '/images/contact/image_photo_16.jpg',
+    '/images/contact/image_photo_15.jpg',
+    '/images/contact/image_photo_14.jpg',
+    '/images/contact/image_photo_13.jpg',
+    '/images/contact/image_photo_12.jpg',
+    '/images/contact/image_photo_11.jpg',
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -186,8 +186,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[0].src}
-                        alt={galleryImages[0].alt}
+                        src={images[0]}
+                        alt="사무실 전경 1"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -197,8 +197,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[1].src}
-                        alt={galleryImages[1].alt}
+                        src={images[1]}
+                        alt="사무실 전경 2"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -208,8 +208,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[2].src}
-                        alt={galleryImages[2].alt}
+                        src={images[2]}
+                        alt="사무실 전경 3"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -219,8 +219,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[3].src}
-                        alt={galleryImages[3].alt}
+                        src={images[3]}
+                        alt="사무실 전경 4"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -234,8 +234,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[4].src}
-                        alt={galleryImages[4].alt}
+                        src={images[4]}
+                        alt="사무실 전경 5"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -245,8 +245,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[5].src}
-                        alt={galleryImages[5].alt}
+                        src={images[5]}
+                        alt="사무실 전경 6"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -260,8 +260,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[6].src}
-                        alt={galleryImages[6].alt}
+                        src={images[6]}
+                        alt="사무실 전경 7"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -271,8 +271,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[7].src}
-                        alt={galleryImages[7].alt}
+                        src={images[7]}
+                        alt="사무실 전경 8"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -286,8 +286,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[8].src}
-                        alt={galleryImages[8].alt}
+                        src={images[8]}
+                        alt="사무실 전경 9"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -297,8 +297,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[9].src}
-                        alt={galleryImages[9].alt}
+                        src={images[9]}
+                        alt="사무실 전경 10"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -308,8 +308,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[10].src}
-                        alt={galleryImages[10].alt}
+                        src={images[10]}
+                        alt="사무실 전경 11"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
@@ -319,8 +319,8 @@ export default function ContactPage() {
                       className="h-[200px] md:h-[240px] lg:h-[278px] bg-gray-100 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <Image
-                        src={galleryImages[11].src}
-                        alt={galleryImages[11].alt}
+                        src={images[11]}
+                        alt="사무실 전경 12"
                         width={500}
                         height={278}
                         className="w-full h-full object-cover"
