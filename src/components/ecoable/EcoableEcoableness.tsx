@@ -341,7 +341,7 @@ export default function EcoableEcoableness() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-3">
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-10.webp"
+                src="/images/team-photo-10.png"
                 alt="팀 사진 10"
                 width={300}
                 height={192}
@@ -353,7 +353,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-09.webp"
+                src="/images/team-photo-09.png"
                 alt="팀 사진 9"
                 width={300}
                 height={192}
@@ -365,7 +365,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-08.webp"
+                src="/images/team-photo-08.png"
                 alt="팀 사진 8"
                 width={300}
                 height={192}
@@ -377,7 +377,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-07.webp"
+                src="/images/team-photo-07.png"
                 alt="팀 사진 7"
                 width={300}
                 height={192}
@@ -393,7 +393,7 @@ export default function EcoableEcoableness() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-06.webp"
+                src="/images/team-photo-06.png"
                 alt="팀 사진 6"
                 width={300}
                 height={192}
@@ -405,7 +405,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-05.webp"
+                src="/images/team-photo-05.png"
                 alt="팀 사진 5"
                 width={300}
                 height={192}
@@ -417,7 +417,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-04.webp"
+                src="/images/team-photo-04.png"
                 alt="팀 사진 4"
                 width={300}
                 height={192}
@@ -429,7 +429,7 @@ export default function EcoableEcoableness() {
             </div>
             <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
               <Image
-                src="/images/team-photo-03.webp"
+                src="/images/team-photo-03.png"
                 alt="팀 사진 3"
                 width={300}
                 height={192}
@@ -451,7 +451,7 @@ export default function EcoableEcoableness() {
             <div className="flex items-center gap-4 pb-4">
               <div className="w-12 h-12 flex justify-center items-center">
                 <Image 
-                  src="/images/something-to-do.webp"
+                  src="/images/something-to-do.png"
                   alt="Something to Do"
                   width={33}
                   height={48}
@@ -478,7 +478,7 @@ export default function EcoableEcoableness() {
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 flex justify-center items-center">
                   <Image 
-                    src="/images/nothing-to-do.webp"
+                    src="/images/nothing-to-do.png"
                     alt="Nothing to Do"
                     width={33}
                     height={48}
