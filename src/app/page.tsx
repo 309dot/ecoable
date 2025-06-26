@@ -44,12 +44,12 @@ export default function Home() {
           
           {/* Title Section */}
           <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-20">
-            <h1 className="font-pretendard text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.167] tracking-[-1px] mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-8">
+            <h1 className="font-pretendard text-[#14151A] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.167] tracking-[-1px] mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-8">
               환경과 경제의 조화,<br className="hidden sm:block" />
               <span className="sm:hidden"> </span>새로운 내일을 설계합니다.<br />
               지속가능한 미래를 위한 컨설팅,
             </h1>
-            <h2 className="font-pretendard text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.167] tracking-[-1px]">
+            <h2 className="font-pretendard text-[#14151A] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.167] tracking-[-1px]">
               에코에이블컨설팅(주)
             </h2>
           </div>
