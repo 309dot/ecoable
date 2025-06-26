@@ -138,74 +138,74 @@ const bucketListData = [
     id: 7,
     title: "묻지마 비상금\n지원제도",
     status: "default" as const,
-    image: "/images/bucket-emergency-fund.webp"
+    image: "/images/bucket-emergency-fund.png"
   },
   {
     id: 8,
     title: "자가사옥",
     status: "default" as const,
-    image: "/images/bucket-building.webp"
+    image: "/images/bucket-building.png"
   },
   {
     id: 9,
     title: "한달에 두 번 재택근무",
     status: "default" as const,
-    image: "/images/bucket-remote.webp"
+    image: "/images/bucket-remote.png"
   },
   {
     id: 10,
     title: "도서비 지원",
     status: "default" as const,
-    image: "/images/bucket-books.webp"
+    image: "/images/bucket-books.png"
   },
   {
     id: 11,
     title: "심리상담 지원",
     status: "default" as const,
-    image: "/images/bucket-counseling.webp"
+    image: "/images/bucket-counseling.png"
   },
   // Done 상태
   {
     id: 12,
     title: "가족이 편하게 놀러올 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 13,
     title: "커피 한잔의 여유가 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 14,
     title: "자가사무실",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 15,
     title: "묻지마 비상금\n지원제도",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 16,
     title: "장기근속시 휴가 보내주는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 17,
     title: "근무시간에 누워서 편하게 잘 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   },
   {
     id: 18,
     title: "필요 시 아기와 반려동물과 함께 출근할 수 있는 회사",
     status: "done" as const,
-    image: "/images/bucket-success.webp"
+    image: "/images/bucket-success.png"
   }
 ];
 

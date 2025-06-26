@@ -33,7 +33,7 @@ export default function EcoableIntroduction() {
       {/* Second Section - Main Image */}
       <div className="w-full h-[280px] md:h-[360px] lg:h-[452px] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] overflow-hidden relative">
         <Image
-          src="/jpg/image_photo_26.jpg"
+          src="/images/image_photo_26.jpg"
           alt="Ecoable Team"
           width={1400}
           height={452}
