@@ -54,7 +54,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
               {/* Logo - 클릭시 메인 화면으로 링크 */}
               <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-4 w-[160px] h-[40px] flex items-center justify-center pl-4">
                 <Image
-                  src="/logo_wh.png"
+                  src="/images/logo.png"
                   alt="Ecoable Logo"
                   width={142.27}
                   height={28}
@@ -91,7 +91,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
                     className="w-[40px] h-[40px] bg-white rounded-[999px] border border-[#DEE0E3] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
                   >
                     <Image
-                      src="/icons/home-icon.svg"
+                      src="/images/common/home-icon.svg"
                       alt="Home"
                       width={20}
                       height={20}
@@ -158,7 +158,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
             {/* Logo - 클릭시 메인 화면으로 링크 */}
             <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-4 w-[160px] h-[40px] flex items-center justify-center pl-4">
               <Image
-                src="/logo_bk.png"
+                src="/images/logo.png"
                 alt="Ecoable Logo"
                 width={142.27}
                 height={28}
@@ -195,7 +195,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
                   className="w-[40px] h-[40px] bg-white rounded-[999px] border border-[#DEE0E3] flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
                 >
                   <Image
-                    src="/icons/home-icon.svg"
+                    src="/images/common/home-icon.svg"
                     alt="Home"
                     width={20}
                     height={20}

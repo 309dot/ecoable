@@ -21,7 +21,7 @@ export default function Home() {
       {/* Background Image with Overlay - 마진에 영향받지 않음 */}
       <div className="fixed inset-0 w-screen h-screen z-0">
         <Image
-          src="/jpg/Desktop_main_01.jpg"
+          src="/images/Desktop_main_01.jpg"
           alt="Background"
           fill
           className="object-cover"

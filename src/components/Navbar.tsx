@@ -16,7 +16,7 @@ export const Navbar = () => {
           <div className="flex items-center w-[160px]">
             <div className="relative w-[142px] h-[28px]">
               <Image
-                src="/image_photo_01.jpg"
+                src="/images/image_photo_01.jpg"
                 alt="Ecoable Logo"
                 fill
                 className="object-contain"
