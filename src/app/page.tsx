@@ -63,7 +63,7 @@ export default function Home() {
                 className="group w-full md:w-80 bg-white border border-figma-border rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#1A3A6F] hover:to-[#399084] hover:shadow-lg cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-2 md:mb-3">
-                  <h3 className="font-pretendard text-figma-text-dark text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
+                  <h3 className="font-pretendard text-[#14151A] text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
                     전과정정책본부
                   </h3>
                   <Image
@@ -85,7 +85,7 @@ export default function Home() {
                 className="group w-full md:w-80 bg-white border border-figma-border rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#1A3A6F] hover:to-[#399084] hover:shadow-lg cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-2 md:mb-3">
-                  <h3 className="font-pretendard text-figma-text-dark text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
+                  <h3 className="font-pretendard text-[#14151A] text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
                     전과정순환본부
                   </h3>
                   <Image
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="bg-white/95 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 mt-4 lg:mt-6">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 lg:gap-4">
               <div className="flex-1">
-                <p className="font-pretendard text-figma-text-secondary/60 text-xs md:text-sm lg:text-base leading-relaxed tracking-tight">
+                <p className="font-pretendard text-[#14151A] text-xs md:text-sm lg:text-base leading-relaxed tracking-tight">
                   고객에게는 믿음을, 구성원에게는 의미 있는 일상을.<br />
                   모두가 함께 성장할 수 있는 지속가능한 조직을 만들어갑니다.
                 </p>
