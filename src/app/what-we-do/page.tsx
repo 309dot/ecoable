@@ -559,7 +559,7 @@ function WhatWeDoContent() {
                     <div className="relative">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[rgba(13,17,38,0.4)]">
                         <Image
-                          src="/icons/lead-icon-8.svg"
+                          src="/images/common/lead-icon-8.svg"
                           alt="Phone Icon"
                           width={20}
                           height={20}

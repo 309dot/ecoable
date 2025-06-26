@@ -67,7 +67,7 @@ export default function Home() {
                     전과정정책본부
                   </h3>
                   <Image
-                    src="/icons/arrow-right-up-line.svg"
+                    src="/images/common/arrow-right-up-line.svg"
                     alt="Arrow"
                     width={20}
                     height={20}
@@ -89,7 +89,7 @@ export default function Home() {
                     전과정순환본부
                   </h3>
                   <Image
-                    src="/icons/arrow-right-up-line.svg"
+                    src="/images/common/arrow-right-up-line.svg"
                     alt="Arrow"
                     width={20}
                     height={20}
@@ -118,7 +118,7 @@ export default function Home() {
                   className="h-9 md:h-10 lg:h-11 bg-figma-bg-overlay/[0.04] rounded-full flex items-center gap-1 md:gap-2 px-3 md:px-4 lg:px-5 hover:bg-figma-bg-overlay/[0.08] transition-colors"
                 >
                   <Image
-                    src="/icons/lead-icon-3.svg"
+                    src="/images/common/lead-icon-3.svg"
                     alt="Map"
                     width={20}
                     height={20}
@@ -128,7 +128,7 @@ export default function Home() {
                     찾아오시는 길
                   </span>
                   <Image
-                    src="/icons/tail-icon.svg"
+                    src="/images/common/tail-icon.svg"
                     alt="Arrow"
                     width={20}
                     height={20}
