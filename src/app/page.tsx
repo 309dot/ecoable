@@ -46,8 +46,7 @@ export default function Home() {
           <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-32">{/* mt-20을 mt-32로 증가 */}
             <div className="flex flex-col gap-2 items-start justify-start text-white text-[48px] text-left tracking-[-1px]">
             <h1 className="font-pretendard font-normal leading-[56px] w-full">
-              환경과 경제의 조화,<br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>새로운 내일을 설계합니다.<br />
+              환경과 경제의 조화, 새로운 내일을 설계합니다.<br />
               지속가능한 미래를 위한 컨설팅,
             </h1>
             <h2 className="font-pretendard font-semibold leading-[56px] w-full">

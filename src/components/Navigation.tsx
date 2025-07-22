@@ -53,7 +53,7 @@ export default function Navigation({ variant = 'default', logo = '/images/logo.p
             <div className="flex flex-row gap-6 items-center justify-center px-0 py-2">
               <div className="flex-1 flex flex-row gap-4 items-center justify-start">
                 <div className="bg-transparent rounded-[999px] border-0 flex-1">
-                  <div className="flex flex-row items-center justify-center px-6 py-3">
+                  <div className="flex flex-row items-center justify-center px-0 py-[1.625rem]">
                     {/* Logo - logo_wh.png 하드코딩 */}
                     <Link href="/" className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40">
                       <Image src="/images/logo_wh.png" alt="Ecoable Logo" width={142.27} height={28} className="object-contain" priority />
