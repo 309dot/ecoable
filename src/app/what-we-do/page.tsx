@@ -359,7 +359,7 @@ function WhatWeDoContent() {
     <div className="min-h-screen container-1440">
       {/* Navigation Section */}
       <div className="w-full">
-        <div className="w-full container-1440 mx-auto spacing-nav-bottom">
+        <div className="w-full container-1440 mx-auto py-4">
           <Navigation variant="pill" />
         </div>
       </div>

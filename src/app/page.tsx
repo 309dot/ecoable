@@ -36,14 +36,14 @@ export default function Home() {
       <div className="relative min-h-screen bg-transparent overflow-hidden">
 
       {/* Navigation */}
-      <Navigation variant="figma-main" logo="/images/logo_wh.png" />
+      <Navigation variant="main-transparent" logo="/images/logo_wh.png" />
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full container-1440 mx-auto">
-        <div className="flex flex-col justify-between min-h-screen nav-spacing pb-8">
+        <div className="flex flex-col justify-between min-h-screen pb-8">
           
           {/* Title Section */}
-          <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-20">
+          <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-32">{/* mt-20을 mt-32로 증가 */}
             <div className="flex flex-col gap-2 items-start justify-start text-white text-[48px] text-left tracking-[-1px]">
             <h1 className="font-pretendard font-normal leading-[56px] w-full">
               환경과 경제의 조화,<br className="hidden sm:block" />
