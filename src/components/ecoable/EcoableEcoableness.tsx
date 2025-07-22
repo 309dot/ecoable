@@ -236,34 +236,22 @@ const BucketCard = ({ title, status, image }: { title: string; status: 'default'
   
   return (
     <div 
-      className={`${isDefault ? 'bg-white border border-[#DEE0E3]' : 'bg-[#F7F7F8] border border-[#DEE0E3]'} rounded-[24px] p-8 flex ${isDefault ? 'flex-row gap-7' : 'relative'} min-h-[160px] ${isDefault ? 'transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1' : ''} w-full`}
+      className={`${isDefault ? 'bg-white border border-[#DEE0E3]' : 'bg-[#F7F7F8] border border-[#DEE0E3]'} rounded-[24px] ${isDefault ? 'p-8 flex flex-row gap-7' : 'px-6 py-8 flex flex-row gap-7'} min-h-[160px] ${isDefault ? 'transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1' : ''} w-full`}
     >
       <div className="flex-1">
-        <h3 className={`${isDefault ? 'text-[#14151A]' : 'text-[rgba(10,15,41,0.25)]'} font-bold text-xl leading-[1.4]`}>
+        <h3 className={`${isDefault ? 'text-[#14151A]' : 'text-[rgba(10,15,41,0.25)]'} font-bold text-xl leading-[28px] tracking-[-0.2px]`}>
           {title}
         </h3>
       </div>
-      {isDefault ? (
-        <div className="w-20 h-20 flex items-center justify-center">
-          <Image
-            src={image}
-            alt={title}
-            width={80}
-            height={80}
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Image
-            src={image}
-            alt={title}
-            width={120}
-            height={120}
-            className="object-cover"
-          />
-        </div>
-      )}
+      <div className="w-20 h-20 flex items-center justify-center">
+        <Image
+          src={image}
+          alt={title}
+          width={80}
+          height={80}
+          className="object-cover"
+        />
+      </div>
     </div>
   );
 };
@@ -271,14 +259,14 @@ const BucketCard = ({ title, status, image }: { title: string; status: 'default'
 export default function EcoableEcoableness() {
   // 이미지와 연도 매핑
   const imageYears = {
-    'team-photo-10': '2025',
-    'team-photo-09': '2024', 
-    'team-photo-08': '2023',
-    'team-photo-07': '2022',
-    'team-photo-06': '2021',
-    'team-photo-05': '2020',
-    'team-photo-04': '2018',
-    'team-photo-03': '2016'
+    'image_photo_10': '2025',
+    'image_photo_09': '2024', 
+    'image_photo_08': '2023',
+    'image_photo_07': '2022',
+    'image_photo_06': '2021',
+    'image_photo_05': '2020',
+    'image_photo_04': '2018',
+    'image_photo_03': '2016'
   } as const;
 
   // Something to Do 데이터
@@ -318,125 +306,122 @@ export default function EcoableEcoableness() {
 
   return (
     <div className="bg-white container-1440">
-              {/* ecoable스러운 ecoable人 섹션 */}
-        <section className="spacing-section-large">
+      {/* ecoable스러한 ecoable人 섹션 - Figma 106-2588 */}
+      <section className="spacing-section-large">
         <div className="flex flex-col xl:flex-row justify-stretch items-start gap-6 w-full">
           <div className="flex flex-col gap-6 w-full xl:w-full">
-            <h2 className="text-[#14151A] text-[30px] md:text-[36px] lg:text-[42px] font-semibold leading-[1.17] tracking-[-2.08%] w-full">
+            <h2 className="text-[#14151A] text-[48px] font-semibold leading-[56px] tracking-[-1px] w-full">
               ecoable스러운 <br />
               ecoable人
             </h2>
           </div>
-          <div className="flex flex-col justify-center gap-4 w-full xl:w-full">
-            <p className="text-[rgba(15,19,36,0.6)] text-sm md:text-base font-medium leading-[1.5] tracking-[-1.25%] w-full">
-              '에코에이블스러움'이라는 고유의 문화를 통해 고객에게는 신뢰성 있는 결과물과 서비스를, 구성원들에게는 새로운 조직문화와 행복한 일터를 제공하고자 합니다.
+          <div className="flex flex-col justify-center gap-1 w-full xl:w-full max-w-[480px]">
+            <p className="text-[rgba(15,19,36,0.6)] text-[16px] font-medium leading-[24px] tracking-[-0.2px] w-full">
+              '에코에이블스러움'이라는 고유의 문화를 통해 고객에게는 신뢰성 있는 결과물과 서비스를, 구성원들에게는 새로운 조직문화와 행복한 일터를 제공하고자 합니다. 에코에이블컨설팅을 위해 고생했던, 그리고 고생하고 있는 ecoable人
             </p>
           </div>
         </div>
         
-        <div className="pb-10"></div>
+        <div className="pb-6"></div>
         
-        <div className="w-full flex flex-col gap-3">
-          {/* 위쪽 2x2 그리드 - 반응형 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-3">
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+        {/* 이미지 그리드 - Figma 106-2597 */}
+        <div className="w-full flex flex-col gap-6">
+          {/* 위쪽 큰 이미지들 (2x2) - 비율 유지 반응형 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+            {/* image_photo_10 */}
+            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-10.png"
+                src="/images/image_photo_10.jpg"
                 alt="팀 사진 10"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-10']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_10']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            {/* image_photo_09 */}
+            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-09.png"
+                src="/images/image_photo_09.jpg"
                 alt="팀 사진 9"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-09']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_09']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            {/* image_photo_08 */}
+            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-08.png"
+                src="/images/image_photo_08.jpg"
                 alt="팀 사진 8"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-08']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_08']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            {/* image_photo_07 */}
+            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-07.png"
+                src="/images/image_photo_07.jpg"
                 alt="팀 사진 7"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-07']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_07']}</span>
               </div>
             </div>
           </div>
           
-          {/* 아래쪽 1x4 그리드 - 반응형 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+          {/* 아래쪽 작은 이미지들 (1x4) - 비율 유지 반응형 */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">
+            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-06.png"
+                src="/images/image_photo_06.jpg"
                 alt="팀 사진 6"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-06']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_06']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-05.png"
+                src="/images/image_photo_05.jpg"
                 alt="팀 사진 5"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-05']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_05']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-04.png"
+                src="/images/image_photo_04.jpg"
                 alt="팀 사진 4"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-04']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_04']}</span>
               </div>
             </div>
-            <div className="w-full h-48 rounded-[12px] overflow-hidden relative group">
+            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
               <Image
-                src="/images/team-photo-03.png"
+                src="/images/image_photo_03.jpg"
                 alt="팀 사진 3"
-                width={300}
-                height={192}
-                className="w-full h-full object-cover"
+                fill
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['team-photo-03']}</span>
+                <span className="text-white text-2xl font-bold">{imageYears['image_photo_03']}</span>
               </div>
             </div>
           </div>
@@ -502,13 +487,18 @@ export default function EcoableEcoableness() {
         </div>
       </section>
 
-      {/* 복리후생 섹션 */}
+      {/* 복리후생 섹션 - Figma 106-2267 */}
       <section className="spacing-section-large">
         <div className="flex flex-col gap-6 mb-6 py-6">
           <div className="w-full">
-            <h2 className="text-[#14151A] text-title mb-2">
-              복리후생
-            </h2>
+            <div className="flex flex-col gap-1">
+              <h2 className="text-[#000000] text-[24px] font-bold leading-[32px] tracking-[-0.3px]">
+                Welfare-able
+              </h2>
+              <p className="text-[rgba(15,19,36,0.6)] text-[14px] font-normal leading-[20px] tracking-[-0.1px]">
+                에코에이블에서 구성원을 위해 제공되고 있는 복지
+              </p>
+            </div>
           </div>
           <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -525,13 +515,18 @@ export default function EcoableEcoableness() {
         </div>
       </section>
 
-      {/* 위시리스트 섹션 */}
+      {/* 위시리스트 섹션 - Figma 106-2289 */}
       <section className="spacing-section-large">
         <div className="flex flex-col gap-6 mb-6 py-6">
           <div className="w-full">
-            <h2 className="text-[#14151A] text-title mb-2">
-              위시리스트
-            </h2>
+            <div className="flex flex-col gap-1">
+              <h2 className="text-[#000000] text-[24px] font-bold leading-[32px] tracking-[-0.3px]">
+                복지 버킷리스트
+              </h2>
+              <p className="text-[rgba(15,19,36,0.6)] text-[14px] font-normal leading-[20px] tracking-[-0.1px]">
+                에코에이블 구성원이 바라지만 아직은 실현되지 않은 복지
+              </p>
+            </div>
           </div>
           <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
