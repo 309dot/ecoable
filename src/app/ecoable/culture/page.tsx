@@ -11,19 +11,14 @@ export default function EcoableCulturePage() {
       <main className="mx-4 md:mx-20 mt-8 md:mt-10 pb-20">
         {/* Title Section */}
         <div className="mb-16 md:mb-12">
-          <h1 className="text-dark-text text-4xl md:text-6xl font-bold leading-tight md:leading-14 tracking-[-1.7px] mb-8 md:mb-12">
-            ecoable스러운 <br />
-            <span className="block">ecoable人</span>
-          </h1>
-          
-          {/* Description Box */}
-          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-20">
-            <div className="lg:w-2/5">
-              <h2 className="text-gray-text/60 text-xl font-bold mb-6 tracking-[-0.2px]">
-                안녕하세요. ecoable입니다!
-              </h2>
-              <div className="text-gray-text/60 text-base leading-6 tracking-[-0.2px]">
-                &apos;에코에이블스러움&apos;이라는 고유의 문화를 통해 고객에게는 신뢰성 있는 결과물과 서비스를, 구성원들에게는 새로운 조직문화와 행복한 일터를 제공하고자 합니다.
+          <div className="box-border content-stretch flex flex-row gap-6 items-start justify-start pb-6 pt-0 px-0 relative w-full">
+            <div className="basis-0 font-semibold grow leading-[56px] min-h-px min-w-px not-italic relative shrink-0 text-[#14151a] text-[48px] text-left tracking-[-1px]">
+              <p className="block mb-0">ecoable스러운 </p>
+              <p className="block">ecoable人</p>
+            </div>
+            <div className="basis-0 box-border content-stretch flex flex-col gap-1 grow items-end justify-center max-w-[480px] min-h-px min-w-px p-0 relative shrink-0">
+              <div className="font-medium leading-[0] not-italic relative shrink-0 text-[16px] text-[rgba(15,19,36,0.6)] text-left tracking-[-0.2px] w-full">
+                <p className="block leading-[24px]">'에코에이블스러움'이라는 고유의 문화를 통해 고객에게는 신뢰성 있는 결과물과 서비스를, 구성원들에게는 새로운 조직문화와 행복한 일터를 제공하고자 합니다. 에코에이블컨설팅을 위해 고생했던, 그리고 고생하고 있는 ecoable人</p>
               </div>
             </div>
           </div>
@@ -31,22 +26,60 @@ export default function EcoableCulturePage() {
 
         {/* Image Grid Section */}
         <div className="mb-16 md:mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div className="space-y-6">
-              <div className="w-full h-[235px] bg-gray-100 rounded-3xl"></div>
-              <div className="w-full h-[235px] bg-gray-100 rounded-3xl"></div>
+          <div className="box-border content-stretch flex flex-col gap-6 items-start justify-start p-0 relative w-full">
+            <div className="[flex-flow:wrap] box-border content-start flex gap-6 items-start justify-start p-0 relative shrink-0 w-full">
+              <div 
+                className="bg-center bg-cover bg-no-repeat h-[310px] rounded-3xl shrink-0 w-[628px]"
+                style={{
+                  backgroundImage: "url('/images/image_photo_10.jpg')"
+                }}
+              />
+              <div 
+                className="bg-center bg-cover bg-no-repeat h-[310px] rounded-3xl shrink-0 w-[628px]"
+                style={{
+                  backgroundImage: "url('/images/image_photo_09.jpg')"
+                }}
+              />
+              <div 
+                className="bg-center bg-cover bg-no-repeat h-[310px] rounded-3xl shrink-0 w-[628px]"
+                style={{
+                  backgroundImage: "url('/images/image_photo_08.jpg')"
+                }}
+              />
+              <div 
+                className="bg-center bg-cover bg-no-repeat h-[310px] rounded-3xl shrink-0 w-[628px]"
+                style={{
+                  backgroundImage: "url('/images/image_photo_07.jpg')"
+                }}
+              />
             </div>
-            <div className="space-y-6">
-              <div className="w-full h-[235px] bg-gray-100 rounded-3xl"></div>
-              <div className="w-full h-[235px] bg-gray-100 rounded-3xl"></div>
+            
+            <div className="box-border content-stretch flex flex-row gap-6 items-start justify-start p-0 relative shrink-0 w-full">
+              <div 
+                className="basis-0 bg-center bg-cover bg-no-repeat grow h-[170px] min-h-px min-w-px rounded-3xl shrink-0"
+                style={{
+                  backgroundImage: "url('/images/image_photo_06.jpg')"
+                }}
+              />
+              <div 
+                className="basis-0 bg-center bg-cover bg-no-repeat grow h-[170px] min-h-px min-w-px rounded-3xl shrink-0"
+                style={{
+                  backgroundImage: "url('/images/image_photo_05.jpg')"
+                }}
+              />
+              <div 
+                className="basis-0 bg-center bg-cover bg-no-repeat grow h-[170px] min-h-px min-w-px rounded-3xl shrink-0"
+                style={{
+                  backgroundImage: "url('/images/image_photo_04.jpg')"
+                }}
+              />
+              <div 
+                className="basis-0 bg-center bg-cover bg-no-repeat grow h-[170px] min-h-px min-w-px rounded-3xl shrink-0"
+                style={{
+                  backgroundImage: "url('/images/image_photo_03.jpg')"
+                }}
+              />
             </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="w-full h-[241px] bg-gray-100 rounded-3xl"></div>
-            <div className="w-full h-[241px] bg-gray-100 rounded-3xl"></div>
-            <div className="w-full h-[241px] bg-gray-100 rounded-3xl"></div>
-            <div className="w-full h-[241px] bg-gray-100 rounded-3xl"></div>
           </div>
         </div>
 
@@ -131,10 +164,15 @@ export default function EcoableCulturePage() {
 
         {/* Welfare List Section */}
         <div className="mb-16 md:mb-20">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-dark-text text-2xl font-bold tracking-[-0.3px]">
-              ecoable welfare list
-            </h2>
+          <div className="flex justify-between items-start mb-12">
+            <div className="box-border content-stretch flex flex-col gap-1 items-start justify-center leading-[0] not-italic p-0 relative text-left">
+              <div className="font-bold relative shrink-0 text-[#000000] text-[24px] tracking-[-0.3px] w-full">
+                <p className="block leading-[32px]">Welfare-able</p>
+              </div>
+              <div className="font-normal relative shrink-0 text-[14px] text-[rgba(15,19,36,0.6)] tracking-[-0.1px] w-full">
+                <p className="block leading-[20px]">에코에이블에서 구성원을 위해 제공되고 있는 복지</p>
+              </div>
+            </div>
             <p className="text-dark-text text-2xl font-bold tracking-[-0.3px]">
               ecoable스러움
             </p>
@@ -287,10 +325,15 @@ export default function EcoableCulturePage() {
 
         {/* Bucket List Section */}
         <div className="mb-16 md:mb-20">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-dark-text text-2xl font-bold tracking-[-0.3px]">
-              ecoable bucket list
-            </h2>
+          <div className="flex justify-between items-start mb-12">
+            <div className="box-border content-stretch flex flex-col gap-1 items-start justify-center leading-[0] not-italic p-0 relative text-left">
+              <div className="font-bold relative shrink-0 text-[#000000] text-[24px] tracking-[-0.3px] w-full">
+                <p className="block leading-[32px]">복지 버킷리스트</p>
+              </div>
+              <div className="font-normal relative shrink-0 text-[14px] text-[rgba(15,19,36,0.6)] tracking-[-0.1px] w-full">
+                <p className="block leading-[20px]">에코에이블 구성원이 바라지만 아직은 실현되지 않은 복지</p>
+              </div>
+            </div>
             <p className="text-dark-text text-2xl font-bold tracking-[-0.3px]">
               ecoable스러움
             </p>
@@ -298,11 +341,16 @@ export default function EcoableCulturePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Bucket List Items */}
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                묻지마 비상금<br />지원제도
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">묻지마 비상금<br />지원제도</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
             <div className="border border-border-gray rounded-3xl p-6 bg-white">
@@ -312,25 +360,40 @@ export default function EcoableCulturePage() {
               <div className="w-20 h-20 bg-gray-100 rounded-2xl ml-auto"></div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                근무시간에 누워서 편하게 잘 수 있는 회사
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">근무시간에 누워서 편하게 잘 수 있는 회사</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                가족이 편하게 놀러올 수 있는 회사
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">가족이 편하게 놀러올 수 있는 회사</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                장기근속시 휴가 보내주는 회사
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">장기근속시 휴가 보내주는 회사</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
             <div className="border border-border-gray rounded-3xl p-6 bg-white">
@@ -340,11 +403,16 @@ export default function EcoableCulturePage() {
               <div className="w-20 h-20 bg-gray-100 rounded-2xl ml-auto"></div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                커피 한잔의 여유가 있는 회사
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">커피 한잔의 여유가 있는 회사</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
             <div className="border border-border-gray rounded-3xl p-6 bg-white">
@@ -354,11 +422,16 @@ export default function EcoableCulturePage() {
               <div className="w-20 h-20 bg-gray-100 rounded-2xl ml-auto"></div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                필요 시 아기와 반려동물과 함께 출근할 수 있는 회사
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">필요 시 아기와 반려동물과 함께 출근할 수 있는 회사</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
             <div className="border border-border-gray rounded-3xl p-6 bg-white">
@@ -389,11 +462,16 @@ export default function EcoableCulturePage() {
               <div className="w-20 h-20 bg-gray-100 rounded-2xl ml-auto"></div>
             </div>
 
-            <div className="border border-border-gray rounded-3xl p-6 bg-gray-50 opacity-50">
-              <h3 className="text-dark-text text-xl font-bold mb-8 tracking-[-0.2px] opacity-25">
-                자가사무실
-              </h3>
-              <div className="w-20 h-20 bg-gray-200 rounded-2xl ml-auto"></div>
+            <div className="bg-[#f7f7f8] relative rounded-3xl">
+              <div className="absolute border border-[#dee0e3] border-solid inset-0 pointer-events-none rounded-3xl" />
+              <div className="box-border content-stretch flex flex-row gap-7 items-start justify-start px-6 py-8 relative size-full">
+                <div className="basis-0 font-bold grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[20px] text-[rgba(10,15,41,0.25)] text-left tracking-[-0.2px]">
+                  <p className="block leading-[28px]">자가사무실</p>
+                </div>
+                <div className="box-border content-stretch flex flex-row items-center justify-start p-0 relative shrink-0 size-20">
+                  <div className="w-20 h-20 bg-gray-200 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
 
             <div className="border border-border-gray rounded-3xl p-6 bg-white">

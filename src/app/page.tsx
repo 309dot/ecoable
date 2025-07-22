@@ -30,13 +30,13 @@ export default function Home() {
           }}
         />
         {/* Dark overlay - 검정 50% */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/35"></div>
       </div>
       
       <div className="relative min-h-screen bg-transparent overflow-hidden">
 
       {/* Navigation */}
-      <Navigation variant="default" logo="/images/logo_wh.png" />
+      <Navigation variant="figma-main" logo="/images/logo_wh.png" />
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full container-1440 mx-auto">
@@ -44,14 +44,16 @@ export default function Home() {
           
           {/* Title Section */}
           <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-20">
-            <h1 className="font-pretendard text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.167] tracking-[-1px] mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-8">
+            <div className="flex flex-col gap-2 items-start justify-start text-white text-[48px] text-left tracking-[-1px]">
+            <h1 className="font-pretendard font-normal leading-[56px] w-full">
               환경과 경제의 조화,<br className="hidden sm:block" />
               <span className="sm:hidden"> </span>새로운 내일을 설계합니다.<br />
               지속가능한 미래를 위한 컨설팅,
             </h1>
-            <h2 className="font-pretendard text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.167] tracking-[-1px]">
+            <h2 className="font-pretendard font-semibold leading-[56px] w-full">
               에코에이블컨설팅(주)
             </h2>
+            </div>
           </div>
 
           {/* Service Cards */}
@@ -60,10 +62,10 @@ export default function Home() {
               {/* Card 1 - 전과정정책본부 */}
               <div 
                 onClick={handlePolicyClick}
-                className="group w-full md:w-80 bg-white border border-figma-border rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#1A3A6F] hover:to-[#399084] hover:shadow-lg cursor-pointer"
+                className="group w-full md:w-80 bg-gradient-to-r from-[#1a3a6f] to-[#399084] border border-[#dee0e3] rounded-3xl p-6 transition-all duration-300 hover:shadow-[0px_18px_24px_-5px_rgba(20,21,26,0.1),0px_8px_8px_-5px_rgba(20,21,26,0.05)] cursor-pointer"
               >
-                <div className="flex items-center justify-between mb-2 md:mb-3">
-                  <h3 className="font-pretendard text-[#14151A] text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-pretendard text-white text-lg font-bold leading-[26px] tracking-[-0.2px]">
                     전과정정책본부
                   </h3>
                   <Image
@@ -71,10 +73,10 @@ export default function Home() {
                     alt="Arrow"
                     width={20}
                     height={20}
-                    className="group-hover:brightness-0 group-hover:invert transition-all flex-shrink-0 w-3 h-3 md:w-5 md:h-5"
+                    className="transition-all flex-shrink-0 w-6 h-6 brightness-0 invert"
                   />
                 </div>
-                <p className="hidden md:block font-pretendard text-[rgba(15,19,36,0.6)] text-sm leading-relaxed tracking-tight group-hover:text-white/60 transition-colors">
+                <p className="font-pretendard text-white/60 text-sm leading-[20px] tracking-[-0.1px]">
                   환경은 미래 세대의 권리와 직결된 중대한 문제로, 전 세계와 우리나라는 지속가능한 발전을 위해 다양한 환경 정책과 제도를 추진하고 있습니다.
                 </p>
               </div>
@@ -82,10 +84,10 @@ export default function Home() {
               {/* Card 2 - 전과정순환본부 */}
               <div 
                 onClick={handleCirculationClick}
-                className="group w-full md:w-80 bg-white border border-figma-border rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#1A3A6F] hover:to-[#399084] hover:shadow-lg cursor-pointer"
+                className="group w-full md:w-80 bg-gradient-to-r from-[#1a3a6f] to-[#399084] border border-[#dee0e3] rounded-3xl p-6 transition-all duration-300 hover:shadow-[0px_18px_24px_-5px_rgba(20,21,26,0.1),0px_8px_8px_-5px_rgba(20,21,26,0.05)] cursor-pointer"
               >
-                <div className="flex items-center justify-between mb-2 md:mb-3">
-                  <h3 className="font-pretendard text-[#14151A] text-xs md:text-base lg:text-lg font-bold leading-tight tracking-tight group-hover:text-white transition-colors">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-pretendard text-white text-lg font-bold leading-[26px] tracking-[-0.2px]">
                     전과정순환본부
                   </h3>
                   <Image
@@ -93,10 +95,10 @@ export default function Home() {
                     alt="Arrow"
                     width={20}
                     height={20}
-                    className="group-hover:brightness-0 group-hover:invert transition-all flex-shrink-0 w-3 h-3 md:w-5 md:h-5"
+                    className="transition-all flex-shrink-0 w-6 h-6 brightness-0 invert"
                   />
                 </div>
-                <p className="hidden md:block font-pretendard text-[rgba(15,19,36,0.6)] text-sm leading-relaxed tracking-tight group-hover:text-white/60 transition-colors">
+                <p className="font-pretendard text-white/60 text-sm leading-[20px] tracking-[-0.1px]">
                   폐기물은 단순한 쓰레기가 아닌 또 다른 자원이며, 환경과 경제를 고려한 순환 활용은 자원 고갈과 지구 환경 문제를 해결하는 첫걸음입니다.
                 </p>
               </div>
@@ -104,10 +106,10 @@ export default function Home() {
           </div>
 
           {/* Bottom CTA Section */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 mt-4 lg:mt-6">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 lg:gap-4">
-              <div className="flex-1">
-                <p className="font-pretendard text-[#14151A] text-xs md:text-sm lg:text-base leading-relaxed tracking-tight">
+          <div className="bg-gradient-to-r from-[#1a3a6f] to-[#399084] rounded-3xl p-6 mt-4 lg:mt-6 border border-[#dee0e3] shadow-[0px_18px_24px_-5px_rgba(20,21,26,0.1),0px_8px_8px_-5px_rgba(20,21,26,0.05)]">
+            <div className="flex flex-col lg:flex-row items-end justify-between gap-6">
+              <div>
+                <p className="font-pretendard text-white/60 text-base leading-[24px] tracking-[-0.2px]">
                   고객에게는 믿음을, 구성원에게는 의미 있는 일상을.<br />
                   모두가 함께 성장할 수 있는 지속가능한 조직을 만들어갑니다.
                 </p>
@@ -115,24 +117,24 @@ export default function Home() {
               <div className="flex">
                 <Link 
                   href="/contact#directions"
-                  className="h-9 md:h-10 lg:h-11 bg-[#0A0F29]/[0.04] rounded-full flex items-center gap-1 md:gap-2 px-3 md:px-4 lg:px-5 hover:bg-[#0A0F29]/[0.08] transition-colors"
+                  className="h-12 bg-[rgba(10,15,41,0.04)] rounded-full flex items-center gap-1 px-4 py-3 hover:bg-[rgba(10,15,41,0.08)] transition-colors"
                 >
                   <Image
                     src="/images/common/lead-icon-3.svg"
                     alt="Map"
                     width={20}
                     height={20}
-                    className="flex-shrink-0 w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5"
+                    className="flex-shrink-0 w-5 h-5 brightness-0 invert opacity-60"
                   />
-                  <span className="font-pretendard text-[#14151A] text-xs md:text-sm lg:text-base font-medium leading-tight tracking-tight whitespace-nowrap">
+                  <span className="font-pretendard text-white text-base font-medium leading-[24px] tracking-[-0.2px] whitespace-nowrap px-1">
                     찾아오시는 길
                   </span>
                   <Image
                     src="/images/common/tail-icon.svg"
-                    alt="Arrow"
+                    alt="Tail"
                     width={20}
                     height={20}
-                    className="flex-shrink-0 w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5"
+                    className="flex-shrink-0 w-5 h-5 brightness-0 invert opacity-60"
                   />
                 </Link>
               </div>

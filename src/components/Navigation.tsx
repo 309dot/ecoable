@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from 'next/navigation';
 
 interface NavigationProps {
-  variant: 'default' | 'pill';
+  variant: 'default' | 'pill' | 'figma-main'; // 'figma-main' 타입 추가
   logo?: string;
 }
 
@@ -250,4 +250,110 @@ export default function Navigation({ variant = 'default', logo = '/images/logo.p
       </div>
     </>
   );
+
+  // Figma 메인 디자인 타입
+  if (variant === 'figma-main') {
+    return (
+      <>
+        <nav className="fixed top-0 left-0 right-0 z-50 py-2 px-20">
+          <div className="w-full max-w-[1440px] mx-auto">
+            <div className={`relative h-[72px] transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
+              <div className="backdrop-blur backdrop-filter flex flex-row gap-4 items-center justify-start p-0 rounded-[999px] h-full">
+                <div className="basis-0 flex flex-row gap-2.5 grow items-center justify-center px-0 py-3">
+                  {/* Logo */}
+                  <Link href="/" className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40">
+                    <Image
+                      src={logo}
+                      alt="Ecoable Logo"
+                      width={142.27}
+                      height={28}
+                      className="object-contain"
+                    />
+                  </Link>
+                  {/* Navigation Links */}
+                  <div className="hidden xl:block basis-0 flex flex-row gap-4 grow items-center justify-center p-0">
+                    {navigationItems.slice(1).map((item) => (
+                      <Link
+                        key={item.path}
+                        href={item.path}
+                        className={`flex items-center justify-center px-6 py-2.5 rounded-[999px] transition-all duration-200 ${
+                          isActive(item.path)
+                            ? 'bg-white'
+                            : 'bg-[rgba(255,255,255,0.4)]'
+                        }`}
+                      >
+                        <span className={`font-medium text-[16px] leading-[24px] tracking-[-0.2px] ${
+                          isActive(item.path) 
+                            ? 'bg-clip-text bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-transparent' 
+                            : 'text-white'
+                        }`} style={isActive(item.path) ? { WebkitTextFillColor: 'transparent' } : {}}>
+                          {item.name}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                  {/* Home Button */}
+                  <div className="hidden xl:block flex flex-row gap-2 items-center justify-end p-0">
+                    <Link 
+                      href="/"
+                      className="bg-white rounded-[999px] border border-[#dee0e3] shadow-[0px_1px_2px_0px_rgba(20,21,26,0.05)] hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-center justify-center overflow-clip p-[10px]">
+                        <Image
+                          src="/images/common/home-icon.svg"
+                          alt="Home"
+                          width={20}
+                          height={20}
+                          className="size-5"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                  {/* Mobile Hamburger Button */}
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="xl:hidden w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
+                  >
+                    <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
+                      <div className="w-4 h-0.5 bg-white rounded"></div>
+                      <div className="w-4 h-0.5 bg-white rounded"></div>
+                      <div className="w-4 h-0.5 bg-white rounded"></div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* Mobile Menu */}
+        <div className={`xl:hidden fixed top-24 left-4 right-4 z-[60] transition-all duration-300 ${
+          isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+        }`}>
+          <div className="w-full max-w-[1440px] mx-auto">
+            <div className="bg-white/10 backdrop-blur-[16px] rounded-[24px] border border-white/20 shadow-lg">
+              <div className="py-4">
+                {navigationItems.map((item, index) => (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={handleMenuItemClick}
+                    className={`block px-6 py-3 text-base font-medium transition-colors ${
+                      index !== navigationItems.length - 1 ? 'border-b border-white/20' : ''
+                    } ${
+                      isActive(item.path)
+                        ? 'text-white bg-white/20 rounded-lg mx-2'
+                        : 'text-white hover:text-white hover:bg-white/10 rounded-lg mx-2'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 } 
