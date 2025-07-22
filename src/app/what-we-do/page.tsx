@@ -326,6 +326,7 @@ function WhatWeDoContent() {
   // 각 탭별 데이터
   const policyData = {
     title: '전과정정책본부',
+    subtitle: 'Life Cycle Policy Division',
     heroImage: '/images/img_bg_whatwedo1.jpg',
     description: (
       <>
@@ -339,6 +340,7 @@ function WhatWeDoContent() {
 
   const circulationData = {
     title: '전과정순환본부',
+    subtitle: 'Life Cycle Circularity Division',
     heroImage: '/images/img_bg_whatwedo2.jpg',
     description: (
       <>
@@ -400,9 +402,18 @@ function WhatWeDoContent() {
               <div className="absolute inset-0 bg-black/50"></div>
               <div className="absolute inset-0 flex flex-col xl:flex-row px-8">
                 <div className="w-full xl:w-[360px] xl:mr-8 flex flex-col justify-start pt-8">
-                  <h1 className="text-white text-title mb-2">
-                    {activeData.title}
-                  </h1>
+                  <div className="box-border content-stretch flex flex-col gap-1 items-start justify-center leading-[0] not-italic p-0 relative text-[#ffffff] text-left">
+                    <div className="font-bold relative shrink-0 text-[30px] tracking-[-0.5px] w-[360px]">
+                      <p className="block leading-[36px]">
+                        {activeData.title}
+                      </p>
+                    </div>
+                    <div className="font-normal relative shrink-0 text-[24px] tracking-[-0.3px] w-[360px]">
+                      <p className="block leading-[32px]">
+                        {activeData.subtitle}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex-1 flex flex-col justify-end pb-8">
                   <p className="text-white font-medium text-sm leading-[1.5]">
@@ -449,8 +460,8 @@ function WhatWeDoContent() {
                   className="bg-white border border-[#DEE0E3] rounded-[24px] p-6 transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1"
                 >
                   <div 
-                    className="w-full mb-4 rounded-[12px] overflow-hidden"
-                    style={{ aspectRatio: '1 / 1' }}
+                    className="w-full mb-4 rounded-[12px] overflow-hidden mb-4"
+                    style={{ aspectRatio: '1 / 1', width: '80%', margin: '0 auto 1rem auto' }}
                   >
                     <Image
                       src={profile.image}

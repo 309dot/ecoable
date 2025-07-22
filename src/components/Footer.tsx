@@ -1,113 +1,122 @@
-import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white">
-      {/* Top Section - Desktop Only */}
-      <div className="hidden xl:flex flex-col justify-center items-center w-full gap-16 py-10">
-        <div className="flex justify-between items-start w-full max-w-[1440px] gap-10">
-          {/* Logo Section */}
-          <div className="flex items-center w-full">
-            <div className="flex justify-center items-center w-40 h-10 px-3">
-              <div className="relative w-[142.27px] h-7">
-                <Image
-                  src="/images/logo.png"
-                  alt="Ecoable Logo"
-                  width={142}
-                  height={28}
-                  className="object-contain"
-                />
-              </div>
-            </div>
+    <footer className="bg-white w-full" style={{
+      maxWidth: '1440px',
+      margin: '0 auto',
+      wordBreak: 'keep-all',
+      overflowWrap: 'break-word'
+    }}>
+      {/* Main Footer Section */}
+      <div className="py-10">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16 w-full">
+          {/* Left - Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center justify-center w-40 h-10 px-3">
+              <Image
+                src="/images/logo.png"
+                alt="Ecoable Logo"
+                width={142.27}
+                height={28}
+                className="object-contain"
+              />
+            </Link>
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex justify-end items-center gap-6">
-            <div className="flex gap-6">
-              {/* Ecoable Column */}
-              <div className="flex flex-col gap-2">
-                <div className="text-[rgba(15,19,36,0.6)] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px]">
-                  Ecoable
-                </div>
-                <Link href="/ecoable" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  ecoable 소개
-                </Link>
-                <Link href="/ecoable" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  ecoable스러움
-                </Link>
-              </div>
+          {/* Right - Site Map */}
+          <div className="flex flex-wrap gap-4 lg:gap-4">
+            {/* Ecoable Column */}
+            <div className="flex flex-col gap-2 w-[110px]">
+              <h3 className="font-medium text-xs leading-4 text-[rgba(15,19,36,0.6)]">
+                Ecoable
+              </h3>
+              <Link href="/ecoable" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                ecoable 소개
+              </Link>
+              <Link href="/ecoable/culture" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                ecoable스러움
+              </Link>
+            </div>
 
-              {/* What we do Column */}
-              <div className="flex flex-col gap-2">
-                <div className="text-[rgba(15,19,36,0.6)] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px]">
-                  What we do
-                </div>
-                <Link href="/what-we-do" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  전과정정책본부
-                </Link>
-                <Link href="/what-we-do" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  전과정순환본부
-                </Link>
-              </div>
+            {/* What we do Column */}
+            <div className="flex flex-col gap-2 w-[110px]">
+              <h3 className="font-medium text-xs leading-4 text-[rgba(15,19,36,0.6)]">
+                What we do
+              </h3>
+              <Link href="/what-we-do?tab=policy" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                전과정정책본부
+              </Link>
+              <Link href="/what-we-do?tab=circulation" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                전과정순환본부
+              </Link>
+            </div>
 
-              {/* Portfolio Column */}
-              <div className="flex flex-col gap-2">
-                <div className="text-[rgba(15,19,36,0.6)] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px]">
-                  Portfolio
-                </div>
-                <Link href="/portfolio" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  LCA(전과정평가)
-                </Link>
-                <Link href="/portfolio" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  EPD 인증대응
-                </Link>
-                <Link href="/portfolio" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  기후변화대응
-                </Link>
-                <Link href="/portfolio" className="text-[#14151A] text-sm font-medium leading-[1.43] tracking-[-0.71%] w-[180px] hover:opacity-70">
-                  환경정책 및 보건환경
-                </Link>
-              </div>
+            {/* Portfolio Column */}
+            <div className="flex flex-col gap-2 w-[110px]">
+              <h3 className="font-medium text-xs leading-4 text-[rgba(15,19,36,0.6)]">
+                Portfolio
+              </h3>
+              <Link href="/portfolio?tab=lca" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                LCA(전과정평가)
+              </Link>
+              <Link href="/portfolio?tab=epd" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                EPD 인증대응
+              </Link>
+              <Link href="/portfolio?tab=circulation" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                자원순환
+              </Link>
+              <Link href="/portfolio?tab=climate" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                기후변화대응
+              </Link>
+              <Link href="/portfolio?tab=policy" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                환경정책 및 보건환경
+              </Link>
+            </div>
+
+            {/* Client Company Column */}
+            <div className="flex flex-col gap-2 w-[110px]">
+              <h3 className="font-medium text-xs leading-4 text-[rgba(15,19,36,0.6)]">
+                Client Company
+              </h3>
+              <Link href="/client-company" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                고객사 리스트
+              </Link>
+            </div>
+
+            {/* Contact Column */}
+            <div className="flex flex-col gap-2 w-[110px]">
+              <h3 className="font-medium text-xs leading-4 text-[rgba(15,19,36,0.6)]">
+                Contact
+              </h3>
+              <Link href="/contact" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                ecoable 사무실 소개
+              </Link>
+              <Link href="/contact#directions" className="font-normal text-xs leading-4 text-[#14151a] hover:underline">
+                찾아오시는 길
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Section - Always Visible */}
-      <div className="flex flex-col justify-center items-center w-full gap-6 xl:gap-16 py-6">
-        <div className="flex flex-col xl:flex-row justify-between xl:items-end items-start w-full container-1440 gap-6 xl:gap-10">
-          
-          {/* Mobile/Tablet Logo - Only visible on small screens */}
-          <div className="xl:hidden flex justify-start items-center w-40 h-10">
-            <div className="relative w-[142.27px] h-7">
-              <Image
-                src="/images/logo.png"
-                alt="Ecoable Logo"
-                width={142}
-                height={28}
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-          {/* Company Info */}
-          <div className="flex justify-start items-center gap-6">
-            <div className="flex flex-col justify-start items-start text-left">
-              <div className="text-[rgba(13,17,38,0.4)] text-sm font-medium leading-[1.43] tracking-[-0.71%] mb-1">
-                04976 서울특별시 광진구 자양로 216 파인캐슬, 1층-2층
-              </div>
-              <div className="text-[rgba(13,17,38,0.4)] text-sm font-medium leading-[1.43] tracking-[-0.71%] mb-1">
-                대표전화 | 02-6959-8885
-              </div>
-              <div className="text-[rgba(13,17,38,0.4)] text-sm font-medium leading-[1.43] tracking-[-0.71%] mb-1">
-                팩스 | 070-4327-7279
-              </div>
-              <div className="text-[rgba(13,17,38,0.4)] text-sm font-medium leading-[1.43] tracking-[-0.71%]">
-                ©_ecoable CO. 2016
-              </div>
-            </div>
+      {/* Bottom Section */}
+      <div className="py-6">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-start lg:items-end justify-start w-full">
+          <div className="flex flex-col gap-0">
+            <p className="font-medium text-sm leading-5 text-[rgba(13,17,38,0.4)] tracking-[-0.1px]">
+              04976 서울특별시 광진구 자양로 216 파인캐슬, 1층-2층
+            </p>
+            <p className="font-medium text-sm leading-5 text-[rgba(13,17,38,0.4)] tracking-[-0.1px]">
+              T.02-6959-8885
+            </p>
+            <p className="font-medium text-sm leading-5 text-[rgba(13,17,38,0.4)] tracking-[-0.1px]">
+              F.070-4327-7279
+            </p>
+            <p className="font-medium text-sm leading-5 text-[rgba(13,17,38,0.4)] tracking-[-0.1px]">
+              © ecoable CO. 2016
+            </p>
           </div>
         </div>
       </div>

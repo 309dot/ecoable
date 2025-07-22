@@ -335,8 +335,10 @@ export default function ContactPage() {
 
         {/* Directions Section */}
         <div className="w-full">
+          {/* 앵커 포인트 - 네비게이션보다 2rem 아래 위치 */}
+          <div id="directions" style={{ scrollMarginTop: 'calc(88px + 2rem)' }}></div>
           <div className="w-full container-1440 mx-auto py-6">
-            <div id="directions" className="flex flex-col xl:flex-row gap-6 py-6">
+            <div className="flex flex-col xl:flex-row gap-6 py-6">
               <div className="w-full xl:w-[360px]">
                 <h2 className="text-[#14151A] font-bold text-xl md:text-2xl lg:text-[30px] leading-[1.2] mb-2">
                   찾아오시는 길
