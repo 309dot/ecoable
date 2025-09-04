@@ -44,7 +44,7 @@ ${message}
         { 
           success: true, 
           useMailto: true,
-          mailtoLink: `mailto:jing309@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+          mailtoLink: `mailto:khcha@ecoable.co.kr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
           message: '이메일 클라이언트를 통해 문의를 전송합니다.' 
         },
         { status: 200 }
@@ -65,7 +65,8 @@ ${message}
     // 이메일 내용 구성
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'jing309@gmail.com',
+      to: 'khcha@ecoable.co.kr',
+      replyTo: email, // 사용자가 입력한 이메일로 답장 가능하도록 설정
       subject: `[ecoable 문의] ${name}님의 문의사항`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
