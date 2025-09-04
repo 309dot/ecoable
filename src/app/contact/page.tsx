@@ -87,14 +87,14 @@ export default function ContactPage() {
           // mailto 링크를 사용하는 경우
           window.location.href = result.mailtoLink;
           setToast({
-            message: '✅ 이메일 클라이언트가 열립니다! jing309@gmail.com으로 문의사항이 자동 작성되었습니다. 전송 버튼을 클릭해주세요.',
+            message: '문의전송이 완료되었습니다.',
             type: 'success',
             isVisible: true
           });
         } else {
           // 정상적으로 서버에서 전송된 경우
           setToast({
-            message: '✅ 문의내용이 성공적으로 전송되었습니다! jing309@gmail.com으로 문의사항이 발송되었습니다.',
+            message: '문의전송이 완료되었습니다.',
             type: 'success',
             isVisible: true
           });
@@ -512,7 +512,7 @@ export default function ContactPage() {
                           전송 중...
                         </div>
                       ) : (
-                        '📧 문의 보내기'
+                        '문의 보내기'
                       )}
                     </button>
                   </form>
