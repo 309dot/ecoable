@@ -20,8 +20,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // 환경 변수 확인
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    // 환경 변수 확인 (실제 비밀번호가 설정되었는지 확인)
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || process.env.EMAIL_PASS === 'your-app-password-here') {
       console.log('Email credentials not configured, creating mailto link instead');
       
       // mailto 링크 생성을 위한 데이터 반환
@@ -44,7 +44,7 @@ ${message}
         { 
           success: true, 
           useMailto: true,
-          mailtoLink: `mailto:hello@309designlab.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+          mailtoLink: `mailto:jing309@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
           message: '이메일 클라이언트를 통해 문의를 전송합니다.' 
         },
         { status: 200 }
@@ -65,7 +65,7 @@ ${message}
     // 이메일 내용 구성
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'hello@309designlab.com',
+      to: 'jing309@gmail.com',
       subject: `[ecoable 문의] ${name}님의 문의사항`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

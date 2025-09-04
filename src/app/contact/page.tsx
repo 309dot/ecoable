@@ -87,14 +87,14 @@ export default function ContactPage() {
           // mailto 링크를 사용하는 경우
           window.location.href = result.mailtoLink;
           setToast({
-            message: '이메일 클라이언트가 열립니다. 문의를 전송해주세요.',
+            message: '✅ 이메일 클라이언트가 열립니다! jing309@gmail.com으로 문의사항이 자동 작성되었습니다. 전송 버튼을 클릭해주세요.',
             type: 'success',
             isVisible: true
           });
         } else {
           // 정상적으로 서버에서 전송된 경우
           setToast({
-            message: '문의내용이 성공적으로 전송되었습니다.',
+            message: '✅ 문의내용이 성공적으로 전송되었습니다! jing309@gmail.com으로 문의사항이 발송되었습니다.',
             type: 'success',
             isVisible: true
           });
@@ -499,9 +499,21 @@ export default function ContactPage() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-[#1B376F] to-[#3A9284] text-white font-medium py-3 rounded-[12px] hover:opacity-90 transition-opacity"
+                      disabled={isSubmitting}
+                      className={`w-full bg-gradient-to-r from-[#1B376F] to-[#3A9284] text-white font-medium py-3 rounded-[12px] transition-all duration-300 ${
+                        isSubmitting 
+                          ? 'opacity-70 cursor-not-allowed' 
+                          : 'hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5'
+                      }`}
                     >
-                      문의 보내기
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center gap-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          전송 중...
+                        </div>
+                      ) : (
+                        '📧 문의 보내기'
+                      )}
                     </button>
                   </form>
                 </div>
