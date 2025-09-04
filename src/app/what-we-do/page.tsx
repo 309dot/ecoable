@@ -235,6 +235,15 @@ function WhatWeDoContent() {
     isVisible: false
   });
 
+  // 크롬 자동완성 스타일 방지용 공통 스타일
+  const inputStyle = {
+    backgroundColor: 'white',
+    color: '#14151A',
+    WebkitTextFillColor: '#14151A',
+    WebkitBoxShadow: '0 0 0px 1000px white inset',
+    transition: 'background-color 5000s ease-in-out 0s'
+  };
+
   // URL 파라미터에서 탭 설정
   useEffect(() => {
     const tab = searchParams.get('tab');
@@ -533,7 +542,8 @@ function WhatWeDoContent() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="이름을 입력해주세요"
-                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm text-[#14151A] placeholder:text-[rgba(13,17,38,0.4)]"
+                        style={inputStyle}
                         required
                       />
                     </div>
@@ -557,7 +567,9 @@ function WhatWeDoContent() {
                         value={formData.position}
                         onChange={handleInputChange}
                         placeholder="소속 및 직책을 입력해주세요"
-                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm text-[#14151A] placeholder:text-[rgba(13,17,38,0.4)]"
+                        style={inputStyle}
+                        required
                       />
                     </div>
                   </div>
@@ -582,7 +594,8 @@ function WhatWeDoContent() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="연락처를 입력해주세요"
-                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm text-[#14151A] placeholder:text-[rgba(13,17,38,0.4)]"
+                        style={inputStyle}
                         required
                       />
                     </div>
@@ -606,7 +619,8 @@ function WhatWeDoContent() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="이메일을 입력해주세요"
-                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)]"
+                        className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm text-[#14151A] placeholder:text-[rgba(13,17,38,0.4)]"
+                        style={inputStyle}
                         required
                       />
                     </div>
@@ -631,7 +645,8 @@ function WhatWeDoContent() {
                       onChange={handleInputChange}
                       placeholder="문의사항을 입력해주세요"
                       rows={6}
-                      className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm placeholder:text-[rgba(13,17,38,0.4)] resize-none"
+                      className="w-full pl-11 pr-3 py-3 border border-[#DEE0E3] rounded-[12px] text-sm text-[#14151A] placeholder:text-[rgba(13,17,38,0.4)] resize-none"
+                      style={inputStyle}
                       required
                     />
                   </div>
