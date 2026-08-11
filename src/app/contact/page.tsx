@@ -148,11 +148,7 @@ export default function ContactPage() {
       overflowWrap: 'break-word'
     }}>
       {/* Navigation */}
-      <div className="w-full">
-        <div className="w-full container-1440 mx-auto py-4">
-          <Navigation variant="pill" />
-        </div>
-      </div>
+      <Navigation theme="light" />
 
       <div className="nav-spacing">
         {/* Hero Section */}  

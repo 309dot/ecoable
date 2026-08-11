@@ -11,8 +11,8 @@ const welfareListData = [
   },
   {
     id: 2,
-    title: "매 3년마다 2주 여행 지원",
-    description: "여행 좀 길게가자\n*별도 10일 휴가 + 100만원",
+    title: "매3년마다 여행지원 : 별도 5일 휴가 + 휴가비 100만원",
+    description: "여행 좀 길게가자 제도",
     image: "/images/image_02.png"
   },
   {
@@ -53,8 +53,8 @@ const welfareListData = [
   },
   {
     id: 9,
-    title: "주거안정자금 2000만원 무이자 대출",
-    description: "쥐꼬리지만 괜찮아 대출",
+    title: "주거안정자금 무이자 대출",
+    description: "쥐꼬리지만 괜찮아 대출 제도",
     image: "/images/image_09.png"
   },
   {
@@ -213,17 +213,19 @@ const bucketListData = [
 const WelfareCard = ({ title, description, image }: { title: string; description: string; image: string }) => {
   return (
     <div className="bg-white border border-[#DEE0E3] rounded-[24px] p-8 flex flex-col gap-10 transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1 w-full">
+      {/* 카피(description)를 제목 자리에, 제도명(title)을 본문 자리에 노출합니다 */}
       <div className="flex-1">
-        <h3 className="text-[#14151A] font-bold text-xl leading-[1.4] mb-4">{title}</h3>
-        <p className="text-[#14151A] text-lg leading-[1.444] h-12 overflow-hidden">{description}</p>
+        {/* 2줄(56px) 기준으로 높이를 잡아 1줄짜리도 본문 시작선이 같아집니다 */}
+        <h3 className="text-[#14151A] font-bold text-xl leading-[1.4] mb-4 min-h-14">{description}</h3>
+        <p className="text-[#14151A] text-lg leading-[1.444] min-h-12">{title}</p>
       </div>
-      <div className="w-20 h-20 flex items-center justify-center">
+      <div className="w-28 h-28 flex items-center justify-center">
         <Image
           src={image}
           alt={title}
-          width={80}
-          height={80}
-          className="object-cover"
+          width={112}
+          height={112}
+          className="object-contain w-full h-full"
         />
       </div>
     </div>
@@ -233,7 +235,7 @@ const WelfareCard = ({ title, description, image }: { title: string; description
 // Bucket List Card Component (list_bucket 컴포넌트)
 const BucketCard = ({ title, status, image }: { title: string; status: 'default' | 'done'; image: string }) => {
   const isDefault = status === 'default';
-  
+
   return (
     <div 
       className={`${isDefault ? 'bg-white border border-[#DEE0E3]' : 'bg-[#F7F7F8] border border-[#DEE0E3]'} rounded-[24px] ${isDefault ? 'p-8 flex flex-row gap-7' : 'px-6 py-8 flex flex-row gap-7'} min-h-[160px] ${isDefault ? 'transition-all duration-300 hover:shadow-lg hover:shadow-gray-400/25 hover:-translate-y-1' : ''} w-full`}
@@ -256,18 +258,37 @@ const BucketCard = ({ title, status, image }: { title: string; status: 'default'
   );
 };
 
+// 연도별 단체 사진 갤러리.
+// 한 배열이 화면의 한 줄이며, 줄당 개수에 맞춰 그리드 열이 잡힙니다. (2 · 2 · 2 · 3)
+// 연도를 추가할 때는 맨 앞 줄에 넣고 아래 줄을 한 칸씩 밀어주세요.
+const GALLERY_ROWS: { src: string; year: string }[][] = [
+  [
+    { src: '/images/team-2026.jpg', year: '2026' },
+    { src: '/images/image_photo_10.jpg', year: '2025' },
+  ],
+  [
+    { src: '/images/image_photo_09.jpg', year: '2024' },
+    { src: '/images/image_photo_07.jpg', year: '2023' },
+  ],
+  [
+    { src: '/images/image_photo_08.jpg', year: '2022' },
+    { src: '/images/image_photo_06.jpg', year: '2021' },
+  ],
+  [
+    { src: '/images/image_photo_05.jpg', year: '2020' },
+    { src: '/images/image_photo_04.jpg', year: '2018' },
+    { src: '/images/image_photo_03.jpg', year: '2016' },
+  ],
+];
+
+// 줄당 개수별 그리드 클래스 (Tailwind가 클래스명을 정적으로 추출하므로 문자열을 조합하지 않습니다)
+const ROW_GRID_CLASS: Record<number, string> = {
+  2: 'grid grid-cols-1 sm:grid-cols-2 gap-6 w-full',
+  3: 'grid grid-cols-2 sm:grid-cols-3 gap-6 w-full',
+  4: 'grid grid-cols-2 sm:grid-cols-4 gap-6 w-full',
+};
+
 export default function EcoableEcoableness() {
-  // 이미지와 연도 매핑
-  const imageYears = {
-    'image_photo_10': '2025',
-    'image_photo_09': '2024', 
-    'image_photo_08': '2023',
-    'image_photo_07': '2022',
-    'image_photo_06': '2021',
-    'image_photo_05': '2020',
-    'image_photo_04': '2018',
-    'image_photo_03': '2016'
-  } as const;
 
   // Something to Do 데이터
   const todoItems = [
@@ -324,113 +345,34 @@ export default function EcoableEcoableness() {
         
         <div className="pb-6"></div>
         
-        {/* 이미지 그리드 - Figma 106-2597 */}
+        {/* 이미지 그리드 - 줄당 2 · 2 · 2 · 3 */}
         <div className="w-full flex flex-col gap-6">
-          {/* 위쪽 큰 이미지들 (2x2) - 비율 유지 반응형 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-            {/* image_photo_10 */}
-            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_10.jpg"
-                alt="팀 사진 10"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_10']}</span>
-              </div>
+          {GALLERY_ROWS.map((row, rowIndex) => (
+            <div key={rowIndex} className={ROW_GRID_CLASS[row.length] ?? ROW_GRID_CLASS[2]}>
+              {row.map((photo) => (
+                <div
+                  key={photo.year}
+                  className={`w-full ${row.length >= 3 ? 'aspect-[300/170]' : 'aspect-[628/310]'} rounded-3xl overflow-hidden relative group bg-gray-100`}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={`${photo.year}년 단체 사진`}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white text-2xl font-bold">{photo.year}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-            {/* image_photo_09 */}
-            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_09.jpg"
-                alt="팀 사진 9"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_09']}</span>
-              </div>
-            </div>
-            {/* image_photo_08 */}
-            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_08.jpg"
-                alt="팀 사진 8"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_08']}</span>
-              </div>
-            </div>
-            {/* image_photo_07 */}
-            <div className="w-full aspect-[628/310] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_07.jpg"
-                alt="팀 사진 7"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_07']}</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* 아래쪽 작은 이미지들 (1x4) - 비율 유지 반응형 */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">
-            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_06.jpg"
-                alt="팀 사진 6"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_06']}</span>
-              </div>
-            </div>
-            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_05.jpg"
-                alt="팀 사진 5"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_05']}</span>
-              </div>
-            </div>
-            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_04.jpg"
-                alt="팀 사진 4"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_04']}</span>
-              </div>
-            </div>
-            <div className="w-full aspect-[300/170] rounded-3xl overflow-hidden relative group bg-gray-100">
-              <Image
-                src="/images/image_photo_03.jpg"
-                alt="팀 사진 3"
-                fill
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{imageYears['image_photo_03']}</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Something to Do / Nothing to Do 섹션 - 반응형 */}
+      {/* Something to Do / Nothing to Do 섹션 - 데스크톱에서 좌우 배치 */}
       <section className="spacing-section-large">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col lg:flex-row items-stretch gap-6">
           {/* Something to Do */}
           <div className="bg-[#F7F7F8] rounded-[24px] p-6 pb-10 flex-1">
             <div className="flex items-center gap-4 pb-4">
@@ -440,17 +382,18 @@ export default function EcoableEcoableness() {
                   alt="Something to Do"
                   width={33}
                   height={48}
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
               <h3 className="text-[#14151A] text-subtitle">
                 Something to Do
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 mobile-list-compact">
+            <div className="grid grid-cols-1 gap-2 mobile-list-compact">
               {todoItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-2.5">
-                  <span className="text-[#14151A] text-body flex-shrink-0">✔️ </span>
+                  {/* U+FE0E(텍스트 표현) + 고정 폭: ✖와 글리프 폭이 달라도 본문 시작선이 어긋나지 않습니다 */}
+                  <span className="text-[#399084] text-body flex-shrink-0 w-[1.25em]">{'✔︎'}</span>
                   <span className="text-[#14151A] text-body">{item}</span>
                 </div>
               ))}
@@ -459,26 +402,26 @@ export default function EcoableEcoableness() {
           
           {/* Nothing to Do */}
           <div className="bg-[#F7F7F8] rounded-[24px] p-6 pb-10 flex-1">
-            <div className="flex justify-between items-center pb-1">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 flex justify-center items-center">
-                  <Image 
-                    src="/images/nothing-to-do.png"
-                    alt="Nothing to Do"
-                    width={33}
-                    height={48}
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-[#14151A] text-subtitle">
-                  Nothing to Do
-                </h3>
+            {/* Something to Do 헤더와 동일한 구조·간격을 유지합니다 (좌우 대칭) */}
+            <div className="flex items-center gap-4 pb-4">
+              <div className="w-12 h-12 flex justify-center items-center">
+                <Image
+                  src="/images/nothing-to-do.png"
+                  alt="Nothing to Do"
+                  width={33}
+                  height={48}
+                  className="object-contain"
+                />
               </div>
+              <h3 className="text-[#14151A] text-subtitle">
+                Nothing to Do
+              </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 mobile-list-compact">
+            <div className="grid grid-cols-1 gap-2 mobile-list-compact">
               {notTodoItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-2.5">
-                  <span className="text-[#14151A] text-body flex-shrink-0">✖️ </span>
+                  {/* U+FE0E(텍스트 표현)를 붙여야 이모지가 아닌 글리프로 렌더링되어 색이 적용됩니다 */}
+                  <span className="text-[#E5484D] text-body flex-shrink-0 w-[1.25em]">{'✖︎'}</span>
                   <span className="text-[#14151A] text-body">{item}</span>
                 </div>
               ))}

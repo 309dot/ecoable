@@ -4,9 +4,15 @@ import Navigation from '@/components/Navigation';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
 
+interface Client {
+  name: string;
+  /** 로고 파일이 아직 없는 고객사는 null (로고 자리를 비우고 이름만 노출) */
+  logo: string | null;
+}
+
 export default function ClientCompanyPage() {
   // 고객사 데이터 - 순서 반대로 변경 및 코오롱인더스트리2 제거
-  const clients = [
+  const clients: Client[] = [
     { name: '삼성전자㈜', logo: '/images/client-company/logo_client_68.png' },
     { name: '삼성전기㈜', logo: '/images/client-company/logo_client_67.png' },
     { name: '삼성SDI㈜', logo: '/images/client-company/logo_client_66.png' },
@@ -53,7 +59,21 @@ export default function ClientCompanyPage() {
     { name: '한국순환자원유통지원센터', logo: '/images/client-company/logo_client_25.png' },
     { name: '한국전선공업협동조합', logo: '/images/client-company/logo_client_24.png' },
     { name: '한국제지연합회', logo: '/images/client-company/logo_client_23.png' },
-    { name: '한국포장재재활용사업공제조합', logo: '/images/client-company/logo_client_22.png' }
+    { name: '한국포장재재활용사업공제조합', logo: '/images/client-company/logo_client_22.png' },
+    // 2026 개정 신규 추가 (Client Company 시트 강조 표시분)
+    { name: '현대자동차㈜', logo: '/images/client-company/hyundai-motor.svg' },
+    { name: 'HS효성첨단소재㈜', logo: '/images/client-company/hs-hyosung-advanced.svg' },
+    { name: '금호미쓰이화학㈜', logo: '/images/client-company/kumho-mitsui.svg' },
+    { name: '㈜휴비스', logo: '/images/client-company/huvis.png' },
+    { name: '㈜대상', logo: '/images/client-company/daesang.svg' },
+    { name: '한국전구체㈜', logo: '/images/client-company/kpc-precursor.jpeg' },
+    { name: '㈜초이랩', logo: '/images/client-company/choirab.svg' },
+    { name: '㈜미라보콘크리트', logo: '/images/client-company/mirabo-concrete.svg' },
+    { name: '㈜삼일이노팩', logo: '/images/client-company/samil-innopack.png' },
+    { name: '㈜삼립', logo: '/images/client-company/samlip.svg' },
+    // 로고 파일 미입수 — 입수 시 위 항목들처럼 경로만 연결하면 됩니다
+    { name: '㈜지아이글로벌', logo: null },
+    { name: '㈜비콘', logo: null }
   ];
 
   return (
@@ -64,11 +84,7 @@ export default function ClientCompanyPage() {
       overflowWrap: 'break-word'
     }}>
       {/* Navigation */}
-      <div className="w-full">
-        <div className="w-full container-1440 mx-auto py-4">
-          <Navigation variant="pill" logo="/images/logo_wh.png" />
-        </div>
-      </div>
+      <Navigation theme="light" />
 
       {/* Client List with 180px top padding */}
       <div className="w-full container-1440 mx-auto py-24">
@@ -89,15 +105,21 @@ export default function ClientCompanyPage() {
                     key={index}
                     className="bg-white border border-[#DEE0E3] rounded-3xl p-6 flex flex-col justify-center items-center gap-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                   >
-                    {/* Logo Container */}
+                    {/* Logo Container - 로고 파일이 없으면 이름을 워드마크처럼 텍스트로 대체합니다 */}
                     <div className="w-full h-8 flex items-center justify-center">
-                      <Image
-                        src={client.logo}
-                        alt={client.name}
-                        width={120}
-                        height={32}
-                        className="max-w-full max-h-8 object-contain"
-                      />
+                      {client.logo ? (
+                        <Image
+                          src={client.logo}
+                          alt={client.name}
+                          width={120}
+                          height={32}
+                          className="max-w-full max-h-8 object-contain"
+                        />
+                      ) : (
+                        <span className="max-w-full px-1 font-bold text-[15px] leading-[1.2] text-[#14151A] text-center break-keep">
+                          {client.name}
+                        </span>
+                      )}
                     </div>
                     
                     {/* Company Name */}

@@ -21,7 +21,7 @@ export default function Home() {
       {/* Background Image with Overlay - 마진에 영향받지 않음 */}
       <div className="fixed inset-0 w-screen h-screen z-0">
         <Image
-          src="/images/Desktop_main_01.jpg"
+          src="/images/main-hero-2026.jpg"
           alt="Background"
           fill
           className="object-cover"
@@ -33,14 +33,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/35"></div>
       </div>
       
-      <div className="relative min-h-screen bg-transparent overflow-hidden">
+      {/* 데스크톱(lg 이상)에서는 네비 + 콘텐츠가 정확히 한 화면에 들어가 스크롤이 생기지 않습니다.
+          그 이하에서는 내용이 잘리지 않도록 기존처럼 세로로 흐릅니다. */}
+      <div className="relative min-h-screen lg:h-screen bg-transparent overflow-hidden flex flex-col">
 
       {/* Navigation */}
-      <Navigation variant="main-transparent" logo="/images/logo_wh.png" />
+      <Navigation theme="transparent" />
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full container-1440 mx-auto">
-        <div className="flex flex-col justify-between min-h-screen pb-8">
+      <div className="relative z-10 w-full container-1440 mx-auto lg:flex-1 lg:min-h-0">
+        <div className="flex flex-col justify-between min-h-screen lg:min-h-0 lg:h-full pb-8">
           
           {/* Title Section */}
           <div className="text-left mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-32 mt-32">{/* mt-20을 mt-32로 증가 */}

@@ -33,7 +33,7 @@ export default function EcoableIntroduction() {
       {/* Second Section - Main Image */}
       <div className="w-full h-[280px] md:h-[360px] lg:h-[452px] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] overflow-hidden relative">
         <Image
-          src="/images/image_photo_26.jpg"
+          src="/images/ecoable-intro-2026.jpg"
           alt="Ecoable Team"
           width={1400}
           height={452}
@@ -59,47 +59,24 @@ export default function EcoableIntroduction() {
           <h3 className="text-[#14151A] text-[18px] md:text-[20px] lg:text-[24px] font-bold leading-[1.33] tracking-[-1.25%] w-full xl:w-[360px] flex-shrink-0">
             ecoable의 비전과 목표
           </h3>
-          <div className="flex flex-col gap-[120px] w-full">
-            {/* Vision Banner */}
-            <div className="bg-gradient-to-r from-[#1a3a6f] to-[#399084] h-[72px] rounded-[999px] w-full relative">
-              <div className="flex flex-col items-center justify-center h-full">
-                <div className="flex flex-col gap-1 items-center justify-center px-4 py-6 h-[72px] w-full">
-                  <div className="font-bold text-white text-base leading-[24px] tracking-[-0.2px] text-center">
-                    Life Cycle Linker (전과정에 대한 연결을 통해 지속가능한 발전 추구)
-                  </div>
-                </div>
-              </div>
-              {/* Arrow pointing down */}
-              <div className="absolute flex items-center justify-center left-1/2 top-[72px] transform -translate-x-1/2 w-[816px] h-[83px]">
-                <div className="rotate-180">
-                  <svg
-                    className="w-[816px] h-[83px]"
-                    fill="none"
-                    preserveAspectRatio="none"
-                    viewBox="0 0 816 82"
-                  >
-                    <path
-                      d="M405.319 1.21853C406.89 -0.0393491 409.11 -0.0393403 410.681 1.21854C421.809 10.1312 467.019 43.5203 535.738 57.5C615.405 73.7067 816 81.9999 816 81.9999H0C0 81.9999 200.595 73.7067 280.262 57.5C348.981 43.5203 394.192 10.1311 405.319 1.21853Z"
-                      fill="url(#paint0_linear_195_13892)"
-                    />
-                    <defs>
-                      <linearGradient
-                        gradientUnits="userSpaceOnUse"
-                        id="paint0_linear_195_13892"
-                        x1="-29.5007"
-                        x2="851.067"
-                        y1="50"
-                        y2="50"
-                      >
-                        <stop stopColor="#399084" />
-                        <stop offset="1" stopColor="#1A3A6F" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
+          <div className="flex flex-col gap-10 w-full">
+            {/* 비전 배너: 알약 + 아래 화살표가 하나의 SVG입니다.
+                preserveAspectRatio="none" 이라 가로만 늘어나고 알약 높이는 72px로 고정됩니다. */}
+            <div className="relative w-full">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/vision-banner.svg"
+                alt=""
+                aria-hidden="true"
+                className="block w-full h-[154px]"
+              />
+              <div className="absolute inset-x-0 top-0 h-[72px] flex items-center justify-center px-4">
+                <div className="font-bold text-white text-base leading-[24px] tracking-[-0.2px] text-center">
+                  Life Cycle Linker (전과정에 대한 연결을 통해 지속가능한 발전 추구)
                 </div>
               </div>
             </div>
-            
+
             {/* Three Vision Cards */}
             <div className="flex flex-row gap-10 items-center justify-start w-full">
               <div className="flex-1 bg-[#f7f7f8] h-[120px] rounded-[999px] border border-[#dee0e3]">

@@ -127,6 +127,13 @@ body {
   }
 }
 
+/* 관리자 페이지는 body 좌우 마진(사이트 레이아웃용)을 쓰지 않습니다 */
+body:has(.admin-shell) {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background: #f7f8f9;
+}
+
 /* 공통 컨테이너 스타일 */
 .container-1440 {
   max-width: 90rem; /* 1440px */

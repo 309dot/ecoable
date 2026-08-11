@@ -1,395 +1,180 @@
 'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+/**
+ * 메인과 서브 페이지가 같은 마크업을 쓰고 테마(색상)만 달라집니다.
+ * 여백도 컴포넌트 안에서 통일해서 로고 위치가 페이지마다 흔들리지 않습니다.
+ * - transparent: 메인 페이지. 배경 사진 위에 얹히는 투명 바
+ * - light: 서브 페이지. 흰 알약 바
+ */
+export type NavTheme = 'transparent' | 'light';
 
 interface NavigationProps {
-  variant: 'default' | 'pill' | 'figma-main' | 'main-transparent'; // 'main-transparent' 타입 추가
-  logo?: string;
+  theme?: NavTheme;
 }
 
-export default function Navigation({ variant = 'default', logo = '/images/logo.png' }: NavigationProps) {
+const NAV_ITEMS = [
+  { name: 'Ecoable', path: '/ecoable' },
+  { name: 'What we do', path: '/what-we-do' },
+  { name: 'Portfolio', path: '/portfolio' },
+  { name: 'Client Company', path: '/client-company' },
+  { name: 'Contact', path: '/contact' },
+] as const;
+
+interface NavThemeStyle {
+  shell: string;
+  logo: string;
+  itemActive: string;
+  itemIdle: string;
+  labelActive: string;
+  labelIdle: string;
+  /** 활성 라벨이 그라디언트 클리핑을 쓰는 테마인지 (Safari 대응 필요) */
+  clipsText: boolean;
+  burgerBar: string;
+  burgerButton: string;
+  panel: string;
+  panelItemActive: string;
+  panelItemIdle: string;
+  panelDivider: string;
+}
+
+const THEMES: Record<NavTheme, NavThemeStyle> = {
+  transparent: {
+    // light 테마에는 1px 테두리가 있습니다. 투명 테두리로 폭을 맞춰야
+    // 메인↔서브 이동 시 로고와 메뉴 위치가 1~2px씩 흔들리지 않습니다.
+    shell: 'bg-transparent border border-transparent',
+    logo: '/images/logo_wh.png',
+    itemActive: 'bg-white border border-transparent',
+    itemIdle: 'bg-[rgba(255,255,255,0.4)] border border-transparent',
+    labelActive:
+      'font-semibold bg-clip-text bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-transparent',
+    labelIdle: 'font-medium text-white',
+    clipsText: true,
+    burgerBar: 'bg-white',
+    burgerButton: 'bg-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.6)]',
+    panel: 'bg-white/10 backdrop-blur-[16px] border border-white/20',
+    panelItemActive: 'text-white bg-white/20',
+    panelItemIdle: 'text-white hover:bg-white/10',
+    panelDivider: 'border-white/20',
+  },
+  light: {
+    shell: 'bg-white border border-[#DEE0E3]',
+    logo: '/images/logo_bk.png',
+    itemActive: 'bg-gradient-to-r from-[#1a3a6f] to-[#399084] border border-transparent',
+    itemIdle: 'border border-[#DEE0E3]',
+    labelActive: 'font-semibold text-white',
+    labelIdle: 'font-medium text-[rgba(15,19,36,0.6)]',
+    clipsText: false,
+    burgerBar: 'bg-[#14151A]',
+    burgerButton: 'border border-[#DEE0E3] hover:bg-[#F7F8F9]',
+    panel: 'bg-white border border-[#DEE0E3] shadow-lg',
+    panelItemActive: 'text-white bg-gradient-to-r from-[#1a3a6f] to-[#399084]',
+    panelItemIdle: 'text-[rgba(15,19,36,0.6)] hover:bg-[#F7F8F9]',
+    panelDivider: 'border-[#EFF0F2]',
+  },
+};
+
+export default function Navigation({ theme = 'light' }: NavigationProps) {
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const style = THEMES[theme];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // 페이지를 옮기면 열려 있던 모바일 메뉴를 닫습니다.
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
+    setIsMenuOpen(false);
+  }, [pathname]);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isActive = (path: string) =>
+    path === '/' ? pathname === '/' : pathname.startsWith(path);
 
-  const navigationItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Ecoable', path: '/ecoable' },
-    { name: 'What we do', path: '/what-we-do' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Client Company', path: '/client-company' },
-    { name: 'Contact', path: '/contact' }
-  ];
+  return (
+    <div className="w-full container-1440 mx-auto py-4 relative">
+      <div className={`rounded-[999px] ${style.shell}`}>
+        <div className="flex flex-row items-center gap-4 px-6 py-3">
+          {/* 로고 */}
+          <Link
+            href="/"
+            className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40 shrink-0"
+          >
+            <Image
+              src={style.logo}
+              alt="Ecoable Logo"
+              width={142.27}
+              height={28}
+              className="object-contain"
+              priority
+            />
+          </Link>
 
-  const isActive = (path: string) => {
-    if (path === '/') {
-      return pathname === '/';
-    }
-    return pathname.startsWith(path);
-  };
-
-  const handleMenuItemClick = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  // main-transparent 타입 - pill과 동일한 사이즈
-  if (variant === 'main-transparent') {
-    return (
-      <>
-        <div className="w-full">
-          <div className="w-full container-1440 mx-auto py-2">
-            <div className="flex flex-row gap-6 items-center justify-center px-0 py-2">
-              <div className="flex-1 flex flex-row gap-4 items-center justify-start">
-                <div className="bg-transparent rounded-[999px] border-0 flex-1">
-                  <div className="flex flex-row items-center justify-center px-0 py-[1.625rem]">
-                    {/* Logo - logo_wh.png 하드코딩 */}
-                    <Link href="/" className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40">
-                      <Image src="/images/logo_wh.png" alt="Ecoable Logo" width={142.27} height={28} className="object-contain" priority />
-                    </Link>
-                    
-                    {/* Navigation Links */}
-                    <div className="flex-1 flex flex-row gap-4 items-center justify-center">
-                      {navigationItems.slice(1).map((item) => (
-                        <Link
-                          key={item.path}
-                          href={item.path}
-                          className={`px-6 py-2.5 rounded-[999px] transition-all duration-200 ${
-                            isActive(item.path)
-                              ? 'bg-white'
-                              : 'bg-[rgba(255,255,255,0.4)]'
-                          }`}
-                        >
-                          <span className={`font-${isActive(item.path) ? 'semibold' : 'medium'} text-[16px] leading-[24px] tracking-[-0.2px] ${
-                            isActive(item.path)
-                              ? 'bg-clip-text bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-transparent'
-                              : 'text-white'
-                          }`} style={isActive(item.path) ? { WebkitTextFillColor: 'transparent' } : {}}>
-                            {item.name}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                    
-                    {/* Home Button */}
-                    <div className="flex flex-row gap-2 items-center justify-end">
-                      <Link href="/" className="bg-white rounded-[999px] border border-[#dee0e3] shadow-[0px_1px_2px_0px_rgba(20,21,26,0.05)] hover:shadow-md transition-shadow">
-                        <div className="flex items-center justify-center overflow-clip p-[10px]">
-                          <Image src="/images/common/home-icon.svg" alt="Home" width={20} height={20} className="size-5 opacity-60" />
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Mobile Menu */}
-        <div className={`xl:hidden fixed top-20 left-4 right-4 z-[60] transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className="bg-white/10 backdrop-blur-[16px] rounded-[24px] border border-white/20 shadow-lg">
-              <div className="py-4">
-                {navigationItems.map((item, index) => (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    onClick={handleMenuItemClick}
-                    className={`block px-6 py-3 text-base font-medium transition-colors ${
-                      index !== navigationItems.length - 1 ? 'border-b border-white/20' : ''
-                    } ${
-                      isActive(item.path)
-                        ? 'text-white bg-white/20 rounded-lg mx-2'
-                        : 'text-white hover:text-white hover:bg-white/10 rounded-lg mx-2'
+          {/* 메뉴 - 오른쪽 정렬 */}
+          <div className="hidden lg:flex flex-1 flex-row gap-4 items-center justify-end">
+            {NAV_ITEMS.map((item) => {
+              const active = isActive(item.path);
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`px-6 py-2.5 rounded-[999px] transition-all duration-200 ${
+                    active ? style.itemActive : style.itemIdle
+                  }`}
+                >
+                  <span
+                    className={`text-[16px] leading-[24px] tracking-[-0.2px] ${
+                      active ? style.labelActive : style.labelIdle
                     }`}
+                    style={
+                      active && style.clipsText
+                        ? { WebkitTextFillColor: 'transparent' }
+                        : undefined
+                    }
                   >
                     {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
+
+          {/* 햄버거 (lg 미만) */}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMenuOpen}
+            className={`lg:hidden ml-auto w-10 h-10 shrink-0 rounded-[999px] flex items-center justify-center transition-colors ${style.burgerButton}`}
+          >
+            <span className="w-5 h-5 flex flex-col justify-center items-center gap-1">
+              <span className={`w-4 h-0.5 rounded ${style.burgerBar}`} />
+              <span className={`w-4 h-0.5 rounded ${style.burgerBar}`} />
+              <span className={`w-4 h-0.5 rounded ${style.burgerBar}`} />
+            </span>
+          </button>
         </div>
-      </>
-    );
-  }
+      </div>
 
-  if (variant === 'pill') {
-    return (
-      <>
-        <div className="w-full">
-          <div className="w-full container-1440 mx-auto py-2">
-            <div className="flex flex-row gap-6 items-center justify-center px-0 py-2">
-              <div className="flex-1 flex flex-row gap-4 items-center justify-start">
-                <div className="bg-white rounded-[999px] border border-[#DEE0E3] flex-1">
-                  <div className="flex flex-row items-center justify-center px-6 py-3">
-                    {/* Logo - logo_bk.png 하드코딩 */}
-                    <Link href="/" className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40">
-                      <Image src="/images/logo_bk.png" alt="Ecoable Logo" width={142.27} height={28} className="object-contain" />
-                    </Link>
-                    
-                    {/* Navigation Links */}
-                    <div className="flex-1 flex flex-row gap-4 items-center justify-center">
-                      {navigationItems.slice(1).map((item) => (
-                        <Link
-                          key={item.path}
-                          href={item.path}
-                          className={`px-6 py-2.5 rounded-[999px] transition-all duration-200 ${
-                            isActive(item.path)
-                              ? 'bg-gradient-to-r from-[#1a3a6f] to-[#399084]'
-                              : 'border border-[#DEE0E3]'
-                          }`}
-                        >
-                          <span className={`font-${isActive(item.path) ? 'semibold' : 'medium'} text-[16px] leading-[24px] tracking-[-0.2px] ${
-                            isActive(item.path)
-                              ? 'text-white'
-                              : 'text-[rgba(15,19,36,0.6)]'
-                          }`}>
-                            {item.name}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                    
-                    {/* Home Button */}
-                    <div className="flex flex-row gap-2 items-center justify-end">
-                      <Link href="/" className="bg-white rounded-[999px] border border-[#dee0e3] shadow-[0px_1px_2px_0px_rgba(20,21,26,0.05)] hover:shadow-md transition-shadow">
-                        <div className="flex items-center justify-center overflow-clip p-[10px]">
-                          <Image src="/images/common/home-icon.svg" alt="Home" width={20} height={20} className="size-5 opacity-60" />
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  if (variant === 'default') {
-    return (
-      <>
-        <nav className="fixed top-0 left-0 right-0 z-50 mt-4 mx-4 sm:mx-6 md:mx-6 xl:mx-20">
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className={`relative h-[72px] bg-white rounded-[999px] border border-[#DEE0E3] transition-shadow duration-300 ${
-              isScrolled ? 'shadow-lg' : ''
-            }`}>
-              {/* Logo - 클릭시 메인 화면으로 링크 */}
-              <Link href="/" className="absolute top-1/2 -translate-y-1/2 left-4 w-[160px] h-[40px] flex items-center justify-center pl-4">
-                <Image
-                  src={logo}
-                  alt="Ecoable Logo"
-                  width={142.27}
-                  height={28}
-                  className="object-contain"
-                />
-              </Link>
-              
-              {/* Desktop Navigation Links - Center */}
-              <div className="hidden xl:block absolute top-1/2 -translate-y-1/2 left-[184px] right-[72px] h-[44px]">
-                <div className="flex items-center justify-center gap-[16px] h-full">
-                  {navigationItems.slice(1).map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className={`h-[44px] rounded-[999px] flex items-center justify-center px-[24px] transition-all duration-200 ${
-                        isActive(item.path)
-                          ? 'bg-gradient-to-r from-[#1A3A6F] to-[#399084] text-white'
-                          : 'hover:bg-gray-100 text-[#0F1324]/60 border border-[#DEE0E3]'
-                      }`}
-                    >
-                      <span className="font-pretendard text-[16px] font-medium leading-[24px] tracking-[-0.2px]">
-                        {item.name}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Desktop Right Icon Button */}
-              <div className="hidden xl:block absolute top-1/2 -translate-y-1/2 right-[8px] w-[56px] h-[40px]">
-                <div className="flex gap-[8px]">
-                  <Link 
-                    href="/"
-                    className="w-[40px] h-[40px] bg-white rounded-[999px] border border-[#DEE0E3] flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
-                  >
-                    <Image
-                      src="/images/common/home-icon.svg"
-                      alt="Home"
-                      width={20}
-                      height={20}
-                    />
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Mobile Hamburger Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden absolute top-1/2 -translate-y-1/2 right-4 w-[40px] h-[40px] hover:bg-gray-100 rounded-[999px] flex items-center justify-center transition-all duration-200"
+      {/* 모바일 드롭다운 */}
+      {isMenuOpen && (
+        <div className="lg:hidden absolute left-0 right-0 top-full z-50 px-0">
+          <div className={`rounded-[24px] overflow-hidden ${style.panel}`}>
+            {NAV_ITEMS.map((item, index) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-6 py-3 text-base font-medium transition-colors ${
+                  index !== 0 ? `border-t ${style.panelDivider}` : ''
+                } ${isActive(item.path) ? style.panelItemActive : style.panelItemIdle}`}
               >
-                <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
-                  <div className="w-4 h-0.5 bg-gray-700 rounded"></div>
-                  <div className="w-4 h-0.5 bg-gray-700 rounded"></div>
-                  <div className="w-4 h-0.5 bg-gray-700 rounded"></div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        {/* Mobile Dropdown Menu */}
-        <div className={`xl:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 md:left-6 md:right-6 xl:left-20 xl:right-20 z-[60] transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className="bg-white rounded-[24px] border border-[#DEE0E3] shadow-lg">
-              {/* Menu Items */}
-              <div className="py-4">
-                {navigationItems.map((item, index) => (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    onClick={handleMenuItemClick}
-                    className={`block px-6 py-3 text-base font-medium transition-colors ${
-                      index !== navigationItems.length - 1 ? 'border-b border-gray-100' : ''
-                    } ${
-                      isActive(item.path)
-                        ? 'text-white bg-gradient-to-r from-[#1A3A6F] to-[#399084]'
-                        : 'text-[#0F1324]/60 hover:bg-gray-50'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+                {item.name}
+              </Link>
+            ))}
           </div>
         </div>
-      </>
-    );
-  }
-
-  // Figma 메인 디자인 타입
-  if (variant === 'figma-main') {
-    return (
-      <>
-        <nav className="fixed top-0 left-0 right-0 z-50 py-2 px-20">
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className={`relative h-[72px] transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
-              <div className="backdrop-blur backdrop-filter flex flex-row gap-4 items-center justify-start p-0 rounded-[999px] h-full">
-                <div className="basis-0 flex flex-row gap-2.5 grow items-center justify-center px-0 py-3">
-                  {/* Logo */}
-                  <Link href="/" className="flex flex-col h-10 items-center justify-center px-3 py-0 w-40">
-                    <Image
-                      src={logo}
-                      alt="Ecoable Logo"
-                      width={142.27}
-                      height={28}
-                      className="object-contain"
-                    />
-                  </Link>
-                  {/* Navigation Links */}
-                  <div className="hidden xl:block basis-0 flex flex-row gap-4 grow items-center justify-center p-0">
-                    {navigationItems.slice(1).map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        className={`flex items-center justify-center px-6 py-2.5 rounded-[999px] transition-all duration-200 ${
-                          isActive(item.path)
-                            ? 'bg-white'
-                            : 'bg-[rgba(255,255,255,0.4)]'
-                        }`}
-                      >
-                        <span className={`font-medium text-[16px] leading-[24px] tracking-[-0.2px] ${
-                          isActive(item.path) 
-                            ? 'bg-clip-text bg-gradient-to-r from-[#1a3a6f] to-[#399084] text-transparent' 
-                            : 'text-white'
-                        }`} style={isActive(item.path) ? { WebkitTextFillColor: 'transparent' } : {}}>
-                          {item.name}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                  {/* Home Button */}
-                  <div className="hidden xl:block flex flex-row gap-2 items-center justify-end p-0">
-                    <Link 
-                      href="/"
-                      className="bg-white rounded-[999px] border border-[#dee0e3] shadow-[0px_1px_2px_0px_rgba(20,21,26,0.05)] hover:shadow-md transition-shadow"
-                    >
-                      <div className="flex items-center justify-center overflow-clip p-[10px]">
-                        <Image
-                          src="/images/common/home-icon.svg"
-                          alt="Home"
-                          width={20}
-                          height={20}
-                          className="size-5"
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                  {/* Mobile Hamburger Button */}
-                  <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="xl:hidden w-[40px] h-[40px] bg-white/40 hover:bg-white/60 rounded-[999px] flex items-center justify-center transition-all duration-200"
-                  >
-                    <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
-                      <div className="w-4 h-0.5 bg-white rounded"></div>
-                      <div className="w-4 h-0.5 bg-white rounded"></div>
-                      <div className="w-4 h-0.5 bg-white rounded"></div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div className={`xl:hidden fixed top-24 left-4 right-4 z-[60] transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="w-full max-w-[1440px] mx-auto">
-            <div className="bg-white/10 backdrop-blur-[16px] rounded-[24px] border border-white/20 shadow-lg">
-              <div className="py-4">
-                {navigationItems.map((item, index) => (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    onClick={handleMenuItemClick}
-                    className={`block px-6 py-3 text-base font-medium transition-colors ${
-                      index !== navigationItems.length - 1 ? 'border-b border-white/20' : ''
-                    } ${
-                      isActive(item.path)
-                        ? 'text-white bg-white/20 rounded-lg mx-2'
-                        : 'text-white hover:text-white hover:bg-white/10 rounded-lg mx-2'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-} 
+      )}
+    </div>
+  );
+}
